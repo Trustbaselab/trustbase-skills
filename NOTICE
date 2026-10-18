@@ -1,0 +1,28 @@
+Trustbase Skills
+Copyright 2026 Trustbase Lab
+
+This product includes Agent Skills maintained by Trustbase Lab.
+
+NOTES ON THE COGNITIVE SKILLS
+--------------------------------
+The cognitive/ skills are based on the IDEAS of published books:
+  - Scarcity: Why Having Too Little Means So Much,
+    by Sendhil Mullainathan and Eldar Shafir
+  - Deep Work: Rules for Focused Success in a Distracted World,
+    by Cal Newport
+
+We do NOT reproduce or translate excerpts of the original works.
+What is licensed here is our own contribution:
+  - translating the ideas into executable rules for AI agents
+  - our own engineering data and validation records
+    (e.g. cognitive/bandwidth-and-deep-work/references/evidence.md)
+
+NOTES ON THE INDUSTRY SKILLS
+-----------------------------
+The industry/ skills reference data served by the Trustbase Lab MCP
+server at https://trustbaselab.com/mcp.
+
+The skill text is licensed under Apache-2.0.
+The DATA is subject to the platform terms at https://trustbaselab.com.
+The skills themselves contain no regulation values; they contain
+checking procedures and decision rules only.
