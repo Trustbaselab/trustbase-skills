@@ -1,191 +1,194 @@
 ---
 name: noise-in-judgment
-description: 基于《噪声：人类判断的缺陷》（卡尼曼、西博尼、桑斯坦）的判断一致性技能：区分偏差与噪声→噪声审计量化分歧→决策卫生（独立判断、聚合、排序、指南）降噪，含 agent 多轮输出一致性检查协议。当用户说「为什么每次答案都不一样」「结论不一致该信谁」「怎么让评估打分更一致」「怎么审计决策质量」「两次判断差这么多正常吗」时使用；纯事实查询、唯一答案计算与个人品味不适用。
+description: A judgment-consistency skill based on "Noise" (Kahneman, Sibony, Sunstein). Separate bias from noise, run a noise audit to quantify disagreement, then apply decision hygiene (independent judgment, aggregation, ranking, guidelines) to reduce variance. Includes a multi-run consistency-check protocol for agents. Use when the user says "why is the answer different every time", "which conclusion should I trust", "how do I make scoring consistent", "how do I audit decision quality", "is this much difference between two judgments normal"; not for pure fact lookup, single-answer computation, or personal taste.
 ---
 
-# 噪声 × 判断一致性 · 把「随机不一致」当成一等公民来治理
+# Noise × Judgment Consistency · Treating Random Inconsistency as a First-Class Problem
 
-《噪声》的核心主张：**判断错误 = 偏差 + 噪声**。偏差是系统性地打偏（几十年来的明星问题），噪声是落点随机分散（被长期忽视的隐形问题），两者对总误差的贡献**可互换**——**总误差(MSE) = 偏差² + 噪声²**。噪声的独特优势在于：**不需要知道正确答案也能测量**（不用看到靶心，也能量出子弹的离散度）。因此治理顺序是：先测噪声（噪声审计），再用流程预防（决策卫生）。
+**The core claim of *Noise*:** **judgment error = bias + noise**. Bias is a systematic offset (the star problem for decades); noise is random scatter (the long-ignored invisible problem). Their contributions to total error are **interchangeable** — **total error (MSE) = bias² + noise²**. Noise has a unique advantage: **it can be measured without knowing the correct answer** (you can measure the spread of the bullet holes without seeing the bullseye). So the order of treatment is: measure noise first (a noise audit), then prevent it with process (decision hygiene).
 
-## 何时使用
+## When to use
 
-- 同一个问题，不同人 / 不同时间 / 不同 agent 给出明显不同的结论，用户问「该信谁」「为什么不一样」
-- 需要让评估、打分、评审、分级、定级「更一致、更公平」的组织流程
-- 用户怀疑自己的判断「时好时坏」，想减少随机波动
-- 需要审计一个判断系统/流程的质量（而不是审计某个人）
-- agent 流水线里，LLM 输出在多次运行间不稳定，影响下游
-- 用户问「偏差和噪声有什么区别」「噪声审计怎么做」「决策卫生是什么」
+- The same question, asked of different people / at different times / of different agents, produces clearly different conclusions, and the user asks "which should I trust" or "why are they different"
+- An organizational process needs to make evaluation, scoring, review, and grading "more consistent, fairer"
+- The user suspects their own judgment is "good sometimes, bad sometimes" and wants less random fluctuation
+- The quality of a judgment system / process needs to be audited (rather than auditing an individual)
+- In an agent pipeline, LLM output is unstable across runs and this affects downstream work
+- The user asks "what is the difference between bias and noise", "how do I run a noise audit", "what is decision hygiene"
 
-**轻量模式**：只问「为什么两次结论不一样」「该信谁」「差多少算正常」时，出「一句话诊断（偏差/噪声）+ 分歧来源表 + 1 个动作」，不必走全流程。
+**Lightweight mode**: when the only questions are "why are two conclusions different", "which should I trust", "how much difference is normal", output "a one-sentence diagnosis (bias/noise) + a table of where the disagreement comes from + one action" — no need to run the full pipeline.
 
-**不适用**：有唯一正确答案的计算/检索（直接算，不需要判断协议）；个人品味与偏好（分歧合法）；涉及任务过载、注意力分配、多任务冲突 → 用 `bandwidth-and-deep-work`；具体偏差治理（锚定、框架效应、过度自信等）→ 用 `thinking-fast-and-slow`；纯概念解释 → 直接讲概念，不强制套流程。
+**Not for**: computation or retrieval with a single correct answer (just compute it; no judgment protocol needed); personal taste and preference (disagreement is legitimate); task overload, attention allocation, multitasking conflicts → use `bandwidth-and-deep-work`; treatment of specific biases (anchoring, framing, overconfidence) → use `thinking-fast-and-slow`; purely conceptual explanation → explain the concept directly without forcing the pipeline.
 
-## 三条铁律
+## Three iron rules
 
-### 铁律 1：偏差和噪声是两种病，分开诊断、分开治
+### Rule 1: Bias and noise are two different diseases; diagnose and treat them separately
 
-偏差 = 一组判断的平均偏离；噪声 = 判断之间的离散。只看平均会漏掉噪声；只喊「消除偏见」治不了噪声。误差方程给出等价性：**MSE = 偏差² + 噪声²**，减少一单位噪声与减少一单位偏差对总误差的贡献相同（《噪声》第 5 章）。
+Bias = the average deviation of a set of judgments; noise = the dispersion among the judgments. Looking only at the average hides noise; shouting only "eliminate bias" does not treat noise. The error equation supplies the equivalence: **MSE = bias² + noise²** — reducing one unit of noise contributes as much to total error as reducing one unit of bias (*Noise*, Chapter 5).
 
-> 证据锚：保险核保审计——高管预期分歧约 10%，实测中位差 55%（核保定价）/43%（理赔定损）；828 名高管对专家判断分歧的预期中位数也是 10%。噪声的规模系统性被低估 4–5 倍（strategy+business 书评转述书中数据）。
+> Evidence anchor: the insurance underwriting audit — executives expected about 10% disagreement; the measured median difference was 55% (underwriting pricing) / 43% (claims assessment); the median expectation among 828 executives for the disagreement of expert judgments was also 10%. The scale of noise is systematically underestimated by a factor of 4–5 (figures relayed from the book by a strategy+business review).
 
-### 铁律 2：噪声可以没有真相地测量——先审计，别辩论
+### Rule 2: Noise can be measured without ground truth — audit first, don't debate
 
-偏差常因「正确答案」不可得而无法测；噪声只需「本应相同的判断」就足够。噪声审计（noise audit）= 让本应可互换的判断者独立判断同一批案例，量化分歧。**分歧本身就是数据**（推论：若两人对同一案例给出不同判断，至多一人正确）。
+Bias often cannot be measured because the "correct answer" is unavailable; noise only needs "judgments that ought to be identical". A noise audit = have judges who ought to be interchangeable judge the same set of cases independently, and quantify the disagreement. **Disagreement is itself data** (corollary: if two people give different judgments on the same case, at most one of them is right).
 
-### 铁律 3：降噪靠决策卫生，不靠「更聪明更努力」
+### Rule 3: Reducing noise relies on decision hygiene, not on "being smarter or trying harder"
 
-决策卫生（decision hygiene）= 不针对某个具体偏差、通过流程预防未知错误的措施，类比洗手：你不知道挡住的是哪种病菌。核心动作：独立判断→聚合、结构化分解、排序优于打分、统一量表、信息排序、能规则化的规则化。⛔ 拒绝「要冷静」「要客观」「要想清楚」这类空话——只接受可执行的流程改动。
+Decision hygiene = measures that target no specific bias but prevent unknown errors through process — analogous to handwashing: you do not know which pathogen you blocked. Core moves: independent judgment → aggregation; structured decomposition; ranking beats scoring; unified scales; sequencing information; rule-ify what can be rule-ified. ⛔ Reject empty phrases such as "be calm", "be objective", "think it through" — accept only executable process changes.
 
-## 第 0 步 · 收集信息（禁止编造）
+## Step 0 · Gather information (no fabrication)
 
-审计依赖真实判断数据。开工前必须明确：
+An audit depends on real judgment data. Before starting you must clarify:
 
-- 判断任务是什么（定价/评分/诊断/分级/预测？），**预测性**（有客观结果）还是**评估性**（价值权衡）？
-- 谁在判断（人 / agent / 模型），数量、是否可互换？
-- 有没有历史案例可以复用（8–16 个同质案例即可做小样本试点）
-- 是否有真值/事后结果（决定偏差可测与否）
-- 当前流程长什么样（讨论顺序、量表、是否独立打分）
+- What is the judgment task (pricing / scoring / diagnosis / grading / forecasting?), and is it **predictive** (there is an objective outcome) or **evaluative** (a value trade-off)?
+- Who is judging (person / agent / model), how many, are they interchangeable?
+- Are there historical cases that can be reused (8–16 homogeneous cases suffice for a small pilot)
+- Is there a ground truth or an after-the-fact outcome (this determines whether bias is measurable)
+- What does the current process look like (order of discussion, scale, whether scoring is independent)
 
-⛔ 缺失的信息逐条追问或显式标注「以下为假设值」。**禁止编造分歧数字**——没有数据就先设计审计，而不是编一个。
+⛔ Ask for missing information item by item, or explicitly label it "the following are assumed values". **Fabricating disagreement numbers is forbidden** — with no data, design the audit rather than invent a number.
 
-## 核心流程：噪声审计（六步，改编自《噪声》附录 A）
+## Core workflow: the noise audit (six steps, adapted from Appendix A of *Noise*)
 
-| 步 | 动作 | 关键要求 |
+| Step | Action | Key requirement |
 |---|---|---|
-| 1 | 定团队与判断单位 | 成员做同一种判断、本应可互换；团队要有可信度 |
-| 2 | 构造案例集 | 由领域专家写 8–16 个贴近真实工作的案例；每个案例要求**单一数值**作答（价格/概率/评分；skill 操作参数） |
-| 3 | 领导者先承诺 | 事前写下**预期的分歧**与可接受上限，并承诺按结果行动 |
-| 4 | 独立、安静、匿名运行 | 不叫「审计」以免惊动；同时段、独立作答、不对比、答案匿名 |
-| 5 | 测离散不测平均 | 计算两两判断相对偏差中位数（\|a−b\|/均值）等分歧指标；**分解**水平噪声（人平均差异）vs 模式噪声（人对案例的差异） |
-| 6 | 反馈并修系统 | 对比预期 vs 实测；定位噪声源（量表？流程？判断者？）→ 改规则/工具/培训 → 排期复审计 |
+| 1 | Define the team and the unit of judgment | Members make the same kind of judgment and should be interchangeable; the team must be credible |
+| 2 | Construct the case set | Domain experts write 8–16 cases close to real work; each case requires a **single numeric answer** (price / probability / score) |
+| 3 | The leader commits first | Beforehand, write down the **expected disagreement** and an acceptable ceiling, and commit to acting on the result |
+| 4 | Run it independently, quietly, anonymously | Do not call it an "audit" (to avoid alarming people); same time window, independent answers, no comparison, anonymous |
+| 5 | Measure dispersion, not the average | Compute the median pairwise relative deviation (\|a−b\|/mean) and similar disagreement metrics; **decompose** level noise (differences in people's averages) vs. pattern noise (differences in how people respond to cases) |
+| 6 | Feed back and fix the system | Compare expected vs. measured; locate the noise source (scale? process? judge?) → change rules/tools/training → schedule a re-audit |
 
-**噪声分解**：系统噪声² = 水平噪声² + 模式噪声²；模式噪声 = 稳定模式噪声 + 场合噪声。模式噪声通常**最大**——主要问题不是「有人整体偏严」，而是「各人对不同类型案例反应不同」。
+**Noise decomposition**: system noise² = level noise² + pattern noise²; pattern noise = stable pattern noise + occasion noise. Pattern noise is usually **the largest** part — the main problem is not "one person is systematically harsher" but "each person reacts differently to different kinds of cases".
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 分歧大、但没人承认（一致性错觉） | A1 构造同质案例集（+ A2 审计别叫审计）+ A3 领导先写预期，用实测落差打破错觉 |
-| 水平噪声主导（整体一个严一个松） | B3 统一量表/参照框架培训；B6 外部视角基准率 |
-| 模式噪声主导（对案例类型反应各异） | B2 结构化分解；B5 排序替代打分 |
-| 场合噪声高（同一人不同时刻不一致） | B1 独立多次判断+聚合；B4 信息排序；重要判断隔夜复核 |
-| 可验证的预测任务、重复发生 | B7 合理规则/简单模型替代直觉 |
-| 单一重大决策（收购/战略） | B8 决策观察者 + pre-mortem；反事实思考 |
-| 群体讨论后才决策 | B1 先独立后聚合，禁止先讨论 |
-| agent 输出跨轮次不一致 | C1–C10 一致性检查协议（见下） |
-| 噪声明显但降噪方案有代价 | 回「最优噪声」权衡（见边界），选更聪明的规则而非放弃 |
+| Large disagreement but nobody admits it (illusion of agreement) | A1 build a homogeneous case set (+ A2 don't call it an audit) + A3 have the leader write their expectation first; use the measured gap to break the illusion |
+| Level noise dominates (one overall harsher, one overall looser) | B3 unified scale / reference-frame training; B6 outside-view base rate |
+| Pattern noise dominates (different reactions to case types) | B2 structured decomposition; B5 ranking instead of scoring |
+| High occasion noise (the same person is inconsistent at different times) | B1 independent repeated judgment + aggregation; B4 information sequencing; review important judgments overnight |
+| A verifiable, recurring prediction task | B7 replace intuition with a reasonable rule / simple model |
+| A single major decision (acquisition / strategy) | B8 decision observer + premortem; counterfactual thinking |
+| A decision made only after group discussion | B1 independent first, aggregate later; discussion first is forbidden |
+| Agent output inconsistent across runs | C1–C10 consistency-check protocol (below) |
+| Noise is clear but the fix is costly | Return to the "optimal noise" trade-off (see boundaries); prefer smarter rules over giving up |
 
-## 处方库
+## Prescription library
 
-### A. 测量（噪声审计）
+### A. Measurement (the noise audit)
 
-1. **A1 同质案例集**：案例互相可比、答案同一量纲；8–16 个足够小样本试点。
-2. **A2 审计别叫审计**：对内称「流程演练/一致性校准」，防防御性作答。
-3. **A3 预期先于实测**：领导写下预期分歧并承诺行动——「我以为 10%，实际 55%」是最强的说服武器。
-4. **A4 独立性是硬要求**：同时段、独立、匿名；任何传阅/讨论都会污染测量。
-5. **A5 报告分歧三件套**：两两相对偏差中位数（噪声分）、范围/变异系数、水平 vs 模式分解——**不报均值**。
-6. **A6 复审计排期**：制度会漂移（美国量刑指南 2005 从强制变建议后，量刑差异翻倍；书引研究，底层出处待核实）——降噪是一次性改造 + 周期性复审计。
+1. **A1 Homogeneous case set**: cases must be mutually comparable, with answers on the same scale; 8–16 is enough for a small pilot.
+2. **A2 Don't call an audit an audit**: internally call it a "process rehearsal / consistency calibration" to prevent defensive answers.
+3. **A3 Expectation before measurement**: have the leader write down the expected disagreement and commit to acting — "I thought it was 10%, it was actually 55%" is the strongest persuasive weapon.
+4. **A4 Independence is a hard requirement**: same time window, independent, anonymous; any circulation or discussion contaminates the measurement.
+5. **A5 Report the disagreement triad**: median pairwise relative deviation (the noise score), range / coefficient of variation, and the level-vs-pattern decomposition — **never report the mean**.
+6. **A6 Schedule re-audits**: institutions drift (after the US sentencing guidelines changed from mandatory to advisory in 2005, sentencing disparity doubled; study cited in the book, underlying source pending verification) — noise reduction is a one-time intervention plus periodic re-auditing.
 
-### B. 决策卫生（书中处方）
+### B. Decision hygiene (prescriptions from the book)
 
-1. **B1 先独立、后聚合**：讨论前每人独立写判断，聚合（平均/中位数/多数票）优于讨论共识；统计群体 > 互动群体（信息级联与群体极化会放大噪声）。
-2. **B2 中介评估法（MAP）**：定义中介维度 → 各维度独立收集证据并评分 → 逐维「评-议-评」→ **最后**才做整体直觉判断。选项当候选人、评估当结构化面试。
-3. **B3 统一量表与锚点**：行为锚定量表 + 参照框架培训，让所有人「用同一把尺子」；无锚量表（如美元赔偿额）是噪声重灾区（任意连贯性）。
-4. **B4 信息排序**：先证据、后背景、最后结论；防过早直觉（司法科学用线性顺序披露——先看现场证据，再看比对样本与案情）。
-5. **B5 相对判断优于绝对判断**：排序 > 打分；必须打分则先定锚点与行为示例。同批对象打分 → 内部排名。
-6. **B6 外部视角**：先问「这类案例的分布/基准率」，把个案放回参照类，再谈个案特殊性。
-7. **B7 能规则化的规则化**：高频可验证判断用「合理规则」五步——选 6–8 个明显相关的变量 → 标准化 → 平均得总分 → 按分数段定行动。简单、无噪声、可解释；不需要复杂模型。
-8. **B8 单一决策防护**：反事实思考（换个团队/换天/换个顺序，结论会变吗？）+ 决策观察者清单 + pre-mortem（假设已失败，倒推原因）。
-9. **B9 选判断者看认知风格**：积极开放性思维（主动找反证、愿更新）> 自信与口才；尊重型专家 ≠ 校准好的预测者。
-10. **B10 断腿例外要记账**：允许人类以模型不知道的决定性信息推翻规则，但推翻必须记录、事后审计推翻率——直觉覆盖不是通行证。
+1. **B1 Independent first, aggregate later**: before discussion, each person writes their judgment independently; aggregation (mean / median / majority vote) beats discussion-based consensus; statistical groups > interacting groups (information cascades and group polarization amplify noise).
+2. **B2 Mediating assessments protocol (MAP)**: define the mediating dimensions → collect evidence and score each dimension independently → "score-discuss-score" per dimension → **only then** make the overall intuitive judgment. Treat options like candidates and evaluation like a structured interview.
+3. **B3 Unified scales and anchors**: behaviorally anchored rating scales plus reference-frame training, so everyone uses the same ruler; unanchored scales (e.g. dollar compensation amounts) are a noise hotspot (arbitrary coherence).
+4. **B4 Information sequencing**: evidence first, background second, conclusions last — this prevents premature intuition (forensic science uses linear sequential disclosure: scene evidence first, then comparison samples and case facts).
+5. **B5 Relative judgment beats absolute judgment**: ranking > scoring; if scoring is required, define anchors and behavioral examples first. For a batch of objects, score then convert to an internal ranking.
+6. **B6 Outside view**: first ask "what is the distribution / base rate for this class of cases", place the case back into its reference class, then discuss its specificity.
+7. **B7 Rule-ify what can be rule-ified**: for high-frequency verifiable judgments, use the five steps of a "reasonable rule" — pick 6–8 clearly relevant variables → standardize → average into a total score → map score bands to actions. Simple, noise-free, explainable; no complex model needed.
+8. **B8 Protection for a single decision**: counterfactual thinking (if we swapped the team / the day / the order, would the conclusion change?) + a decision-observer checklist + a premortem (assume it already failed, work backwards to causes).
+9. **B9 Pick judges by cognitive style**: actively open-minded thinking (seeking counter-evidence, willing to update) > confidence and eloquence; a respected expert ≠ a well-calibrated forecaster.
+10. **B10 Log the "broken-leg" exceptions**: a human may override a rule with decisive information the model does not have, but the override must be logged and the override rate audited afterwards — intuition-based override is not a free pass.
 
-### C. Agent 多轮输出一致性检查协议（本 skill 将书中概念映射到 LLM 工程，属我们的翻译，非书中原话）
+### C. Agent multi-run output consistency-check protocol (this skill maps the book's concepts onto LLM engineering; it is our translation, not the book's wording)
 
-1. **C1 场合噪声审计**：同一任务同一 prompt 重跑 N≥3（固定温度），量化分歧（分类→各答案占比；数值→范围/标准差/变异系数）。
-2. **C2 水平噪声审计**：跨模型/跨温度跑同一用例集，比较整体倾向差异（哪个整体偏高/偏严）。
-3. **C3 模式噪声审计**：构造 8–16 个同质用例批量判断，看模型对**哪类**用例不稳定（模型×用例交互），而不是笼统说「不稳定」。
-4. **C4 聚合协议**：独立多次运行后聚合——分类用多数票、数值用中位数/截尾均值；子代理独立判断后聚合，不要串行参考前一个的答案。
-5. **C5 结构化输出**：先定 rubric 逐维度独立评分，最后才综合（MAP 的 agent 版）；维度分与总分都写进输出。
-6. **C6 排序替代打分**：候选排序优于 1–10 分；必须打分时给锚点定义（如「5 分 = 满足全部标准且无明显缺陷」）。
-7. **C7 信息排序卫生**：prompt 中把客观事实放前、把他人结论/锚点/示例答案放后；疑顺序敏感时轮换顺序测稳健性。
-8. **C8 确定性规则优先**：能写代码/公式/查表的判断不用 LLM 直觉（合理规则的 agent 版）；LLM 只处理规则外输入，且保留例外记录。
-9. **C9 报告分布而非单点**：关键判断输出附口径——「3 次运行：7.2 / 7.5 / 7.8」「与另一模型分歧 ±2」，并声明真值可得性（客观无知）。
-10. **C10 审计留痕**：每次一致性检查的原始输出存档，指标可复算——「分歧是多少」必须能被第三方重新算出来。
+1. **C1 Occasion-noise audit**: re-run the same task with the same prompt N≥3 times (at a fixed temperature) and quantify the disagreement (categorical → share of each answer; numeric → range / standard deviation / coefficient of variation).
+2. **C2 Level-noise audit**: run the same case set across models / temperatures and compare overall tendencies (which one is systematically high / systematically harsh).
+3. **C3 Pattern-noise audit**: construct 8–16 homogeneous cases and judge them in a batch to see **which type** of case the model is unstable on (model × case interaction), rather than saying vaguely "it's unstable".
+4. **C4 Aggregation protocol**: after independent repeated runs, aggregate — majority vote for categorical, median / trimmed mean for numeric; have sub-agents judge independently and then aggregate; do not let them serially reference the previous answer.
+5. **C5 Structured output**: define a rubric first and score each dimension independently, and only then synthesize (the agent edition of MAP); write both the dimension scores and the total into the output.
+6. **C6 Ranking instead of scoring**: ranking candidates beats a 1–10 score; if scoring is required, define the anchors (e.g. "5 = meets all criteria with no obvious defect").
+7. **C7 Information-sequencing hygiene**: in the prompt, put objective facts first and other people's conclusions / anchors / example answers last; when order sensitivity is suspected, rotate the order to test robustness.
+8. **C8 Deterministic rules first**: judgments that can be expressed as code / a formula / a lookup should not use LLM intuition (the agent edition of the reasonable rule); the LLM handles only out-of-rule inputs, and exception records are kept.
+9. **C9 Report a distribution, not a point**: key judgments carry their basis — "3 runs: 7.2 / 7.5 / 7.8", "±2 disagreement with another model" — and state the availability of ground truth (objective ignorance).
+10. **C10 Audit trail**: archive the raw output of every consistency check so the metrics can be recomputed — "how big the disagreement is" must be reproducible by a third party.
 
-## Agent 执行协议
+## Agent execution protocol
 
-1. **一致性红线**：评估/打分/结论/预测类输出默认标注「单次抽样」；对影响下游的关键判断，先按 C1 决定是否重跑聚合。
-2. **分歧是信息不是故障**：报告分歧与分布，而不是为了「显得稳定」挑一个答案。
-3. **先诊断再处方**：偏差与噪声分开——平均偏离目标 = 偏差证据；多次间离散 = 噪声证据；两者都要报告。
-4. **结构先于直觉**：复杂判断先建维度（C5），逐维度打分，最后才允许整体判断——禁止一上来给总分。
-5. **确定性优先**：能用规则/公式/代码表达的不交给 LLM 主观判断；LLM 覆盖例外时必须显式标注「例外」并记录理由（B10）。
-6. **不替用户做价值选择**：评估性判断（该多严/该给多少）的真值是社会建构的——先报告分歧本身，把「统一到哪个标准」留给用户（对应书第 27–28 章的最优噪声）。
-7. **收尾标注审计状态**：输出注明「单次判断 / N 次聚合 / 结构化评估 / 规则计算」，让下游知道结论的噪声暴露等级。
+1. **Consistency red line**: evaluation / scoring / conclusion / forecasting outputs are by default labeled "single sample"; for key judgments that affect downstream work, first decide via C1 whether to re-run and aggregate.
+2. **Disagreement is information, not a fault**: report the disagreement and the distribution rather than picking one answer in order to "look stable".
+3. **Diagnose before prescribing**: separate bias from noise — average deviation from the target is bias evidence; dispersion across runs is noise evidence; report both.
+4. **Structure before intuition**: for complex judgments, build the dimensions first (C5), score each dimension, and only then allow an overall judgment — giving a total score off the top is forbidden.
+5. **Preserve independence**: in any multi-agent / multi-step process, make sure the judgments are formed independently and then aggregated; serial transmission of conclusions is an information cascade.
+6. **Note the optimal-noise trade-off**: zero noise is not the goal — beyond a point, more consistency costs more decision quality; prefer smarter rules to harsher enforcement.
+7. **Re-audit after intervention**: after changing a process, re-run the audit and compare before/after; a change without a re-audit is an unverified change.
 
-## 输出模板
+## Output templates
 
-**输出顺序与预算**：一句话结论 → 一张分歧表（或审计表）→ 诊断分解 → 处方 ≤5 条 → 1 个下一步动作。不要四表平铺。
-
-### 模板 1 · 一致性诊断报告（「为什么两次不一样」类请求）
+### Template 1 · Consistency diagnosis report (for "why are two answers different" requests)
 
 ```markdown
-结论：这是【偏差 / 噪声 / 两者兼有】——（一句话）。
-| 运行/判断者 | 结果 | 与均值偏差 |
+**One-line diagnosis**: this is [bias / noise / both]; the main disagreement comes from [level / pattern / occasion] noise.
+
+| Source of disagreement | Evidence | Share (estimated) |
 |---|---|---|
-| 第 1 次 | ... | ... |
-| 第 2 次 | ... | ... |
-诊断：水平噪声 / 模式噪声 / 场合噪声——n≥8 时给占比估计；n<8 或单案例只定性判断「谁主导」，不报占比；无真值时偏差一栏标「不可判」。
-数据缺失：先发起 mini 重评（同一任务独立重跑 n≥3，或 2–3 位判断者独立重评）再填表；⛔ 禁止编造数字。
-处方：① ... ② ... ③ ...（≤5 条，if-then）
-下一步：...（1 个动作）
+| Level noise | ... | ... |
+| Pattern noise | ... | ... |
+| Occasion noise | ... | ... |
+
+**One action**: ...
 ```
 
-### 模板 2 · 噪声审计报告（组织/流水线）
+### Template 2 · Noise audit report (organization / pipeline)
 
 ```markdown
-# 噪声审计 · <判断任务>
-- 案例集：n=<数量>，量纲=<价格/评分/概率>
-- 预期分歧（领导事前写）：<X%> ｜ 实测分歧：<Y%>
-- 分解：水平噪声 <a%> / 模式噪声 <b%>（其中场合噪声 <c%>）
-- 噪声源定位：<量表/流程/判断者/信息顺序>
-- 处方：① ... ② ...（≤5 条）
-- 复审计日期：<日期>
+| Item | Expected | Measured |
+|---|---|---|
+| Median pairwise relative deviation | ... | ... |
+| Range / CV | ... | ... |
+| Level noise | ... | ... |
+| Pattern noise | ... | ... |
+
+**Diagnosis**: the dominant source is ...
+**Countermeasure**: ...
+**Re-audit scheduled**: ...
 ```
 
-### 模板 3 · agent 一致性检查记录（C 协议）
+### Template 3 · Agent consistency-check record (protocol C)
 
 ```markdown
-任务：<任务描述> ｜ 模型/温度：<配置> ｜ n=<重跑次数>
-| 指标 | 值 |
-|---|---|
-| 分类一致率 / 数值范围 | ... |
-| 水平差异（跨模型） | ... |
-| 不稳定用例类型 | ... |
-审计状态：单次判断 / N 次聚合 / 结构化评估 / 规则计算
-原始输出：<存档路径>
+| Run | Output | Notes |
+|---|---|---|
+| 1 | ... | ... |
+| 2 | ... | ... |
+| 3 | ... | ... |
+
+**Dispersion**: ...
+**Aggregation**: ...
+**Ground truth availability**: available / not available (objective ignorance)
 ```
 
-## 边界与常见误用
+## Boundaries and common misuse
 
-| 误用 | 纠正 |
+| Misuse | Correction |
 |---|---|
-| 把偏差当噪声治（或反过来） | 先诊断：平均偏离=偏差，离散=噪声；处方不同（去偏 vs 决策卫生） |
-| 用平均值汇报判断质量 | 均值掩盖分歧；必报分歧指标（噪声分、范围、变异系数） |
-| 「不知道正确答案，所以没法改进」 | 噪声不需要真相就能测——这正是先做噪声审计的理由 |
-| 降噪 = 抹杀个性、不尊重人 | 书第 27 章承认尊严、个别化对待、价值观演化的价值——「最优噪声」是权衡问题，不是零噪声目标 |
-| 规则/算法一定更好 | 算法可携带训练数据偏差（代理变量、历史歧视）；粗糙规则会僵化（书举「三振出局」）。降噪方案本身要成本收益审计，选更聪明的规则而非放弃 |
-| 讨论会能「集思广益」降噪 | 互动群体放大噪声（级联、极化）；先独立判断再聚合才降噪 |
-| 场合噪声证据当铁律 | 天气/饥饿/顺序效应是小样本观察性研究且存在学术争议（如「饥饿法官」PNAS 往来）——说「证据锚」，不说「定律」 |
-| 「反正有噪声」当不改进的借口 | 噪声是机制描述不是免责条款；结构性原因（流程、量表、制度）与个体行为分开说 |
-| 一次性审计后万事大吉 | 制度漂移（强制指南变建议后差异翻倍；书引研究，底层出处待核实）；复审计必须排期 |
-| 对 agent 直接套用人类认知结论 | C 协议是把「判断一致性」类比到 LLM 多轮输出的**工程协议**，不是对人类认知科学结论的断言 |
-
-## 参考文件（按需加载，不默认全读）
-
-- `references/noise-in-judgment-book.md` —— 《噪声》全书笔记：概念词典（原意+误解）、证据锚、引文、批评红线，需要精确概念或证据时读
-- `references/evidence.md` —— 本 skill 规则的验证状态（当前：待验证）与候选应用、测量方案
-- 相关 skill：`bandwidth-and-deep-work`（任务过载/注意力分配）、`thinking-fast-and-slow`（具体偏差治理）、`agent-experience`（上下文效率）
+| Treating "noise" as "random error that cannot be studied" | Noise is measurable and treatable; that is the whole point of the book |
+| Treating zero noise as the goal | There is an optimal level of noise; beyond it, further consistency costs decision quality |
+| Using a noise audit to evaluate individuals | The audit measures the **system**, not people; used against individuals it creates defensiveness and destroys the data |
+| Confusing noise with bias | Average deviation = bias; dispersion across judgments = noise; diagnose separately |
+| Reporting only the mean disagreement | The mean hides the structure; report the median pairwise relative deviation, the range, and the level-vs-pattern decomposition |
+| Skipping independence | Any circulation or discussion contaminates the measurement entirely |
+| Treating ranking as always better | Ranking is better than absolute scoring, but only when the objects are genuinely comparable |
+| Using decision hygiene as an excuse to avoid deciding | Hygiene improves the quality of judgment; it does not replace the decision |
 
 ---
 
-*本 skill 基于《噪声：人类判断的缺陷》（Daniel Kahneman、Olivier Sibony、Cass R. Sunstein，Little, Brown Spark / 浙江教育出版社，2021）的理念，引用以短引文+出处为限；「处方库 C」「Agent 执行协议」及模板为 Trustbase Lab 对书中概念的工程翻译，License：Apache-2.0。*
+## Reference files (load on demand, not by default)
+
+- `references/noise-in-judgment-book.md` — full book notes: concept dictionary, evidence anchors, quotations, criticism boundaries
+- `references/evidence.md` — validation status of this skill's rules inside this project
+- `METHOD.md` — conversion record for this book
+- `references/SKILL.zh.md` — the Chinese edition of this skill
+
+---
+
+*Based on the ideas of "Noise: A Flaw in Human Judgment" (Daniel Kahneman, Olivier Sibony, Cass R. Sunstein, 2021). This file is Trustbase Lab content; License: Apache-2.0.*
