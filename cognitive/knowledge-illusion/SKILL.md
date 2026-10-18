@@ -1,187 +1,193 @@
 ---
 name: knowledge-illusion
-description: 基于《知识的错觉》的知识纪律技能：区分「记得/核验过/检索到」，标注来源与不确定性，用机制解释测试校准自评理解，不把检索到的共同体知识当自身理解。当用户说「你怎么确定」「你凭什么这么自信」「别不懂装懂」「给我解释原理，并说明依据」「这个结论有依据吗」「你的置信度多少」「查了再说」时使用；也用于 agent 自查输出。数据口径转 factfulness，过载转 bandwidth-and-deep-work。
+description: An epistemic-discipline skill based on "The Knowledge Illusion". Distinguish "remembered / verified / retrieved", label sources and uncertainty, calibrate self-reported understanding with a mechanism-explanation test, and never pass retrieved community knowledge off as one's own understanding. Use when the user says "how do you know", "why are you so sure", "don't pretend to know", "explain the mechanism and state your basis", "is this conclusion grounded", "what's your confidence", "look it up first"; also for agent self-review of its own output. For data provenance use factfulness; for overload use bandwidth-and-deep-work.
 ---
 
-# 知识论纪律 · 别把「能查到」当「我懂了」
+# Epistemic Discipline · Don't Confuse "I Can Look It Up" with "I Understand It"
 
-## 核心判断
+## Core claim
 
-本书在跟「理性个体」的神话争论：个体头脑里的理解极其浅薄，知识的绝大部分储存在他人的头脑和外部世界里——**知识共同体（community of knowledge）**。人类的力量从来不是个人理性，而是集体思考；智能 ≈ 对集体思考的贡献，而不是个人脑内的知识量。
+**This book argues against the myth of the "rational individual": the understanding inside any single head is extremely shallow; the vast majority of knowledge is stored in other people's heads and in the external world — the **community of knowledge**. Human power has never been individual rationality; it is collective thinking. Intelligence ≈ one's contribution to that collective thinking, not the amount of knowledge inside one's own skull.**
 
-翻译成 agent 纪律：agent 是知识共同体的接口。它的主要风险不是知识少，而是三种错觉——**把「检索到」当「我懂了」**（Fisher, Goddu & Keil 2015）、**把「讲得流畅」当「理解正确」**（解释深度错觉，Rozenblit & Keil 2002）、**把「熟悉」当「懂机制」**。本 skill 的全部规则就是防这三件事。
+**Translated into agent discipline: an agent is an interface to the community of knowledge. Its main risk is not too little knowledge — it is three illusions:**
+1. **Mistaking "retrieved" for "understood"** (Fisher, Goddu & Keil 2015)
+2. **Mistaking "fluent explanation" for "correct understanding"** (the illusion of explanatory depth, Rozenblit & Keil 2002)
+3. **Mistaking "familiar" for "understanding the mechanism"**
 
----
-
-## 何时使用
-
-- 用户质疑输出依据：「你怎么确定」「你凭什么这么自信」「这个结论有依据吗」「别不懂装懂」
-- 用户要求解释原理/机制并说明依据，或要求「查了再说」
-- agent 自查输出：来源标注、置信度声明、知识边界盘点
-- 用户立场极端、拒绝事实，需要「解释测试」而非灌信息
-- 评估自己/他人/另一 agent 的理解程度、设计知识分工
-
-**轻量模式**：单个主张的核验请求 → 只出「主张-证据-置信度卡」，不走四问全流程；**被质疑依据时**（「你凭什么这么自信」）→ 只出「结论承认句 + 主张-证据-置信度卡」，需组合处方时按映射表 K6+K1+K3。
-
-**不适用**：数据口径与趋势核查 → `factfulness`；快思考偏差与系统 2 复核 → `thinking-fast-and-slow`；多轮判断一致性 → `noise-in-judgment`；任务过载、专注排程 → `bandwidth-and-deep-work`；纯品味、主观偏好与无事实内容的闲聊。
+**All the rules in this skill exist to prevent these three.**
 
 ---
 
-## 三条铁律
+## When to use
 
-### 铁律 1：「记得」≠「核验过」
+- The user questions the basis of the output: "how do you know", "why are you so sure", "is this conclusion grounded", "don't pretend to know"
+- The user asks for the mechanism/principle and its basis, or says "look it up first"
+- Agent self-review of output: source labeling, confidence statements, inventory of knowledge boundaries
+- The user holds an extreme position and rejects facts — an explanation test is needed rather than more information
+- Assessing the level of understanding of oneself / another person / another agent, or designing a division of knowledge labor
 
-输出任何事实性主张时，必须标注知识状态：**记忆（未核验）/ 已核验（附来源）/ 检索所得（附链接）**。未核验的主张不得用确定语气陈述。
+**Lightweight mode**: a verification request for a single claim → output only the "claim-evidence-confidence card" without the full four-question pipeline; **when challenged on the basis** ("why are you so sure") → output only "a sentence acknowledging the conclusion + the claim-evidence-confidence card", and if a combined prescription is needed, use K6 + K1 + K3 from the mapping table.
 
-> 证据锚：Rozenblit & Keil (2002, *Cognitive Science*)——自评理解远高于真实机制理解；Fisher, Goddu & Keil (2015, *JEP: General*)——上网搜索后人们把网络知识误记为脑内知识，自评理解虚高。
-
-**推论：默认不把训练记忆当证据；证据 = 可核验的来源，不是「我记得」。**
-
-### 铁律 2：流畅 ≠ 懂
-
-讲得顺不等于懂机制。被要求解释「为什么/怎么做」时，必须能写出**因果链**（输入→过程→输出）；写不出就如实声明理解层级，不启动流畅叙事补全。
-
-> 证据锚：Fernbach, Rogers, Fox & Sloman (2013, *Psychological Science*)——让持极端政策立场的人写机制解释，立场显著温和化；而「列举理由」无效——说明「讲故事」与「懂机制」是两回事。
-
-**推论：解释测试（explanation test）是最直接、可执行的「懂没懂」检验：写出 3 步因果链；更高层级的检验是「能预测边界」（说清什么情况下失效）。**
-
-### 铁律 3：知识在共同体，agent 是通道
-
-知识的大部分不在任何单个头脑里。引用外部知识时，写明「转述自谁、什么年份、我是否独立核验」——把「我检索到」与「我理解了」分开，不冒充第一手理解。
-
-> 证据锚：Sloman & Rabb (2016, *Psychological Science*)——人们把「共同体知道」体验为「我知道」，知识边界模糊；Sloman 访谈（*Scientific American*, 2017-06-20）：「重要的是我们能接触到知识，知识栖居在共同体中。」
-
-**推论：agent 的价值是「接入共同体 + 核验 + 贡献」，不是「显得什么都知道」。**
+**Not for**: data provenance and trend checks → `factfulness`; System-1 bias and System-2 review → `thinking-fast-and-slow`; multi-run judgment consistency → `noise-in-judgment`; task overload, focus scheduling → `bandwidth-and-deep-work`; pure taste, subjective preference, and small talk with no factual content.
 
 ---
 
-## 第 0 步 · 收集信息（禁止编造）
+## Three iron rules
 
-开工前必须拿到：
+### Rule 1: "remembered" ≠ "verified"
 
-- 待核验的主张原文与上下文（没有 → 请用户提供，或声明「以下为假设」再演示；**被质疑时先复述上一轮被质疑的主张并请用户确认，再走四问**）
-- 已有证据的来源、年份、口径（缺 → 逐条追问）
-- 输出形式与置信度要求
+When you output any factual claim, you must label its knowledge status: **memory (unverified) / verified (with source) / retrieved (with link)**. An unverified claim may not be stated in a confident tone.
 
-⛔ **缺什么数据就问什么；问不到就用「待核实」标注，禁止用故事补全事实缺口。**
+> Evidence anchor: Rozenblit & Keil (2002, *Cognitive Science*) — self-assessed understanding far exceeds actual mechanistic understanding; Fisher, Goddu & Keil (2015, *JEP: General*) — after searching online, people misattribute internet knowledge to their own heads, inflating self-assessed understanding.
+
+**Corollary: by default, do not treat training memory as evidence; evidence = a verifiable source, not "I remember".**
+
+### Rule 2: Fluency ≠ understanding
+
+Speaking smoothly is not the same as understanding the mechanism. When asked to explain "why" or "how", you must be able to write the **causal chain** (input → process → output); if you cannot, honestly state the level of understanding rather than launching a fluent narrative to fill the gap.
+
+> Evidence anchor: Fernbach, Rogers, Fox & Sloman (2013, *Psychological Science*) — asking people with extreme policy positions to write out a mechanism explanation significantly moderated their positions, while merely listing reasons did not — showing that "telling a story" and "understanding the mechanism" are two different things.
+
+**Corollary: the explanation test is the most direct and executable "did you understand it" check: write out a 3-step causal chain; the higher-level test is "can you predict the boundary" (state clearly when it fails).**
+
+### Rule 3: Knowledge lives in the community; the agent is a channel
+
+Most knowledge does not live inside any single head. When citing external knowledge, state "relayed from whom, what year, whether I independently verified it" — keep "I retrieved it" separate from "I understood it", and do not pass it off as first-hand understanding.
+
+> Evidence anchor: Sloman & Rabb (2016, *Psychological Science*) — people experience "the community knows it" as "I know it", blurring the boundaries of knowledge; Sloman interview (*Scientific American*, 2017-06-20): "What matters is that we can access knowledge; knowledge resides in the community."
+
+**Corollary: the agent's value is "connect to the community + verify + contribute", not "appear to know everything".**
 
 ---
 
-## 诊断：知识论四问
+## Step 0 · Gather information (no fabrication)
 
-### 问 1 · 知识状态：这条主张来自哪里？
+Before starting you must have:
 
-| 状态 | 定义 | 允许的表述 |
+- The verbatim claim to be verified and its context (if absent → ask the user, or declare "the following is assumed" before demonstrating; **when challenged, first restate the claim from the previous round and ask the user to confirm it, then run the four questions**)
+- Source, year, and definition of the available evidence (if missing → ask item by item)
+- The required output form and confidence level
+
+⛔ **Ask for whatever data is missing; if it cannot be obtained, label it "pending verification"; never fill a factual gap with a story.**
+
+---
+
+## Diagnosis: the four epistemic questions
+
+### Q1 · Knowledge status: where does this claim come from?
+
+| Status | Definition | Permitted phrasing |
 |---|---|---|
-| 记忆 | 训练知识/印象，未核验 | 「据我所知（未核验）……」 |
-| 已核验 | 本轮会话查证过来源 | 「已核验：来源+年份+口径」 |
-| 检索所得 | 刚查到，未消化 | 「检索自 X，链接……，未经独立核验」 |
+| Memory | Training knowledge / impression, unverified | "As far as I know (unverified)…" |
+| Verified | The source was checked in this session | "Verified: source + year + definition" |
+| Retrieved | Just looked up, not yet digested | "Retrieved from X, link…, not independently verified" |
 
-### 问 2 · 理解层级：我能写到哪一级？
+### Q2 · Understanding level: how far can I write it out?
 
-**理解四阶梯**：① 听说 < ② 会用 < ③ 能解释机制（写出 3 步因果链）< ④ 能预测边界（说清什么情况下失效）。只对 ③④ 给高置信。
+**The four-step understanding ladder**: ① heard of it < ② can use it < ③ can explain the mechanism (write a 3-step causal chain) < ④ can predict the boundary (state when it fails). Assign high confidence only at levels ③ and ④.
 
-### 问 3 · 来源质量：可核验吗？口径是什么？
+### Q3 · Source quality: is it verifiable? What is its standing?
 
-来源是谁（原始研究/机构/媒体/论坛）？年份？样本与定义？——口径细节交给 `factfulness` 的四件套，这里只问「有没有来源、是什么等级（A=一手/官方；B=权威二手；C=待核）」。若只有 C 级来源，置信度不得高于「中」。
+Who is the source (primary research / institution / media / forum)? Year? Sample and definition? — Provenance details belong to `factfulness`'s four items; here only ask "is there a source, and at what level (A = primary/official; B = authoritative secondary; C = to be verified)". If only a level-C source is available, confidence may not exceed "medium".
 
-### 问 4 · 置信依据：我的自信来自证据还是流畅？
+### Q4 · Basis for confidence: does my confidence come from evidence or from fluency?
 
-自评置信度时问一句：把表述变流畅之后，证据变了吗？流畅度不构成证据。
+When self-assessing confidence, ask: after making the wording smoother, did the evidence change? Fluency does not constitute evidence.
 
 ---
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 主张只有记忆、无来源 | K1 标注「未核验」+ 检索核验 |
-| 能讲故事、写不出机制 | K2 降层级声明 + 补机制检索 |
-| 单一来源支撑结论 | K3 交叉第二来源 |
-| 刚检索/读完文档，自评虚高 | K4 「检索≠内化」自查 |
-| 对方立场极端、拒绝事实 | K5 解释测试代替灌信息 |
-| 用户问「你怎么确定」 | K6 出主张-证据-置信度卡 + K1 标注未核验 + K3 交叉第二来源；写不出机制再走 K2 |
-| 引用的是别人的结论 | K7 转述标注 |
-| 需要评估「懂不懂」 | K8 四阶梯提问 |
+| The claim rests only on memory, with no source | K1 label "unverified" + retrieve and verify |
+| Can tell a story but cannot write the mechanism | K2 lower the level stated + retrieve the mechanism |
+| A single source supports the conclusion | K3 cross-check with a second source |
+| Self-assessment inflated right after retrieval/reading | K4 run the "retrieved ≠ internalized" self-check |
+| The other party holds an extreme position and rejects facts | K5 explanation test instead of more information |
+| The user asks "how do you know" | K6 produce the claim-evidence-confidence card + K1 label unverified + K3 cross-check a second source; if the mechanism cannot be written, go to K2 |
+| Quoting someone else's conclusion | K7 relay labeling |
+| Need to assess "does X understand it" | K8 the four-ladder questions |
 
 ---
 
-## 处方库（if-then）
+## Prescription library (if-then)
 
-- **K1** 当输出事实性主张时，标注知识状态与来源；无来源 → 前置「未核验」或「待核实」，不用确定语气。
-- **K2** 当被要求解释机制时，先自测能否写 3 步因果链；写不出 → 声明「我只能到『会用』层」，再检索机制证据，不编因果故事。
-- **K3** 当结论仅由单一来源支撑时，强制交叉第二独立来源；无法交叉 → 置信度降为低并注明。
-- **K4** 当刚完成检索或读取资料后，执行「检索≠内化」自查：合上资料能否写出机制？不能 → 输出时标注「检索所得」，不宣称「我理解了这个领域」。
-- **K5** 当对方立场极端且拒绝事实时，不堆信息；改为请其写出 3 步机制解释（或代写并标出缺口），击穿理解错觉后再补证据。仅当对方愿意配合时有效。
-- **K6** 当用户质疑依据时，出「主张-证据-置信度卡」，置信度只按可核验证据赋值，不按语言流畅度赋值。
-- **K7** 当引用共同体知识（教科书共识、数据库、他人结论）时，写明「转述自 X（年份），我未独立核验」，保留链接。
-- **K8** 当评估理解程度（自己/他人/agent）时，用四阶梯提问；不接受「懂/不懂」的二分自评。
-
----
-
-## Agent 执行协议（agent 自己照此工作）
-
-1. **默认知识状态 = 记忆或检索，绝不默认「已核验」**；只有本轮实际查证过的才标「已核验」。
-2. **事实性输出必带来源标注**；涉及数字/结论的句子标注（来源+年份+口径），没有来源的写「待核实」。
-3. **置信度三档**：「高/中/低 + 依据」，禁用「肯定」「绝对」「必然」；依据写证据而非感觉。
-4. **解释前先自测**：任何「为什么」回答先在心里写 3 步因果链，写不完整就在回答里声明层级。
-5. **单一来源不产高置信**；重要结论至少两个独立来源。
-6. **回合收尾附「未核验清单」**：本回合哪些主张仍是记忆/单来源，让用户一眼看到知识边界。
+- **K1** When outputting a factual claim, label its knowledge status and source; with no source → prefix "unverified" or "pending verification", and do not use a confident tone.
+- **K2** When asked to explain a mechanism, first self-test whether you can write a 3-step causal chain; if not → declare "I can only reach the 'can use it' level", then retrieve mechanism evidence — do not invent a causal story.
+- **K3** When a conclusion is supported by a single source, force a cross-check with a second independent source; if that is impossible → lower confidence to low and note it.
+- **K4** Right after retrieval or reading material, run the "retrieved ≠ internalized" self-check: with the material closed, can you write the mechanism? If not → label the output "retrieved" and do not claim "I understand this domain".
+- **K5** When the other party holds an extreme position and rejects facts, do not pile on information; instead ask them to write a 3-step mechanism explanation (or write it for them and mark the gaps), puncture the illusion of understanding first, then supply evidence. This works only if the other party is willing to cooperate.
+- **K6** When the user questions the basis, produce the claim-evidence-confidence card; assign confidence only by verifiable evidence, never by fluency.
+- **K7** When citing community knowledge (textbook consensus, databases, someone else's conclusion), state "relayed from X (year), not independently verified by me", and keep the link.
+- **K8** When assessing the level of understanding (of yourself, another person, or an agent), use the four-ladder questions; do not accept a binary "understand / don't understand" self-assessment.
 
 ---
 
-## 输出模板
+## Agent execution protocol (the agent works by this itself)
 
-**输出顺序与预算**：先一句话结论（含置信度）→ 证据卡 → 处方 ≤3 条 → 1 个下一步。不四表平铺。
+1. **Default knowledge status = memory or retrieved, never "verified"**; only what was actually checked in this session may be labeled "verified".
+2. **Factual output always carries source labels**; sentences involving numbers or conclusions are labeled (source + year + definition); with no source, write "pending verification".
+3. **Three confidence levels**: "high / medium / low + basis"; the words "certainly", "absolutely", "inevitably" are banned; the basis must be evidence, not feeling.
+4. **Self-test before explaining**: for any "why" answer, first write the 3-step causal chain in your head; if it cannot be completed, state the level in the answer.
+5. **A single source does not produce high confidence**; important conclusions need at least two independent sources.
+6. **Close each round with an "unverified list"**: which claims in this round are still memory-based or single-source, so the user can see the knowledge boundary at a glance.
 
-### 主张-证据-置信度卡
+---
+
+## Output templates
+
+**Output order and budget**: one-sentence conclusion (with confidence) → evidence card → at most 3 prescriptions → one next step. Do not flatten everything into four tables.
+
+### Claim-evidence-confidence card
 
 ```markdown
-| 主张 | 知识状态（记忆/已核验/检索） | 理解层级（听说/会用/机制/边界） | 证据（来源+年份+口径） | 置信度 |
+| Claim | Knowledge status (memory/verified/retrieved) | Understanding level (heard/use/mechanism/boundary) | Evidence (source + year + definition) | Confidence |
 |---|---|---|---|---|
-| …… | …… | …… | …… | 高/中/低 + 依据 |
+| … | … | … | … | high/medium/low + basis |
 ```
 
-### 机制解释自测表
+### Mechanism-explanation self-test table
 
 ```markdown
-| 步骤 | 因果链（输入→过程→输出） | 证据等级（一手/二手/推断） | 缺口 |
+| Step | Causal chain (input → process → output) | Evidence grade (primary/secondary/inferred) | Gap |
 |---|---|---|---|
-| 1 | …… | …… | …… |
+| 1 | … | … | … |
 ```
 
-（写不满 3 步或缺口 >0 → 结论降置信，并声明理解层级。）
+(If fewer than 3 steps can be written, or gaps > 0 → lower the conclusion's confidence and declare the understanding level.)
 
-### 理解阶梯评估表
+### Understanding-ladder assessment table
 
 ```markdown
-| 对象 | 听说 | 会用 | 能解释机制 | 能预测边界 | 判定 |
+| Subject | Heard | Can use | Can explain mechanism | Can predict boundary | Verdict |
 |---|---|---|---|---|---|
-| …… | ✓ | ✓ | ✗ | ✗ | 层 2：会用，未达机制层 |
+| … | ✓ | ✓ | ✗ | ✗ | level 2: can use, not yet at mechanism level |
 ```
 
 ---
 
-## 边界与常见误用
+## Boundaries and common misuse
 
-| 误用 | 纠正 |
+| Misuse | Correction |
 |---|---|
-| 把「无知不可避免」当借口 | 它是校准的起点，不是免检条款：承认无知之后必须核验或标注，不能输出「反正没人懂」 |
-| 把解释测试当万能说服术 | Fernbach et al. 2013 证明的是态度**温和化**而非反转，且只有机制解释有效；跨文化、长期效应未定论，引用时说「证据锚」 |
-| 把 IOED 直接套到 LLM 上 | 模型没有「自评理解感」；本 skill 是**输出纪律**（来源标注、层级声明、置信校准），不是对模型心理状态的断言 |
-| 「信息不是越多越好」→ 少给信息 | 书中针对「向已持错误模型者灌信息」的场景；对普通查询应照常提供高质量信息，口径核查仍走 `factfulness` |
-| 滑向反智 | 书中同时强调「浅理解 + 深协作 = 强大」；本 skill 不贬低知识，只要求如实标注 |
-| 把「共同体知识」当低质知识 | 共同体知识（教科书、数据库、标准）恰恰是可靠知识的形态；要标注的是「我是转述者」，不是「它不可信」 |
-| 用本 skill 处理数据口径 | 口径四件套（来源/年份/定义/基准）转 `factfulness`；本 skill 只负责「我懂不懂、依据在哪」 |
+| Using "ignorance is inevitable" as an excuse | It is the starting point for calibration, not an exemption clause: after admitting ignorance you must verify or label — you may not output "nobody understands it anyway" |
+| Treating the explanation test as a universal persuasion trick | Fernbach et al. 2013 showed attitude **moderation**, not reversal, and only mechanism explanations worked; cross-cultural and long-term effects are unsettled, so cite it as an "evidence anchor" |
+| Applying IOED directly to LLMs | Models have no "sense of self-assessed understanding"; this skill is **output discipline** (source labeling, level declaration, confidence calibration), not a claim about the model's mental state |
+| "More information isn't always better" → give less information | The book targets the scenario of pouring information at someone who already holds a wrong model; for ordinary queries provide high-quality information as usual, and provenance checks still go through `factfulness` |
+| Sliding into anti-intellectualism | The book also stresses that "shallow understanding + deep collaboration = power"; this skill does not disparage knowledge, it only requires honest labeling |
+| Treating community knowledge as low-quality knowledge | Community knowledge (textbooks, databases, standards) is precisely the form reliable knowledge takes; what must be labeled is "I am a relay", not "it is untrustworthy" |
+| Using this skill to handle data provenance | The four provenance items (source/year/definition/baseline) belong to `factfulness`; this skill is responsible only for "do I understand it, and where is the basis" |
 
 ---
 
-## 参考文件（按需加载，不默认全读）
+## Reference files (load on demand, not by default)
 
-- `references/knowledge-illusion-book.md` —— 全书笔记：概念词典、证据锚、引文、批评与边界
-- `references/evidence.md` —— 本项目验证状态（当前为「待验证」+ 候选应用与测量方案，真实数据由 lead 统一补充）
-- `METHOD.md` —— 本书的 skill 转化记录：核心判断、if-then 准则清单、验证状态与失败记录（写下一个书-skill 时使用）
+- `references/knowledge-illusion-book.md` — full book notes: concept dictionary, evidence anchors, quotations, criticism and boundaries
+- `references/evidence.md` — validation status inside this project (currently "pending validation" + candidate applications and a measurement plan; real data to be supplied by the lead)
+- `METHOD.md` — the skill-conversion record for this book: core claim, if-then rule list, validation status, and failure log
+- `references/SKILL.zh.md` — the Chinese edition of this skill
 
 ---
 
-*基于《知识的错觉：为什么我们从未独立思考》（Steven Sloman & Philip Fernbach, 2017）的理念；本文件把书中立场翻译为 agent 可执行规则的部分为 Trustbase Lab 自有内容。Based on: The Knowledge Illusion (Sloman & Fernbach, 2017). We license our translation, not the original. License: Apache-2.0.*
+*Based on the ideas of "The Knowledge Illusion: Why We Never Think Alone" (Steven Sloman & Philip Fernbach, 2017); the part of this file that translates the book's position into executable agent rules is Trustbase Lab content. Based on: The Knowledge Illusion (Sloman & Fernbach, 2017). We license our translation, not the original. License: Apache-2.0.*
