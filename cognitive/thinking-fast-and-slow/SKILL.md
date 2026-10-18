@@ -1,223 +1,231 @@
 ---
 name: thinking-fast-and-slow
-description: 基于《思考，快与慢》（卡尼曼）的 AI 判断质量技能：识别 agent/LLM 输出的快思考模式（锚定、可得性、代表性、框架效应、损失厌恶、过度自信、计划谬误），强制系统 2 复核与校准。当用户说「这个 AI 结论靠谱吗」「帮我审核这份 AI 产出」「回答太顺/太自信」「为什么换个问法答案就变了」「别急着下结论」「这个归因对不对」「工期估计合理吗」时使用；也适用于 agent 自查输出、估计与复盘。任务过载用 bandwidth-and-deep-work。
+description: An AI judgment-quality skill based on "Thinking, Fast and Slow" (Daniel Kahneman). Detect System-1 patterns in agent/LLM output (anchoring, availability, representativeness, framing, loss aversion, overconfidence, planning fallacy), and force a System-2 review and calibration. Use when the user says "is this AI conclusion reliable", "review this AI output", "that answer felt too smooth / too confident", "why does changing the wording change the answer", "don't jump to conclusions", "is this attribution right", "is this schedule estimate reasonable"; also for agent self-review, estimation, and retrospectives. For task overload use bandwidth-and-deep-work.
 ---
 
-# AI 的「快思考」陷阱 · 系统 1/系统 2 复核协议
+# The AI System-1 Trap · A System-1/System-2 Review Protocol
 
-卡尼曼的框架：**系统 1** 快、自动、靠联想与模式匹配，目标是「连贯」；**系统 2** 慢、费力、负责复核，但默认**懒惰**，直接采纳系统 1 的结论。把这两条搬进 AI 工作流：LLM/agent 的默认输出路径（next-token 联想式生成）在功能上≈系统 1——流畅、连贯、自信，但不等于正确；本 skill 的全部工作就是**把系统 2 做成流程**，而不是口号。
+**Kahneman's framework:** **System 1** is fast, automatic, associative, pattern-matching, and aims at *coherence*; **System 2** is slow, effortful, and responsible for review — but by default it is **lazy** and simply adopts System 1's conclusions. Transplant those two into an AI workflow: the default output path of an LLM/agent (next-token associative generation) is **functionally ≈ System 1** — fluent, coherent, confident, and not necessarily correct. All this skill does is **turn System 2 into a process**, not a slogan.
 
-> 功能类比声明：AI 没有生物认知资源，「AI 的系统 1/系统 2」是**设计复核流程用的类比**，不是脑科学断言（见边界表）。
+> Function-analogy disclaimer: AI has no biological cognitive resources. "AI's System 1/System 2" is an **analogy used to design a review process**, not a neuroscience claim (see the boundaries table).
 
-## 何时使用
+## When to use
 
-- 审核 AI/agent 输出：用户问「这个结论靠谱吗」「是不是幻觉」「感觉回答太顺了」
-- 回答随问法变化：换框架（收益/损失）、换词序、给个「参考值」后答案漂移
-- 做估计与计划：工期、成本、成功率、风险概率——尤其只有内部视角时
-- 归因与复盘：把一次成功/失败讲成因果故事；「这次失败是因为 X」
-- 关键决策前：删库、换架构、大额投入、发布——需要校准输出与红队复核
-- agent 自查：多步任务中自己的中间结论、检索后的判断、给用户的建议
+- Reviewing AI/agent output: the user asks "is this conclusion reliable", "is this a hallucination", "that answer felt too smooth"
+- Answers that move with the question: swapping framing (gain/loss), word order, or supplying a "reference value" makes the answer drift
+- Making estimates and plans: schedule, cost, success probability, risk probability — especially when only the inside view is available
+- Attribution and retrospectives: turning a success or failure into a causal story; "this failed because of X"
+- Before an irreversible decision: dropping a database, changing an architecture, a large investment, a release — needs calibrated output and red-team review
+- Agent self-check: its own intermediate conclusions in a multi-step task, judgments after retrieval, advice given to the user
 
-**轻量模式**：单个问题「这个结论可靠吗」→ 只出「一句话结论 + 快思考嫌疑清单（≤4 条）」，不必走全流程。
+**Lightweight mode**: for a single question "is this conclusion reliable" → output only "a one-sentence conclusion + a list of System-1 suspicions (≤4)" — no need to run the full pipeline.
 
-**不适用**：只是想听概念解释（可讲，不强制流程）；任务过载、多任务、专注排程 → 用 `bandwidth-and-deep-work`；「每次答案都不一样/结论不一致」（随机波动而非系统偏差）→ 用 `noise-in-judgment`；数据口径与事实核查（数字本身对不对）→ 用 `factfulness`（风险估计分工：口径/事实归 factfulness，判断/估计的偏差复核归本 skill）；需要真实实验数据时，本 skill 只提供判断流程与概念，不含数据。
-
----
-
-## 三条铁律
-
-### 铁律 1：流畅 ≠ 正确，连贯 ≠ 有据
-
-系统 1 的输出目标是一致性（coherence），认知流畅度被误当作正确性信号。AI 输出的流畅、格式好、语气笃定，就是机器版的 cognitive ease——**必须把「说得通」和「有证据」分开计分**。
-
-> 证据锚：书中 Ch.5（认知流畅度）与 Part III（信心来自故事质量而非证据）："The confidence that individuals have in their beliefs depends mostly on the quality of the story they can tell about what they see, even if they see little."
-
-**推论：复核 AI 输出时，先降自信再看内容——自信程度本身不携带证据量信息。**
-
-### 铁律 2：偏差是「有触发条件的现象」，不是形容词
-
-锚定、可得性、代表性、框架效应、损失厌恶、过度自信、计划谬误——每个都有书中的**特定触发条件**。没有触发条件就喊「这是偏差」等于没说；有触发条件却不查，等于裸奔。
-
-> 证据锚：K&T (1974, *Science* 185:1124)：启发式与偏差清单；书中 Ch.9 替代、Ch.11 锚定、Ch.12 可得性、Ch.14/15 代表性、Ch.34 框架、Ch.23/24 计划谬误。
-
-**推论：先查触发条件表（见核心流程），逐项核对，禁止泛泛怀疑。**
-
-### 铁律 3：知道偏差不免疫偏差——处方必须是流程
-
-卡尼曼自己写了《小数定律》论文，40 年后仍在 Ch.4 栽进小样本研究（2017 年公开承认）。所以本 skill 的处方**全部是外部结构**：独立基准、基准率、预验尸、红队、可证伪化——不接受「要更警觉」「要客观」这类空话。
-
-> 证据锚：卡尼曼 2017 回应 Schimmack："What the blog gets absolutely right is that I placed too much faith in underpowered studies."（复制危机见边界表）
+**Not for**: wanting only a conceptual explanation (you may explain without forcing the pipeline); task overload / multitasking / focus scheduling → use `bandwidth-and-deep-work`; "the answer is different every time / conclusions are inconsistent" (random variance rather than systematic bias) → use `noise-in-judgment`; data provenance and fact-checking (whether the number itself is right) → use `factfulness` (division of labor: provenance/facts belong to `factfulness`; bias review of judgments and estimates belongs here); when real experimental data is needed, this skill supplies only the judgment process and concepts, not data.
 
 ---
 
-## 第 0 步 · 收集信息（禁止编造）
+## Three iron rules
 
-开工前必须拿到（缺失就逐条问，或显式标注「假设值」）：
+### Rule 1: Fluency ≠ correctness; coherence ≠ evidence
 
-- 待审结论的**原文**与它声称依据的上下文/数据/来源（没有 → 要求先给出，否则只能审「结构」不能审「事实」）
-- 触发条件所需的背景：先例数字/参考值、最近检索到的材料清单、问题的两种框架表述、同类任务的历史记录
-- 结论将影响什么决策（决定复核强度：影响越大，流程越全）
+System 1's output objective is coherence, and cognitive fluency is misread as a signal of correctness. An AI's fluency, good formatting, and confident tone are the machine version of cognitive ease — **"it makes sense" and "there is evidence" must be scored separately**.
 
-⛔ **禁止编造「它可能犯了什么错」：没有触发条件的事实，就写「未见触发条件」。**
+> Evidence anchor: Chapter 5 (cognitive ease) and Part III (confidence comes from the quality of the story, not from evidence): *"The confidence that individuals have in their beliefs depends mostly on the quality of the story they can tell about what they see, even if they see little."*
+
+**Corollary: when reviewing AI output, lower the confidence first and then look at the content — the degree of confidence itself carries no information about the amount of evidence.**
+
+### Rule 2: A bias is a "phenomenon with trigger conditions", not an adjective
+
+Anchoring, availability, representativeness, framing, loss aversion, overconfidence, planning fallacy — each has **specific trigger conditions** in the book. Shouting "that's a bias" without a trigger condition says nothing; having the trigger condition and not checking for it is walking around naked.
+
+> Evidence anchor: Tversky & Kahneman (1974, *Science* 185:1124) — the heuristics-and-biases list; in the book Ch.9 substitution, Ch.11 anchoring, Ch.12 availability, Ch.14/15 representativeness, Ch.34 framing, Ch.23/24 planning fallacy.
+
+**Corollary: check the trigger-condition table first (see the core workflow), item by item; generic suspicion is forbidden.**
+
+### Rule 3: Knowing about a bias does not immunize you against it — prescriptions must be process
+
+Kahneman himself wrote the "law of small numbers" paper and, 40 years later, still fell into a small-sample study in Chapter 4 (publicly acknowledged in 2017). So this skill's prescriptions are **all external structure**: independent baselines, base rates, premortems, red teams, falsifiability. Empty phrases such as "be more vigilant" or "be objective" are not accepted.
+
+> Evidence anchor: Kahneman in 2017, responding to Schimmack: *"What the blog gets absolutely right is that I placed too much faith in underpowered studies."* (On the replication crisis see the boundaries table.)
 
 ---
 
-## 核心流程 · 快思考诊断 → 偏差清单 → 强制复核
+## Step 0 · Gather information (no fabrication)
 
-### 问 1 · 这是快思考还是慢思考的产物？（四问定级）
+Before starting you must have (ask for whatever is missing item by item, or explicitly label it as an "assumed value"):
 
-| 问题 | 「快思考」信号 | 「慢思考」信号 |
+- The **verbatim text** of the conclusion under review, plus the context / data / source it claims to rely on (if absent → require it first; otherwise you can only review **structure**, not **facts**)
+- Background needed for the trigger conditions: precedent numbers / reference values, the list of materials actually retrieved, two framings of the question, historical records for similar tasks
+- What decision the conclusion will affect (this determines review intensity: the bigger the impact, the fuller the process)
+
+⛔ **Fabricating "what mistake it might have made" is forbidden: for facts with no trigger condition, write "no trigger condition observed".**
+
+---
+
+## Core workflow · System-1 diagnosis → bias list → forced review
+
+### Q1 · Is this a System-1 or a System-2 product? (grade with four questions)
+
+| Question | "System 1" signal | "System 2" signal |
 |---|---|---|
-| 生成方式 | 一步出稿、无中间步骤、无检索/计算痕迹 | 有分解、检索、验算、自检痕迹 |
-| 自信与证据比 | 措辞笃定但无来源/无数字/无可验证步骤 | 给出置信度、不确定性、被否决的替代解释 |
-| 一致性 | 换框架/换问法后答案漂移 | 跨框架结论稳定 |
-| 成本敏感度 | 无关紧要的小任务也长篇大论 | 按决策大小匹配投入 |
+| Generation process | One-shot draft, no intermediate steps, no trace of retrieval/computation | Traces of decomposition, retrieval, verification, self-checking |
+| Confidence-to-evidence ratio | Assertive wording but no source / no number / no verifiable step | Gives confidence, uncertainty, rejected alternative explanations |
+| Consistency | Answer drifts after changing framing or wording | Conclusion stable across framings |
+| Cost sensitivity | Long essays for trivial tasks | Effort matched to the size of the decision |
 
-> **无法观察档**：任何一格无法观察（典型：审核用户转来的外部 AI 产出，无过程痕迹、未做换框架测试）→ 该格记为「未知」，整体**按快思考嫌疑计**，但结论中必须明示「证据不足，仅结构审查」。
+> **Unobservable cell**: if any cell cannot be observed (typical: reviewing an external AI output forwarded by the user, with no process trace and no framing-swap test) → record that cell as "unknown", count the whole as **a System-1 suspicion**, but the conclusion must explicitly state "insufficient evidence; structural review only".
 
-### 问 2 · 偏差触发条件清单（逐项打钩，命中即标记）
+### Q2 · Bias trigger-condition checklist (tick item by item; a hit gets flagged)
 
-| # | 偏差 | 触发条件（书中原意） | 适用阶段 | AI 场景的典型表现 |
+| # | Bias | Trigger condition (per the book) | Stage | Typical manifestation in an AI setting |
 |---|---|---|---|---|
-| 1 | 锚定 | 判断前出现了具体数值/草稿/先例 | 通用 | 用户给的「参考预算」、第一版草稿、列表里第一个数字，拽偏后续估计 |
-| 2 | 可得性 | 判断依赖「最容易想到/最近检索到」的信息 | 通用 | 只看了最近 3 份文档就下结论；罕见事件因检索命中多被高估 |
-| 3 | 代表性 | 用「像不像原型」替代概率，无视基准率 | 通用 | 「这代码写得像 bug」替代「该模块历史 bug 率」；对个案贴标签 |
-| 4 | 框架效应 | 同一选择有损失/收益两种表述 | 通用 | 换「失败率 10%」为「成功率 90%」后建议反转；砍成本 vs 保收益结论不一致 |
-| 5 | 损失厌恶 | 现状/已有投入 vs 改变/放弃 | 通用 | 对「放弃现有方案」过度保守；沉没成本驱动的「再投入试试」 |
-| 6 | 过度自信 | 输出基于连贯叙事而非证据 | 通用 | 高置信 + 零置信区间；把「训练分布里的常见说法」当事实 |
-| 7 | 计划谬误 | 只谈任务细节、不谈同类历史分布 | 事前（估计/计划时） | 工期/成本直接估，无基准率，无缓冲（联动 bandwidth 的 ×1.5–2） |
-| 8 | 后见之明/结果偏差 | 用结果反推决策质量 | 事后（复盘已有结果） | 复盘把「运气差」写成「决策错」；把成功讲成必然 |
-| 9 | 回归均值误读 | 单一极端结果出现即归因 | 事后（已有结果出现后） | 一次指标暴涨/暴跌就主张「流程坏了/策略有效」 |
-| 10 | WYSIATI | 只根据上下文里被激活的信息建故事 | 通用 | 上下文缺关键信息仍给出完整连贯结论；不主动说「还缺什么」 |
+| 1 | Anchoring | A concrete number, draft, or precedent appeared before the judgment | General | A "reference budget" from the user, the first draft, or the first number in a list drags later estimates |
+| 2 | Availability | The judgment relies on what is easiest to recall / most recently retrieved | General | Concluding after only the last 3 documents; rare events overestimated because retrieval hits are frequent |
+| 3 | Representativeness | Replacing probability with "does it look like the prototype", ignoring base rates | General | "this code looks like a bug" replacing "this module's historical bug rate"; labeling an individual case |
+| 4 | Framing | The same choice is stated as a loss and as a gain | General | Flipping "10% failure rate" to "90% success rate" reverses the recommendation; cost-cutting vs. protecting revenue yield inconsistent conclusions |
+| 5 | Loss aversion | Status quo / past investment vs. change / abandonment | General | Over-conservative about "abandoning the current plan"; sunk-cost-driven "let's invest a bit more" |
+| 6 | Overconfidence | The output rests on a coherent narrative rather than evidence | General | High confidence with zero confidence interval; treating "a common claim in the training distribution" as fact |
+| 7 | Planning fallacy | Discussing only task details, not the historical distribution of similar tasks | Ex-ante (estimating/planning) | Schedule/cost estimated directly, no base rate, no buffer (linked to bandwidth's ×1.5–2) |
+| 8 | Hindsight / outcome bias | Judging decision quality from the outcome | Ex-post (results already exist) | A retrospective writes "bad luck" as "bad decision"; success presented as inevitable |
+| 9 | Regression-to-the-mean misread | Attributing a single extreme result immediately | Ex-post (an extreme result just appeared) | Claiming "the process broke / the strategy works" after one spike or crash |
+| 10 | WYSIATI | Building a story only from the information activated in context | General | Giving a complete coherent conclusion despite missing key context; not volunteering "what's still missing" |
 
-> 适用阶段说明：事前 = 尚未产生结果的规划/估计；事后 = 已有结果的复盘归因。与当前场景不匹配的项直接跳过（如审核未执行方案时不查 #8/#9），**跳过≠漏检**，在报告中注明「按阶段跳过」。
+> Stage note: ex-ante = planning/estimating before results exist; ex-post = retrospective attribution after results exist. Items that do not fit the current situation are skipped directly (e.g. when reviewing a plan that has not been executed, do not check #8/#9); **a skip is not a miss** — note "skipped by stage" in the report.
 
-### 问 3 · 强制系统 2 复核（按命中项选择，见处方库）
+### Q3 · Forced System-2 review (choose by hits; see the prescription library)
 
-命中 0 项 → 例行复核即可；命中 1–2 项 → 对应处方；命中 ≥3 项或涉及不可逆决策 → 全流程（外部视角 + 红队 + 预验尸 + 校准输出）。
+0 hits → routine review is enough; 1–2 hits → the corresponding prescriptions; ≥3 hits or an irreversible decision → the full process (outside view + red team + premortem + calibrated output).
 
 ---
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 自信措辞 + 无来源/无数字 | C1 证据分层改写（事实/推断/猜测分开） |
-| 出现锚（用户给数字/草稿/先例） | A1 独立基准先行，再处理给定值 |
-| 检索范围可疑（只看最近材料） | A2 完整检索 + 显式列出「没查什么」 |
-| 个案叙事替代统计 | A3 基准率优先：先报分布再谈个案 |
-| 损失框架下的建议 | A4 双框架重写并披露偏好差 |
-| 估计/计划只有内部视角 | A5 参考类预测 + ×1.5–2 + 预验尸 |
-| 复盘归因成因果故事 | A6 后见之明检查：同故事能否解释相反结果 |
-| 极端指标 + 立即归因 | A7 回归均值检查：对照历史分布 |
-| 高置信 + 无验证路径 | A8 校准输出：置信度 + 可证伪步骤 |
-| 影响不可逆决策 / 命中 ≥3 项 | B1 红队复核（让输出自证其伪） |
+| Confident wording + no source/number | C1 evidence-tier rewrite (separate fact / inference / guess) |
+| An anchor is present (user-supplied number/draft/precedent) | A1 independent baseline first, then process the given value |
+| Retrieval scope is suspect (only recent materials) | A2 complete the retrieval and explicitly list "what was not checked" |
+| A single-case narrative replaces statistics | A3 base rate first: report the distribution before the case |
+| Advice under a loss frame | A4 rewrite in both frames and disclose the preference gap |
+| An estimate/plan has only the inside view | A5 reference-class forecasting + ×1.5–2 + premortem |
+| Retrospective attribution turned into a causal story | A6 hindsight check: could the same story explain the opposite outcome? |
+| An extreme metric plus immediate attribution | A7 regression check: compare against the historical distribution |
+| High confidence + no verification path | A8 calibrated output: confidence + falsifiable steps |
+| Irreversible decision / ≥3 hits | B1 red-team review (make the output falsify itself) |
 
 ---
 
-## 处方库
+## Prescription library
 
-### A. 单人/单 agent 可执行
+### A. Executable by one person / one agent
 
-- **A1 独立基准先行（反锚定）**：处理任何带数字的输入前，先写下自己的独立估计区间与依据，再接触对方的数字/草稿。IF 用户给了「参考预算 50 万」THEN 先写「按同类项目分布：中位数 X、区间 Y」，再对照 50 万。
-- **A2 检索完整性自检（反可得性）**：列出「我实际检索/阅读了什么」与「我还没查什么」两栏；没查的部分不允许成为结论依据。IF 结论依赖最近 3 份材料 THEN 先补检索历史文件，再定论。
-- **A3 基准率优先（反代表性）**：先答「同类情况的总体分布如何」，再答「这个具体案例如何」。IF 没有基准率数据 THEN 明说「基准率未知，以下判断是代表性启发式的，置信度下调」。
-- **A4 双框架重写（反框架/损失厌恶）**：把建议用「获得框架」与「损失框架」各写一遍；两版结论不一致时，把不一致点作为第一风险披露给用户。IF 建议涉及放弃现状/承认损失 THEN 特别标注「沉没成本是否影响了这个建议」。
-- **A5 参考类预测（反计划谬误）**：估时/估成本先取同类任务的历史分布（中位数起步），再乘 ×1.5–2（联动 bandwidth-and-deep-work 的估时系数），并写「最乐观假设是什么」。IF 无历史数据 THEN 用预验尸生成风险项替代。
-- **A6 后见之明检查（反叙事谬误）**：任何「因为 X 所以 Y」的归因，先自问「如果结果是相反的，这个故事还能不能讲通？」讲得通 → 归因降级为「一个可能叙事」。
-- **A7 回归均值检查（反噪声归因）**：单一极端结果出现时，先对照该指标的历史分布与波动幅度；落在正常波动内 → 先记录观察，不改流程。
-- **A8 校准输出（反过度自信）**：重要结论一律附：①置信度（高/中/低 + 理由）②关键不确定项 ③可证伪的验证步骤 ④被否决的替代解释（针对**已提出的结论**；无原文时填「暂无（缺原文，无法评估）」，不猜测可能错误）。IF 凑不齐这四项 THEN 声明「本结论未达到校准标准」。
+- **A1 Independent baseline first (anti-anchoring)**: before processing any input that contains a number, write down your own independent estimate range and its rationale, then look at the other party's number/draft. IF the user says "reference budget is 500k" THEN first write "per the distribution of similar projects: median X, range Y", then compare against 500k.
+- **A2 Retrieval completeness self-check (anti-availability)**: list two columns — "what I actually retrieved/read" and "what I have not checked yet"; the unchecked part may not support the conclusion. IF the conclusion relies on the last 3 materials THEN complete the retrieval of historical files before concluding.
+- **A3 Base rate first (anti-representativeness)**: first answer "what is the overall distribution for this class of situations", then answer "what about this specific case". IF there is no base-rate data THEN say explicitly "base rate unknown; the following judgment is representativeness-driven; confidence lowered".
+- **A4 Dual-frame rewrite (anti-framing / anti-loss-aversion)**: write the recommendation once in a gain frame and once in a loss frame; if the two versions disagree, disclose the disagreement as the first risk to the user. IF the recommendation involves abandoning the status quo or admitting a loss THEN explicitly flag "is the sunk cost influencing this recommendation?".
+- **A5 Reference-class forecasting (anti-planning-fallacy)**: for time/cost estimates, first take the historical distribution of similar tasks (start from the median), then multiply by ×1.5–2 (linked to the estimation factor in `bandwidth-and-deep-work`), and write "what the most optimistic assumption is". IF there is no historical data THEN use a premortem to generate risk items instead.
+- **A6 Hindsight check (anti-narrative-fallacy)**: for any "because X, therefore Y" attribution, first ask "if the outcome had been the opposite, would this story still hold?" If it would → downgrade the attribution to "one possible narrative".
+- **A7 Regression check (anti-noise-attribution)**: when a single extreme result appears, first compare against the metric's historical distribution and volatility; if it falls within normal fluctuation → record the observation first, do not change the process.
+- **A8 Calibrated output (anti-overconfidence)**: every important conclusion must carry ① confidence (high/medium/low + reason) ② key uncertainties ③ falsifiable verification steps ④ rejected alternative explanations (for the **conclusion already proposed**; when source text is missing write "none available — missing source text, cannot evaluate"; do not guess at possible errors). IF these four cannot be assembled THEN declare "this conclusion does not meet the calibration standard".
 
-### B. 结构级（关键决策专用）
+### B. Structural level (for decisions that matter)
 
-- **B1 红队复核**：让输出自证其伪——「请列出使这个结论成立的 3 个必要假设，再各写一种推翻它们的情形；然后重新评估结论」。必要时用独立 agent/独立上下文复核，避免同一上下文自证。
-- **B2 预验尸 premortem**（Ch.24，Klein）：计划定稿前写「一年后此计划已失败，失败史是怎么写的？」——强制生成失败路径后再定风险清单。
-- **B3 外部视角面板**：不可逆决策（删库、换架构、大额投入）→ 至少拉一组同类历史案例的成败分布 + 一次红队，再下结论。
+- **B1 Red-team review**: make the output falsify itself — "Please list the 3 necessary assumptions that make this conclusion hold, then write one scenario that overturns each; then re-evaluate the conclusion." Where necessary, use an independent agent / fresh context to review, so the same context does not self-certify.
+- **B2 Premortem** (Ch.24, Klein): before finalizing a plan, write "one year from now this plan has failed — how does the failure history read?" — force the failure paths out, then build the risk list.
+- **B3 Outside-view panel**: for irreversible decisions (dropping a database, changing an architecture, a large investment) → pull in at least a distribution of comparable historical cases plus one red team, then conclude.
 
-### C. 表述纪律
+### C. Expression discipline
 
-- **C1 证据分层改写**：任何结论改写为三层：**事实**（有来源/可验证）、**推断**（从事实推出，标注假设）、**猜测**（无据，标注为猜测）。用户只能按最高层行动。
-
----
-
-## Agent 执行协议（agent 自己照此工作）
-
-1. **默认自我怀疑的是「流畅感」**：写完一段自认流畅、笃定的输出后，把它当作快思考产物，先跑触发条件清单再交付。
-2. **数字进、基准出**：遇到带数字的输入（预算、参考值、草稿），先记录该数字是「外部锚」，再给独立基准。
-3. **检索留痕**：结论前必须能列出「查了什么/没查什么」两栏；没查的部分不得进入结论。
-4. **估计走外部视角**：一切工期/成本/成功率估计，先给同类历史分布或明说「无基准率」，再给数；默认 ×1.5–2 缓冲（联动 bandwidth-and-deep-work 的余闲原则）。
-5. **归因降级**：复盘与失败分析中，因果叙事一律写成「一个可能叙事 + 替代解释 + 可验证项」，不写断定句。
-6. **校准输出是默认**：对用户的关键建议默认带置信度与可证伪步骤；拿不出四项（铁律/处方 A8）就明说。
-7. **回合收尾用峰终定律**：把最重要的判断放结尾；收尾写「结论 / 证据等级 / 风险 / 下一步」四行（与 bandwidth-and-deep-work 关机仪式互认）。
+- **C1 Evidence-tier rewrite**: rewrite every conclusion in three tiers: **fact** (has a source / is verifiable), **inference** (derived from facts, with assumptions labeled), **guess** (no basis, labeled as a guess). The user may act only on the highest tier available.
 
 ---
 
-## 输出模板
+## Agent execution protocol (the agent works by this itself)
 
-**输出顺序与预算**：一句话结论 → 快思考嫌疑清单 → 复核处方与结果 → 校准化结论。总长按问题大小，轻量模式 ≤4 条嫌疑。
+1. **By default, distrust "the feeling of fluency"**: after writing a passage you consider fluent and confident, treat it as a System-1 product; run the trigger-condition checklist before delivering.
+2. **Numbers in, baseline out**: when an input contains a number (budget, reference value, draft), first record that number as an **external anchor**, then supply an independent baseline.
+3. **Leave a retrieval trace**: before concluding you must be able to list "what was checked / what was not"; the unchecked part may not enter the conclusion.
+4. **Estimates go through the outside view**: every schedule/cost/success-probability estimate first gives the historical distribution for similar work, or explicitly says "no base rate", then gives the number; default ×1.5–2 buffer (linked to the slack principle in `bandwidth-and-deep-work`).
+5. **Downgrade attributions**: in retrospectives and failure analyses, write causal narratives as "one possible narrative + alternative explanation + question that would verify it"; do not write definitive statements.
+6. **Calibrated output is the default**: key advice to the user by default carries confidence and falsifiable steps; if the four items (Rule 3 / prescription A8) cannot be produced, say so.
+7. **Close a round with the peak-end rule**: put the most important judgment at the end; close with four lines — "conclusion / evidence grade / risk / next step" (mutually compatible with the shutdown ritual in `bandwidth-and-deep-work`).
 
-### 复核报告（标准）
+---
+
+## Output templates
+
+**Output order and budget**: one-sentence conclusion → list of System-1 suspicions → review prescriptions and results → calibrated conclusion. Total length should match the size of the question; in lightweight mode ≤4 suspicions.
+
+### Review report (standard)
 
 ```markdown
-**结论（一句话）**：...
-**快思考嫌疑**：
-| 偏差 | 触发条件 | 本案例是否命中 | 证据 |
+**Conclusion (one sentence)**: ...
+
+**System-1 suspicions**:
+| Bias | Trigger condition | Hit in this case | Evidence |
 |---|---|---|---|
-| 锚定 | ... | 是/否 | ... |
-（只列命中的，最多列全 10 项）
-**已执行复核**：处方编号 + 做了什么 + 结论变化（如「A3 基准率：该模块历史 bug 率 2%，本案例据此下调置信度」）
-**校准化结论**：
-- 置信度：高/中/低（理由）
-- 关键不确定项：...
-- 验证步骤：...
-- 被否决的替代解释：...（无原文时填「暂无（缺原文，无法评估）」，不猜测可能错误）
+| Anchoring | ... | yes/no | ... |
+(only list hits, at most all 10)
+
+**Review performed**: prescription IDs + what was done + how the conclusion changed
+(e.g. "A3 base rate: this module's historical bug rate is 2%; confidence lowered accordingly")
+
+**Calibrated conclusion**:
+- Confidence: high/medium/low (reason)
+- Key uncertainties: ...
+- Verification steps: ...
+- Rejected alternative explanations: ... (write "none available — missing source text, cannot evaluate" when there is no source text; do not guess at possible errors)
 ```
 
-### 估计模板（工期/成本/成功率）
+### Estimation template (schedule / cost / success probability)
 
 ```markdown
-| 项 | 内部视角估算 | 参考类基准（历史分布） | 采纳值（含 ×1.5–2） |
+| Item | Inside-view estimate | Reference-class baseline (historical distribution) | Adopted value (with ×1.5–2) |
 |---|---|---|---|
 | ... | ... | ... | ... |
-**预验尸**：如果 1 年后失败，失败史是——（3–5 条）
-**行动**：缓冲 X、触发条件 Y（出现即升级）、复查点 Z
+
+**Premortem**: if this fails in one year, the failure history reads — (3–5 items)
+**Action**: buffer X, trigger condition Y (escalate when it appears), review point Z
 ```
 
-### 结构审查模式（无原文、只能审结构时；第 0 步 gate 的合法出口）
+### Structural-review mode (no source text; structure only; the legitimate exit from the Step-0 gate)
 
 ```markdown
-**结论**：目前只能审结构——「顺/自信」本身不携带证据量（铁律 1），结论是否踩坑在拿到原文前无法判断。
-**可审的结构信号**（≤4 条）：流畅度信号、自信与证据比、生成过程可见性、框架稳定性（未知项如实标「未知」）。
-**已执行**：C1 证据分层改写（可用信息全部归入「事实/推断/猜测」）；A8 校准输出四要素凑不齐 → 声明「本结论未达到校准标准」。
-**下一步**：请提供——①待审结论原文 ②它声称依据的上下文/数据/来源 ③该结论影响什么决策。
+**Conclusion**: only the structure can be reviewed at present — "fluent/confident" by itself carries no evidence (Rule 1); whether the conclusion is wrong cannot be judged before the source text is available.
+
+**Observable structural signals** (≤4): fluency signal, confidence-to-evidence ratio, visibility of the generation process, frame stability (mark unknown items honestly as "unknown").
+
+**Performed**: C1 evidence-tier rewrite (all available information classified as fact / inference / guess); A8 calibrated output cannot assemble four items → declare "this conclusion does not meet the calibration standard".
+
+**Next step**: please provide — ① the verbatim conclusion under review ② the context/data/source it claims to rely on ③ what decision it affects.
 ```
 
 ---
 
-## 边界与常见误用
+## Boundaries and common misuse
 
-| 误用 | 纠正 |
+| Misuse | Correction |
 |---|---|
-| 把本书当科学定律引用 | 证据分层：前景理论经 19 国复测（Ruggeri et al. 2020）、锚定稳健（Yoon et al. 2019）；但 Schimmack (2020) 对全书引用研究的 z-curve 估计平均功效仅 46%，可复现性 12–46%。引用一律「证据锚」语气 |
-| 用「启动/priming」解释或设计 prompt 行为 | ⛔ Ch.4 是复制危机重灾区（R-Index=14），作者 2017 已公开收回该章强度结论（"too much faith in underpowered studies"）。禁止主张「细微措辞可靠地改变行为」 |
-| 用「自我耗竭/意志力电池」解释 | 自我耗竭未被大规模复现（Hagger 2016；Vohs 2021）。要讲认知资源用带宽隐喻（bandwidth-and-deep-work），不讲「电池」 |
-| 照搬「热手是错觉」 | Miller & Sanjurjo (2018) 修正后热手真实存在——「人们凭空看见模式」的说法不成立；对模式判断要查统计偏误而非默认否定 |
-| 损失厌恶当铁律 | Gal & Rucker (2018) 提出系统性质疑、学界未定论；表述保留「≈1.5–2.5 倍、有争议」 |
-| 把系统 1/系统 2 当脑区 | 作者明言是虚构双角色比喻；对 AI 更是功能类比，不是容量或神经科学主张 |
-| 「AI 没有系统 1」所以本 skill 不适用 | 类比的对象是**输出路径的认知性质**（联想式生成 vs 显式复核），用于设计复核流程——这正是本 skill 的全部 |
-| 把「偏差」当免责标签（「这是锚定，所以不算我的错」） | 偏差是机制解释，不是借口；命中触发条件必须配对应处方，而不是贴完标签就交付 |
-| 知道偏差=免疫偏差 | 作者自己 Ch.4 就是反例；处方只接受外部流程（清单、基准率、预验尸、红队），不接受「更警觉」类空话 |
-| 把本 skill 用于任务过载/专注排程 | 那是 `bandwidth-and-deep-work` 的领域；两 skill 联动点：时间压力与多任务会放大快思考（系统 2 懒惰），先做带宽诊断再做本 skill 复核 |
+| Citing this book as scientific law | Evidence tiers: prospect theory has been retested in 19 countries (Ruggeri et al. 2020); anchoring is robust (Yoon et al. 2019); but Schimmack (2020) estimated via z-curve that the average power of studies cited in the book is only 46%, with reproducibility 12–46%. Always cite in the "evidence anchor" register |
+| Using "priming" to explain or design prompt behavior | ⛔ Chapter 4 is a replication-crisis hotspot (R-Index = 14); the author publicly withdrew the chapter's strong conclusions in 2017 ("too much faith in underpowered studies"). Do not claim that "subtle wording reliably changes behavior" |
+| Explaining behavior with "ego depletion / willpower battery" | Ego depletion has not replicated at scale (Hagger 2016; Vohs 2021). To discuss cognitive resources, use the bandwidth metaphor (`bandwidth-and-deep-work`), not a "battery" |
+| Parroting "the hot hand is an illusion" | After Miller & Sanjurjo (2018) the hot hand is real — the claim that "people are seeing patterns that aren't there" does not hold. For pattern judgments, check for statistical bias rather than defaulting to denial |
+| Treating loss aversion as an iron law | Gal & Rucker (2018) raised systematic challenges and the field has not settled; phrase it as "≈1.5–2.5×, disputed" |
+| Treating System 1 / System 2 as brain regions | The author explicitly says it is a fictional two-character metaphor; for AI it is a functional analogy, not a claim about capacity or neuroscience |
+| "AI has no System 1" so this skill does not apply | The analogy is about **the cognitive character of the output path** (associative generation vs. explicit review), and is used to design a review process — that is the whole of this skill |
+| Using "bias" as a disclaimer ("it's anchoring, so it's not my fault") | A bias is a mechanism explanation, not an excuse; a trigger-condition hit must be paired with its prescription, not a label and a delivery |
+| Knowing about biases = immunized | The author's own Chapter 4 is the counter-example; prescriptions accept only external process (checklists, base rates, premortems, red teams), never "be more vigilant" |
+| Using this skill for task overload / focus scheduling | That is the domain of `bandwidth-and-deep-work`. The link between the two: time pressure and multitasking amplify System-1 thinking (System 2 is lazy), so run the bandwidth diagnosis first, then this skill's review |
 
 ---
 
-## 参考文件（按需加载，不默认全读）
+## Reference files (load on demand, not by default)
 
-- `references/thinking-fast-and-slow-book.md` —— 全书笔记：概念词典（原意+误解）、证据锚、引文、批评边界
-- `references/evidence.md` —— 本 skill 规则在项目中的验证状态（当前：待验证 + 候选应用与测量方案）
-- `METHOD.md` —— 本书的转化记录（为什么适合/核心判断、10 条核心准则、验证状态、失败与风险记录）
-- `_book-research/thinking-fast-and-slow-notes.md` —— 完整研究笔记（来源清单、待核实项）
+- `references/thinking-fast-and-slow-book.md` — full book notes: concept dictionary (original meaning + common misreading), evidence anchors, quotations, criticism boundaries
+- `references/evidence.md` — validation status of this skill's rules inside this project (currently: pending validation + candidate applications and measurement plan)
+- `METHOD.md` — conversion record for this book (why it fits / core claim, the 10 core rules, validation status, failure and risk notes)
+- `references/SKILL.zh.md` — the Chinese edition of this skill
 
 ---
 
-*本 skill 基于《思考，快与慢》（Daniel Kahneman, 2011, Farrar, Straus and Giroux；中译中信 2025 版）的理念，将书中概念翻译为 AI/agent 行为规则；书中原文仅以短引文形式出现。本文件的规则设计、agent 协议与模板为 Trustbase Lab 自有内容，License：Apache-2.0。*
+*This skill is based on the ideas of "Thinking, Fast and Slow" (Daniel Kahneman, 2011, Farrar, Straus and Giroux), translating the book's concepts into AI/agent behavioral rules; original passages appear only as short quotations. The rule design, agent protocol, and templates in this file are Trustbase Lab content; License: Apache-2.0.*
