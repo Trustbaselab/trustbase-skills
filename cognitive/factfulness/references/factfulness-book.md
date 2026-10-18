@@ -53,6 +53,8 @@
 | 好消息不是新闻 | 渐进改善无报道价值；媒体坏消息偏好放大世界观 | 反媒体；实为反向补偿策略 |
 | 五大全球风险 | 大流行病/金融崩溃/世界大战/气候变化/极端贫困（表述待核实） | 拿本书当「什么都不用担心」 |
 | 谦卑与好奇 | 承认本能与无知、坦然说「不知道」；主动找与世界观不符的事实 | 「不知道」=无能 |
+| 系统思维 systems thinking | 单一原因→多元系统的分析框架（官网有专页；页码待核实） | 与「找系统」割裂——两者是一件事的两面 |
+| 合理怀疑指南 reasonable doubt | 对不同数据源分级怀疑、按来源加权（官网专页） | 怀疑一切=虚无主义；实为分级加权 |
 | Dollar Street | 安娜的项目：按收入等级拍摄全球家庭日常，照片当数据 | 旅游摄影；实为数据工具 |
 
 ## 证据锚（引用时保留语境，勿夸大）
@@ -65,6 +67,8 @@
 6. **中国一胎化政策**（第 9 章，勘误后文本）：归咎本能与单因叙事的反例——生育率下降先于政策。
 7. **Bill Gates 赠书**：2018 年向全美应届毕业生免费赠电子版；评「我读过的最重要的书之一」。出处：Gapminder 页/Columbian/WEF。
 8. **FT/McKinsey 2018 商业图书奖长名单**（首本瑞典商业书）；Nature 书评《Swansong of Hans Rosling, data visionary》（Nature 556:25, 2018）；Obama 2018 夏季书单；Pinker《卫报》推荐。
+9. **TED 演讲生涯**：2006 年《The Best Stats You've Ever Seen》用气泡图成名，后续 2010《The Magic Washing Machine》、2014 与欧拉合讲《How Not to Be Ignorant About the World》——13 题测试的现场版（标题级核实，细节待核实）。
+10. **GMS 2017 方法细节**：Novus（挪威 n=1221、芬兰 n=1000）+ Ipsos MORI（12 国 n=10,024，18–64/16–64 岁，2017-07-25 至 08-06，加权；n=1000 时误差约 ±3.1pp）。局限：仅富国、在线面板。
 
 ## 可操作原则（书中证据推出）
 
@@ -93,6 +97,8 @@
 8. 鸡汤化风险：中文营销压缩成「远离焦虑、变得乐观」；真正载荷是口径纪律与更新机制。
 9. 黑猩猩比喻是修辞：证明「错误世界观」非智力差异，勿猎奇化。
 10. 证据等级有限：测试是富国在线面板的横截面证据，「证据锚」非「定律」。
+11. 数据时效红线：书中数据截至 2016–2017；引用必带年份并查最新值（官方勘误页即「数据会过时」的自证）。
+12. 分类标签会变：「发达/发展中」二分已被机构逐步弃用（世界银行 2016 年 WDI 起，精确表述待核实）——skill 引用任何分类标签都要查当年口径。
 
 ## 可引用引文（中英对照，标注状态）
 
@@ -110,7 +116,7 @@
 
 ## 对 agent 工作的映射
 
-1. 引用统计 → 自动附「来源·年份·定义」三件套，缺一标「待核实」。
+1. 引用统计 → 自动附口径四件套（来源·年份·定义·基准），缺一标「待核实」。
 2. 记忆数字 → 显式「记忆值」+ 检索更新；训练数据里的世界是旧世界。
 3. 情绪化断言（崩溃/完蛋）→ 不接情绪，给水平+趋势双栏数据。
 4. 风险/灾难主题 → 危险×暴露表 + 同量级参照基准。
@@ -132,6 +138,7 @@
 - [官方勘误页 Mistakes found](https://www.gapminder.org/factfulness-book/mistakes/)
 - [恐惧本能官方页（风险公式）](https://www.gapminder.org/factfulness/fear/)
 - [官网收入等级页](https://www.gapminder.org/fw/income-levels/)
+- [官网合理怀疑指南专页](https://www.gapminder.org/factfulness-book/guidelines-on-reasonable-doubt-for-different-kinds-of-data/)
 - [Syndetics 目录（英文版章节页码）](https://secure.syndetics.com/index.php?isbn=9781250107817/toc.html&client=evertest&type=rn12)
 - [KI 官方讣告](https://news.ki.se/hans-rosling-has-passed-away)
 - [豆瓣中文 1 版（评分/目录/摘录/批评）](https://book.douban.com/subject/33385402/)
