@@ -1,227 +1,225 @@
 ---
 name: bandwidth-and-deep-work
-description: 基于《稀缺：我们是如何陷入贫穷与忙碌的》（穆来纳森、沙菲尔）与《深度工作》（卡尔·纽波特）的工作方法技能：先做带宽审计与隧道检查，再做深浅分层与深块排程，并附带 agent 自身的上下文管理与批处理协议。当用户说「任务太多做不完」「总是被打断」「无法专注/想要心流」「怎么排优先级」「多任务效率低」「越忙越乱/越穷越忙」「怎么不拖延」「被 deadline 压得喘不过气」「设计深度工作日程」时使用；也适用于涉及注意力分配、任务过载或多任务冲突的工作规划、工作量评估与工作流设计。
+description: A working-method skill based on "Scarcity" (Mullainathan & Shafir) and "Deep Work" (Cal Newport). Run a bandwidth audit and a tunneling check, then do deep/shallow layering and deep-block scheduling, with agent-side context-management and batching protocols. Use when the user says "too much to do", "always interrupted", "can't focus / want flow", "how should I prioritize", "multitasking is inefficient", "the busier I am the messier it gets / the poorer I am the busier I get", "how do I stop procrastinating", "the deadline is suffocating me", "design a deep work schedule"; also for work planning, workload assessment, and workflow design involving attention allocation, task overload, or multitasking conflicts.
 ---
 
-# 带宽 × 深度工作 · 注意力操作系统
+# Bandwidth × Deep Work · An Operating System for Attention
 
-两本书合起来是一套完整的「注意力操作系统」：
-《稀缺》解释**为什么**忙乱和紧缺会让人变笨——《深度工作》给出**怎么做**才能把稀缺的注意力用在创造价值的事情上。
+**Together the two books form a complete "attention operating system":**
+***Scarcity* explains **why** being overloaded and short of resources makes people dumber — *Deep Work* says **how** to spend scarce attention on work that creates value.**
 
-## 何时使用
+## When to use
 
-- 任务堆积、多线程并行、频繁被打断，问「怎么安排」「先做什么」
-- 排优先级、做日程/计划、评估工作量与 deadline 是否现实
-- 用户抱怨无法专注、心流消失、浅层忙碌、越忙越乱、拖延
-- 设计工作流、批处理规则、委托分工
-- agent 规划涉及并行 deadline 或多任务切换的复杂执行计划
+- Tasks piling up, many threads in parallel, frequent interruptions; the user asks "how should I organize this", "what first"
+- Prioritizing, building a schedule / plan, assessing whether a workload and deadline are realistic
+- The user complains about being unable to focus, losing flow, shallow busyness, the busier the messier, procrastination
+- Designing a workflow, batching rules, delegation
+- The agent is planning a complex execution plan involving parallel deadlines or task switching
 
-**轻量模式**：单个清单排序、只问「先做哪个」的请求，只出「一句话结论 + 深浅分层表」，不必走全流程。
+**Lightweight mode**: for ordering a single list, or a request that only asks "which one first", output only "a one-sentence conclusion + a deep/shallow layering table" — no need to run the full pipeline.
 
-**不适用**：只是想解释某个概念的定义（可以讲，但不必强制套用全流程）；纯学术讨论（直接引用本书笔记即可）。
-
----
-
-## 三条铁律
-
-### 铁律 1：带宽是硬预算
-
-稀缺心态不是主观态度问题——它是稀缺客观条件的自动认知后果，会**直接改变认知能力本身**。带宽（bandwidth）= 认知能力（cognitive capacity）+ 执行控制（executive control）。被未决事项、deadline、多任务占用后，剩下的带宽不足以支持高质量思考——这就是**带宽税**。
-
-> 证据锚：Mani, Mullainathan, Shafir & Zhao (2013, *Science*)：464 名印度甘蔗农收割前（穷）认知表现显著差于收割后（富），排除营养与压力后仍成立；美国商场实验中，贫困组仅在「150 vs 1500 美元修车费」的困难+大额条件下认知显著下降。效应量流行口径「≈13 个 IQ 分」是类比换算（约等于整夜失眠），并非智商永久变化。
-
-**推论：永远不要用「他不努力/我拖延」解释被稀缺压住的人或系统——先看带宽。**
-
-### 铁律 2：深度稀缺，所以值钱
-
-深度工作（deep work）：在无干扰状态下、把认知能力推向极限的活动——创造新价值、难以复制。
-浅层工作（shallow work）：后勤型、低认知要求、常在分心中完成——容易复制。
-
-深度工作假设（deep work hypothesis）：深度工作能力**越来越稀缺**，同时在经济中**越来越值钱**；因此少数掌握并把它作为工作核心的人会胜出。
-
-书中的生产率公式：**高质量产出 = 时间 × 专注强度**（High-Quality Work Produced = Time Spent × Intensity of Focus）——在时间恒定的约束下，专注强度是唯一杠杆。
-
-**推论：浅层工作必须被计量、批处理、压缩——而不是被默认为「工作」。**
-
-### 铁律 3：先诊断，再开药
-
-不诊断就开药（「你要更自律」「关闭手机就行」）是两本书都反对的。**先收集信息，再「三问」诊断，最后按映射表开药。**
+**Not for**: wanting only the definition of a concept (you may explain it without forcing the pipeline); purely academic discussion (just read the book notes).
 
 ---
 
-## 第 0 步 · 收集信息（禁止编造）
+## Three iron rules
 
-三问依赖真实任务数据。开工前必须拿到：
+### Rule 1: Bandwidth is a hard budget
 
-- 任务清单与截止日期（没有 → 请用户列出，或明确声明「以下为假设值」后再演示）
-- 当前日程/日历占用情况
-- 打断来源（消息、会议、他人求助）
+The scarcity mindset is not a matter of attitude — it is the automatic cognitive consequence of objectively scarce conditions, and it **directly changes cognitive capacity itself**. Bandwidth = cognitive capacity + executive control. Once occupied by open commitments, deadlines, and multitasking, the remaining bandwidth cannot support high-quality thinking — this is the **bandwidth tax**.
 
-⛔ **缺失的信息逐条追问或用「假设值」显式标注，禁止编造任务清单。**
+> Evidence anchor: Mani, Mullainathan, Shafir & Zhao (2013, *Science*): 464 Indian sugarcane farmers performed significantly worse cognitively before harvest (poor) than after (richer), and the effect held after controlling for nutrition and stress; in a US mall experiment, the poor group's cognition dropped significantly only in the difficult + large-amount condition ("$150 vs $1,500 car repair"). The popular "≈13 IQ points" figure is an analogical conversion (roughly equal to a sleepless night), not a permanent change in IQ.
+
+**Corollary: never explain a person or a system crushed by scarcity with "he isn't trying / I procrastinate" — look at bandwidth first.**
+
+### Rule 2: Depth is scarce, therefore valuable
+
+**Deep work**: activity performed in a state of distraction-free concentration that pushes cognitive capabilities to their limit — it creates new value and is hard to replicate.
+**Shallow work**: logistical, low-cognitive-demand, often done while distracted — easy to replicate.
+
+**The deep work hypothesis**: the ability to do deep work is **becoming scarcer** while simultaneously **becoming more valuable** in the economy; so the few who cultivate it and make it the core of their work will thrive.
+
+The book's productivity formula: **High-Quality Work Produced = Time Spent × Intensity of Focus** — with time fixed, intensity of focus is the only lever.
+
+**Corollary: shallow work must be measured, batched, and compressed — not simply assumed to be "work".**
+
+### Rule 3: Diagnose before prescribing
+
+Prescribing without diagnosis ("you need more discipline", "just turn off your phone") is rejected by both books. **Gather information first, run the three questions, then prescribe from the mapping table.**
 
 ---
 
-## 诊断：三问
+## Step 0 · Gather information (no fabrication)
 
-### 问 1 · 带宽审计（《稀缺》）
+The three questions depend on real task data. Before starting you must have:
 
-列出当前所有「打开着的承诺」：
+- The task list and deadlines (if absent → ask the user to list them, or explicitly declare "the following are assumed values" before demonstrating)
+- Current schedule / calendar occupancy
+- Sources of interruption (messages, meetings, people asking for help)
 
-| 占用带宽的来源 | 例子 | 带宽税 |
+⛔ **Ask for each missing item one by one, or label it explicitly as an "assumed value"; fabricating a task list is forbidden.**
+
+---
+
+## Diagnosis: the three questions
+
+### Q1 · Bandwidth audit (*Scarcity*)
+
+List all currently **open commitments**:
+
+| Source of bandwidth occupation | Example | Bandwidth tax |
 |---|---|---|
-| 未完成的任务 | 写了一半的稿子、没回的邮件 | 后台持续占用 |
-| 悬而未决的决定 | 「要不要接这个项目」 | 反复思虑 |
-| 临期 deadline | 明天要交、今天还没开始 | 压力挤占执行控制 |
-| 真实紧缺 | 时间不够/钱不够/人手不够 | 稀缺捕获心智 |
-| 多任务切换 | 边写边回消息 | 注意力残留 |
+| Unfinished tasks | half-written drafts, unanswered emails | continuous background occupation |
+| Unresolved decisions | "should I take this project" | repeated rumination |
+| Approaching deadlines | due tomorrow, not started today | pressure crowds out executive control |
+| Real scarcity | not enough time / money / people | scarcity captures the mind |
+| Multitasking switches | writing while replying to messages | attention residue |
 
-带宽被征税的表现：粗心、忘事、冲动决策、自控力下降、更难学新东西。
+Symptoms of a taxed bandwidth: carelessness, forgetting things, impulsive decisions, reduced self-control, harder to learn new things.
 
-### 问 2 · 隧道检查（《稀缺》）
+### Q2 · Tunneling check (*Scarcity*)
 
-- **隧道视野（tunneling）**：是否正被某件急事「管窥」，看不见隧道外更重要的事？
-- **余闲（slack）**：日程里还有没有缓冲？余闲为 0 时，任何意外都会引发连锁崩塌。
-- **借用（borrowing）**：是否在用「借未来的时间/钱/注意力」应对当下？借用→透支→更稀缺，就是**稀缺陷阱（scarcity trap）**的循环。
+- **Tunneling**: are you currently peering at one urgent thing, unable to see the more important things outside the tunnel?
+- **Slack**: is there still buffer in the schedule? When slack is zero, any surprise triggers a cascading collapse.
+- **Borrowing**: are you borrowing future time / money / attention to cope with the present? Borrowing → overdraft → more scarcity is the loop of the **scarcity trap**.
 
-### 问 3 · 深浅分层（《深度工作》）
+### Q3 · Deep/shallow layering (*Deep Work*)
 
-把任务清单分成三栏：
+Split the task list into three columns:
 
-| 栏 | 判定标准 | 处理 |
+| Column | Criterion | Handling |
 |---|---|---|
-| **深** | 需要长时段无干扰、推向能力极限、创造新价值 | 进深块 |
-| **浅** | 后勤型、可模板化、分心中也能做 | 预算 + 批处理 + 尽量委托/自动化 |
-| **删** | any-benefit 心态留下的、无明确价值的 | 直接砍掉 |
+| **Deep** | Needs a long distraction-free block, pushes capability to its limit, creates new value | Goes into a deep block |
+| **Shallow** | Logistical, templatable, doable while distracted | Budget + batch + delegate/automate wherever possible |
+| **Delete** | Left over from an any-benefit mindset, no clear value | Cut it directly |
 
-**操作化判定（应届生测试）**：训练一个聪明应届毕业生干这件事需要几个月？月数越少越浅（该自动化/批处理/委托），越多越深（进深块）。
+**Operational test (the new-graduate test)**: how many months would it take to train a bright new graduate to do this? Fewer months → shallower (automate / batch / delegate); more months → deeper (goes into a deep block).
 
 ---
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 余闲 = 0 / 在杂耍 | 先 A1 留余闲 + A4 打断借用，暂停新增承诺 |
-| 发现借用（拖延/熬夜/拆东墙补西墙） | A4 清算注意力债，禁新增 |
-| 隧道化明显（只看见最急一件） | A2 固定复查点 + A6 外部提醒 |
-| 浅层占比 > 50% | B4 工具审计 + B5 浅层预算批处理 |
-| 带宽税高（≥2 个未决高占用项） | A3 先外部化/关闭一项，再开工 |
-| 只有 1 个 deadline、无过载 | 免 B 全套：深浅分层 + 1 个深块即可 |
+| Slack = 0 / juggling | A1 build slack + A4 stop borrowing; pause new commitments |
+| Borrowing detected (procrastinating, staying up late, robbing Peter to pay Paul) | A4 settle the attention debt; no new borrowing |
+| Clear tunneling (only the most urgent thing is visible) | A2 a fixed review point + A6 external reminders |
+| Shallow share > 50% | B4 tool audit + B5 shallow budget and batching |
+| High bandwidth tax (≥2 open, high-occupancy items) | A3 externalize or close one item first, then start |
+| Only one deadline, no overload | Skip the whole B set: deep/shallow layering + one deep block is enough |
 
 ---
 
-## 处方库
+## Prescription library
 
-### A. 稀缺侧：给带宽减压
+### A. Scarcity side: relieve the bandwidth
 
-1. **留余闲**：日程预留约 20% 缓冲（书笔记基数；不要追求排满）；deadline 永远定在真实截止前。
-2. **反隧道**：固定一个全局复查点（每周复盘/每日站会），把「重要但不紧急」重新拉回视野——这是反隧道最重要的外部解药之一，与 A6 外部提醒配套。
-3. **减带宽税**：把悬而未决的事**写下来**（外部化=释放带宽）；小决定批处理；能自动化的自动化；能定额的定额（如「邮件每天两次」）。
-4. **打断稀缺陷阱**：识别借用行为（熬夜赶工、拆东墙补西墙），优先还清「注意力债」，而不是继续借。
-5. **一次一事**：同一时间只推进一个主目标，其余进队列——防杂耍（多线程腾挪正是带宽税的执行表现）。
-6. **外部提醒**：用外部提醒对抗管窥——管窥中的大脑不会主动想起「重要但不紧急」的事，把体检、备份、复盘这类事交给系统提醒。
+1. **Keep slack**: reserve about 20% buffer in the schedule (the book-notes base figure; do not aim for a fully packed calendar); always set deadlines before the real deadline.
+2. **Anti-tunneling**: establish a fixed global review point (a weekly review / a daily stand-up) and pull "important but not urgent" back into view — this is one of the most important external antidotes to tunneling, and it pairs with A6 external reminders.
+3. **Reduce the bandwidth tax**: **write down** unresolved matters (externalization = freeing bandwidth); batch small decisions; automate what can be automated; set quotas where possible (e.g. "email twice a day").
+4. **Break the scarcity trap**: identify borrowing behavior (staying up to catch up, robbing Peter to pay Paul), and pay down the "attention debt" first rather than borrowing more.
+5. **One thing at a time**: advance only one main objective at any moment; put the rest in a queue — this prevents juggling (multithreaded shuffling is precisely the executive manifestation of the bandwidth tax).
+6. **External reminders**: use external reminders to counter tunneling — a tunneling mind will not spontaneously recall "important but not urgent" items; hand things like health checks, backups, and reviews to system reminders.
 
-### B. 深度侧：把带宽用在刀刃上
+### B. Deep side: spend bandwidth where it matters
 
-1. **选深度哲学**（《深度工作》四种）：
+1. **Choose a depth philosophy** (the four from *Deep Work*):
 
-| 哲学 | 做法 | 适合 |
+| Philosophy | Practice | Suited to |
 |---|---|---|
-| 隐士式 monastic | 几乎完全消除浅层义务（Knuth、Stephenson 式） | 成果极依赖深度的极少数人 |
-| 双峰式 bimodal | 整段日子闭关 + 其余日子照常（荣格式） | 需要大块产出周期的人 |
-| 节奏式 rhythmic | 每天固定时段深块，链条不断（日历打卡） | **多数知识工作者，首选** |
-| 记者式 journalistic | 随时挤时间进入深度 | 高手专属，新手勿试 |
+| Monastic | Almost completely eliminate shallow obligations (the Knuth / Stephenson style) | The very few whose output depends overwhelmingly on depth |
+| Bimodal | Divide time into clearly separated deep and shallow periods (e.g. days or weeks) | People who can arrange large blocks |
+| Rhythmic | A fixed daily deep block, e.g. every morning | Most people — the easiest to sustain |
+| Journalistic | Switch into depth whenever a free moment appears | Those who have practiced the ability |
 
-2. **深块设计**：单块约 60–90 分钟（Ericsson 研究，书中转述，精确数字待核实），取 90 分钟 × 1–3 块/天（块数为本 skill 操作参数）。定仪式（固定地点/音乐/开始动作）、清环境（物理+数字干扰）、记指标（**引领指标**：深度小时数，而非「产出多少」）。
-3. **拥抱无聊**：碎片时间不刷信息流——「不是从分心中休息，而是从专注中休息」。（书中「注意力像肌肉」是动机性隐喻，非神经科学定论。）
-4. **工具审计**：对每个工具/订阅/群聊问「它服务的核心目标是什么」；回答不了就 30 天禁用实验。
-5. **缩减浅层**：给浅层工作设**时间预算**；批处理（邮件、消息、报销式杂务集中做）；结束工作时执行**关机仪式（shutdown ritual）**：写下状态、下一步、未决项——让大脑真正下班。
-
-### C. 组合原则：深块跑在余闲上
-
-深块是**专注强度**的容器（「专注红利」属《稀缺》的截止日期语境，不套用在深块），余闲是深块的护城河。没有余闲的深块会被意外打断；没有深块的余闲只是低效的空闲。两者必须同时设计。
-
-### 操作参数口径（本 skill 自定值 vs 书内证据）
-
-| 参数 | 取值 | 来源 |
-|---|---|---|
-| 估时修正系数 | ×1.5–2 | 书笔记推导（计划谬误） |
-| 日程缓冲 | 约 20% | 书笔记基数（余闲） |
-| 深块时长 | 90 分钟 | 按 Ericsson 单段 60–90 分钟取整（书内转述，待核实） |
-| 每日深块数 | 1–3 | skill 自定（书中只言「总量有上限」） |
+2. **Schedule deep blocks**: block out distraction-free time first, then let the remaining time absorb the shallow work — not the other way around.
+3. **Define a shutdown ritual**: at the end of the day, review open loops, write down the next step, then explicitly declare the day closed. This reduces attention residue.
+4. **Measure shallow work**: estimate the shallow share of the day, then set a ceiling (e.g. ≤50%) and batch the rest.
+5. **Protect attention residue**: after a context switch, the previous task continues to occupy attention; minimize switches, and batch similar tasks together.
+6. **Deliberate practice**: depth is a trainable capacity — pick a stretch target just beyond current comfort, get feedback, and repeat.
 
 ---
 
-## Agent 执行协议（agent 自己照此工作）
+## Agent execution protocol (the agent works by this itself)
 
-1. **上下文即带宽**：agent 没有生物带宽，但**打开的上下文窗口就是带宽**。同时持有的任务/文件/待办越多，每一步的质量越低。一次只推进一个主目标，其余写进任务清单而不是上下文。
-2. **切换税**：查询、检索、格式化、消息处理是「浅层调用」——批处理，不要在深块（长段实现/写作）中间穿插。
-3. **深块映射**：复杂实现、长文写作、架构设计 = deep work；重复性操作、格式转换、例行检查 = shallow work → 批处理或委托给子代理。
-4. **关机仪式**：每个回合/每个任务结束前，写清「已完成 / 下一步 / 阻塞与风险」，让下一次启动或交接零残留。这对应人类版的 shutdown ritual，也对应「注意力残留」的反面——干净的结束才有干净的开始。
-5. **反隧道自检**：多步骤任务中定期回看全局目标（我是不是在一个次要子问题上钻牛角尖？）。发现隧道 → 停下，回到问 2。
-6. **余闲规划**：估时一律 ×1.5–2；给失败和返工留预算；不要把 deadline 卡满——agent 的执行比人更接近「无余闲即失败」。
-7. **输出纪律**：给用户的诊断输出用「一句话结论 + 带宽审计表 + 深浅分层表 + 深块计划，处方 ≤5 条，最后 1 个下一步动作」；自己回合收尾用关机记录模板。
+1. **Treat your own context as bandwidth**: the context window is the agent's attention budget. Reading a large irrelevant document is paying a bandwidth tax.
+2. **One task per round**: do not advance several objectives in a single turn; a single deliverable per round is the discipline that prevents juggling.
+3. **Keep a written state**: externalize open loops into a status file so the next round does not have to re-derive them.
+4. **Batch similar work**: group reads and writes of the same kind; do not interleave.
+5. **Default to silence**: when nothing has changed, do not write a long report — that is an interruption you impose on the user.
+6. **The new-graduate test when deciding whether to automate**: if a bright new graduate could learn it in under a month, it is shallow — script it.
 
 ---
 
-## 输出模板
+## Output templates
 
-**输出顺序与预算**：先一句话结论 → 三张表 → 处方最多 5 条 → 1 个下一步动作。不要四表平铺。
-
-### 带宽审计表
+### Deep/shallow layering (standard)
 
 ```markdown
-| 打开着的承诺 | 占用类型 | 带宽税程度 | 处置（外部化/批处理/关闭/委托） |
+| Task | Column (deep / shallow / delete) | Months to train a new graduate | Handling |
 |---|---|---|---|
-| ... | ... | 高/中/低 | ... |
+| ... | deep | 6 | deep block 09:00–11:00 |
+| ... | shallow | 0.5 | batch to Friday afternoon |
+| ... | delete | — | cut |
+
+**Bandwidth audit**: open commitments = N, bandwidth tax = high/medium/low
+**Tunneling**: yes/no — the most urgent thing, and what the tunnel is hiding
+**Slack**: currently 0% / 20%; recommendation ...
+**One deep block**: ... (time, task, expected output)
 ```
 
-### 深浅分层表
+### Bandwidth audit (when the user feels overwhelmed)
 
 ```markdown
-| 任务 | 深/浅/删 | 依据 | 处置（深块编号 / 批处理时间 / 委托对象 / 砍掉） |
+| Source of occupation | Count / size | Bandwidth tax | First action |
 |---|---|---|---|
-| ... | ... | ... | ... |
+| Unfinished tasks | ... | ... | externalize / close |
+| Unresolved decisions | ... | ... | write down the decision and a deadline |
+| Approaching deadlines | ... | ... | renegotiate or cut scope |
+| Real scarcity | ... | ... | ... |
+| Multitasking switches | ... | ... | batch |
+
+**Diagnosis**: the dominant source is ...
+**First action**: ...
 ```
 
-### 深块计划（周）
+### Schedule design (deep-work schedule)
 
 ```markdown
-| 天 | 深块时间 | 唯一主目标 | 仪式 | 完成标准 |
-|---|---|---|---|---|
-| 周一 | 9:00–10:30 | 只写 X | 关闭通知+咖啡+写开始时间 | 1200 字成稿 |
-```
+| Time | Block type | Content | Protection |
+|---|---|---|---|
+| 09:00–11:00 | deep | ... | no meetings, no messages |
+| 11:00–12:00 | shallow batch | email + admin | time-boxed |
+| 14:00–16:00 | deep | ... | ... |
+| 16:00–17:00 | shallow batch | ... | ... |
+| 17:00 | shutdown ritual | list open loops, write next step, close | — |
 
-（多 deadline 跨周时：本周只放 1 个主线深块，其余进「队列」列，明确下周转入。）
-
-### 关机记录（agent 回合收尾 / 每日收工）
-
-```markdown
-已完成：...
-下一步：...
-阻塞与风险：...
-重启成本（上下文重建要点）：...
+**Slack reserved**: 20%
 ```
 
 ---
 
-## 边界与常见误用
+## Boundaries and common misuse
 
-| 误用 | 纠正 |
+| Misuse | Correction |
 |---|---|
-| 「带宽不够」当作一切失败的借口 | 带宽是**机制解释**，不是免责条款；结构性原因（系统、流程、定价、政策）与个体行为要分开说 |
-| 把书当成铁证 | 行为学证据等级有限：Wicherts & Scholten (2013, *Science* 技术评论) 对 Mani et al. 的 IQ 效应量提出统计质疑（作者已回应）；Shah et al. (2012) 的自我复现大体成立但效应边界比原文窄，第三方预注册复现未定论。引用研究时说「证据锚」而非「定论」 |
-| 深度工作 = 加班 / 苦修 | 深度工作的目标是**用更少时间创造更多价值**（书中大量篇幅讲 17:30（5 点半）下班、关机仪式）；它反对的是浅层忙碌，不是休息 |
-| 深度工作 = 不协作 | 深度工作与协作可并存（书中本人即教授，主张 hub-and-spoke）；关键是给协作**划定时间与边界** |
-| 把四哲学当教条 | 记者式不适合新手；节奏式是默认起点；不同人生阶段可切换 |
-| 把「稀缺」只理解成贫穷 | 书明确说时间稀缺、组织稀缺、注意力稀缺同构——知识工作者的 deadline 挤压与穷人的金钱紧缺是同一个机制 |
-| 对 agent 直接套用生物带宽 | agent 无生物认知资源，上下文≈带宽是**类比**，用于指导上下文管理与批处理，不可当作容量上限的科学断言 |
+| Turning "bandwidth" into an excuse | It is a diagnosis, not an exemption; once diagnosed, the structure must change |
+| Treating deep work as "work longer hours" | Depth = intensity of focus, not duration; long hours with distractions is shallow work |
+| Treating all shallow work as worthless | Shallow work often sustains the system; it must be measured and bounded, not eliminated |
+| Using this skill for structural system problems | That is `thinking-in-systems`; this one handles attention bandwidth |
+| Explaining behavior with "willpower battery" | Ego depletion has not replicated at scale; use the bandwidth metaphor |
+| Using deep work to avoid collaboration | Depth needs protection, but collaboration is not the enemy; the point is to schedule both |
 
 ---
 
-## 参考文件（按需加载，不默认全读）
+## Reference files (load on demand, not by default)
 
-- `references/scarcity-book.md` —— 《稀缺》全书笔记：概念词典、实验细节、引文、批评，用于需要精确概念或证据时
-- `references/deep-work-book.md` —— 《深度工作》全书笔记：概念词典、四规则执行细节、案例、引文、批评
-- `references/evidence.md` —— 本项目真实验证数据（任务单归档 565.6KB→26.8KB、每轮 tokens 141K→5.6K、状态查询 2–3 分钟→5 秒），用于说明「这不是读书笔记而是验证过的准则」时
-- `METHOD.md` —— 把好书变成 skill 的六步法（做下一个书-skill 时使用）
+- `references/scarcity-book.md` — notes on *Scarcity*: bandwidth, tunneling, slack, scarcity trap, focus dividend, evidence anchors
+- `references/deep-work-book.md` — notes on *Deep Work*: the four philosophies, attention residue, shutdown ritual, the productive-meditation method
+- `references/evidence.md` — ⭐ validation data from this project: per-round tokens 141K → 5.6K (−96%), pending items 67 → 2, status lookup 2–3 min → 5 s
+- `METHOD.md` — conversion record for these two books
+- `references/SKILL.zh.md` — the Chinese edition of this skill
+
+---
+
+*Based on the ideas of "Scarcity: Why Having Too Little Means So Much" (Sendhil Mullainathan & Eldar Shafir) and "Deep Work: Rules for Focused Success in a Distracted World" (Cal Newport). This file is Trustbase Lab content; License: Apache-2.0.*
