@@ -51,7 +51,7 @@
 
 ## 证据锚（引用时保留语境，勿夸大）
 
-1. **NJ 商场实验**（Mani et al. 2013 实验室部分）：财务困难情境（$150 vs $1500 修车费）后测 Raven 矩阵与空间相容任务；贫困组仅在「困难+大额」下认知显著下降，富裕组不受影响。效应量流行口径 ≈13 IQ 点/≈整夜失眠——**是类比换算，非真实智商变化**。4 个子实验排除数学焦虑、奖金激励等。出处：Science DOI 10.1126/science.1238041；[Oxford MBRG 详解](https://mbrg.bsg.ox.ac.uk/mind-and-behaviour-projects/poverty-impedes-cognitive-function)。
+1. **NJ 商场实验**（Mani et al. 2013 实验室部分）：财务困难情境（$150 vs $1500 修车费）后测 Raven 矩阵与空间相容任务；贫困组仅在「困难+大额」下认知显著下降，富裕组不受影响。效应量流行口径 ≈13 IQ 点/≈整夜失眠——**是类比换算，非真实智商变化**。4 个子实验中 3 个分别排除数学焦虑、奖金激励、答题顺序等混淆。出处：Science DOI 10.1126/science.1238041；[Oxford MBRG 详解](https://mbrg.bsg.ox.ac.uk/mind-and-behaviour-projects/poverty-impedes-cognitive-function)。
 2. **印度蔗农自然实验**（同论文田野部分）：464 名蔗农、54 村、泰米尔纳德邦，收获前（穷）/后（富）被试内对比；收获后认知显著更好，排除营养/努力/压力后仍成立——证明是情境效应，稀缺解除即恢复。
 3. **Family Feud 实验**（Shah et al. 2012, Study 1）：普林斯顿学生随机分「富/穷」预算玩猜词游戏；穷组难题不输（专注红利）、易题出错多（管窥代价）、借用更多（overborrowing）。DOI 10.1126/science.1222426。
 4. **Angry Blueberries 饥饿实验**（Study 2）：饥饿者更快锁定食物相关目标——稀缺的注意力效应不限于金钱。
