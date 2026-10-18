@@ -1,11 +1,12 @@
 # Trustbase Skills
 
 > **Agent Skills that connect AI to verifiable industry facts.**
+> **11 skills · 5 cognitive (book-to-skill) + 6 industry (rCB)**
 > 让 agent 不只知道"怎么做"，还知道"数据从哪来、对不对、谁负责"。
 
 [![skills.sh](https://skills.sh/b/Trustbaselab/trustbase-skills)](https://skills.sh/Trustbaselab/trustbase-skills)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-7-green.svg)](#skill-catalog)
+[![Skills](https://img.shields.io/badge/skills-11-green.svg)](#skill-catalog)
 [![Data](https://img.shields.io/badge/verifiable_facts-520+-orange.svg)](https://trustbaselab.com/database)
 [![MCP](https://img.shields.io/badge/MCP_tools-59-purple.svg)](https://trustbaselab.com/mcp)
 
@@ -44,8 +45,23 @@ trustbase-skills/
 
 **把经典书籍转成 agent 可执行的行为准则，并在真实项目里验证。**
 
-| Skill | 基于 | 验证证据 |
+**⭐ 六层认知操作系统：**
+
+```
+① 输入层  factfulness            《事实》         如何正确看数据
+② 处理层  thinking-fast-and-slow 《思考，快与慢》  如何不被直觉骗
+③ 质量层  noise-in-judgment      《噪声》         如何让判断一致
+④ 全局层  thinking-in-systems    《系统之美》      如何看到系统和反馈
+⑤ 带宽层  bandwidth-and-deep-work《稀缺》         如何在有限资源下工作
+⑥ 执行层  （同上）                                如何产出深度
+```
+
+| Skill | 基于 | 核心 |
 |---|---|---|
+| **`factfulness`** | 《事实》 | **数据口径四件套核查 + 十大情绪化本能诊断** |
+| **`thinking-fast-and-slow`** | 《思考，快与慢》 | **识别 AI 的快思考模式，强制慢思考复核** |
+| **`noise-in-judgment`** | 《噪声》 | **区分偏差与噪声，用决策卫生减少随机波动** |
+| **`thinking-in-systems`** | 《系统之美》 | **存量流量图 + 反馈回路 + 12 个杠杆点** |
 | **`bandwidth-and-deep-work`** | 《稀缺》《深度工作》 | ⭐ **本项目：每轮 token 141K → 5.6K（-96%）** |
 
 **⭐ 每个 cognitive skill 都带三样：**
@@ -120,11 +136,15 @@ cp -r trustbase-skills/cognitive/* ~/.dsh/skills/
 
 ## Skill catalog
 
-### cognitive/（1）
+### cognitive/（5）
 
 | Skill | 触发 | 不适用 |
 |---|---|---|
-| **`bandwidth-and-deep-work`** | 任务堆积 · 多线程 · 频繁打断 · 排优先级 · 设计工作流 | 纯学术讨论（直接引用本书笔记即可） |
+| **`factfulness`** | 「世界是不是越来越糟」「这个数据可信吗」「帮我引个数据」「别贩卖焦虑」 | 纯数据查询（不含判断） |
+| **`thinking-fast-and-slow`** | 「这个 AI 结论靠谱吗」「感觉回答太自信了」「帮我审核这份 AI 产出」 | 任务过载与专注排程（用 bandwidth） |
+| **`noise-in-judgment`** | 「为什么每次答案都不一样」「结论不一致该信谁」「怎么让评估更一致」 | 纯事实查询 · 唯一答案计算 |
+| **`thinking-in-systems`** | 「为什么越改越糟」「改了没效果」「怎么找杠杆点」 | 个人专注力问题（用 bandwidth） |
+| **`bandwidth-and-deep-work`** | 「任务太多做不完」「总是被打断」「无法专注」「怎么排优先级」 | 纯学术讨论 |
 
 ### industry/（6）
 
