@@ -1,274 +1,246 @@
 ---
 name: thinking-in-systems
-description: 基于《系统之美》（梅多斯）的系统思维技能：画存量流量图与回路，诊断「越改越糟」（只看流量、忽略延迟、头痛医头、目标侵蚀），用 12 杠杆点定位干预层级，把工作流/项目当系统看。当用户说「改了没效果」「指标上不去」「怎么找杠杆点」「这是不是恶性循环」「（组织/流程/指标层面的）系统性问题怎么办」时使用；也用于流程/组织动态分析。专注/任务过载转 bandwidth-and-deep-work。
+description: A systems-thinking skill based on "Thinking in Systems" (Donella Meadows). Draw stock-and-flow diagrams and feedback loops, diagnose "why fixing it makes it worse" (watching only flows, ignoring delays, treating symptoms, eroding goals), and use the 12 leverage points to locate the level of intervention. Treat workflows and projects as systems. Use when the user says "the change had no effect", "the metric won't move", "where's the leverage point", "is this a vicious cycle", "what do we do about a systemic problem" (at the level of organization / process / metrics); also for analyzing process or organizational dynamics. For focus / task overload use bandwidth-and-deep-work.
 ---
 
-# 系统之美 · 结构与回路思维操作系统
+# Thinking in Systems · An Operating System for Structure and Loops
 
-一句话：**系统的行为由结构（存量、流量、反馈回路、延迟、非线性）产生，不由单个要素或人的意图产生**——所以「越改越糟」首先要改的是对结构的理解，而不是加大力度。基于《系统之美》（Donella H. Meadows，2008；中文版邱昭良译，浙江教育出版社 2023）的理念。
+**In one sentence: the behavior of a system is produced by its structure (stocks, flows, feedback loops, delays, non-linearity), not by any single element or by anyone's intent** — so when "fixing it makes it worse", the first thing to change is our understanding of the structure, not the amount of force applied.
 
-## 何时使用
+Based on the ideas of *Thinking in Systems* (Donella H. Meadows, 2008).
 
-- 用户描述一个**反复出现**的问题：越努力越糟、改了没效果、按下葫芦浮起瓢
-- 分析某个系统/流程/组织的动态：为什么这个指标上不去、为什么震荡、为什么强者恒强
-- 规划干预：该改数字？改规则？改目标？还是改范式？
-- 诊断指标异化：KPI 全绿但结果很差、标准被悄悄放低
-- 多角色互相拉扯、资源分配固化、对外部救火形成依赖
-- agent 分析工作流/项目结构/团队分工的系统视角需求
+## When to use
 
-**轻量模式**：只问「这是增强回路还是调节回路」「这属于哪层杠杆点」时，只出「一句话结论 + 回路判定 + 杠杆点层级」；问「为什么越改越糟」但只想要初步假设时，出「越改越糟」简版（诊断表 3 行 + 1 个验证动作，见输出模板）。两者均不必走五问全流程。
+- The user describes a **recurring** problem: the harder we try the worse it gets, the change had no effect, we push one thing down and another pops up
+- Analyzing the dynamics of a system / process / organization: why won't this metric move, why does it oscillate, why do the strong get stronger
+- Planning an intervention: change the numbers? the rules? the goals? the paradigm?
+- Diagnosing metric distortion: all the KPIs are green but the outcome is bad, or the standard has been quietly lowered
+- Multiple roles pulling against each other, resource allocation frozen in place, dependence on external firefighting
+- The agent needs a system-level view of a workflow, project structure, or team division of labor
 
-**不适用 / 相关**：个人专注力、任务过载、多任务排程 → 用 `bandwidth-and-deep-work`（它管注意力带宽，本 skill 管结构）；只是想解释某个概念的定义 → 直接引用 `references/thinking-in-systems-book.md` 概念词典；纯历史/法律事实问题不需要套系统模型；**IT 系统故障/排障**（「系统崩了」「系统卡」）是技术排障不是系统结构诊断，直接排查故障即可，不套本流程。
+**Lightweight mode**: when the only question is "is this a reinforcing or a balancing loop" or "which leverage level is this", output only "a one-sentence conclusion + the loop verdict + the leverage level"; when the user asks "why does fixing it make it worse" but wants only a first hypothesis, output the short form (3 rows of the diagnosis table + 1 verification action, see the output templates). Neither needs the full five-question pipeline.
 
----
-
-## 三条铁律
-
-### 铁律 1：结构产生行为——先画图，再谈人
-
-系统的行为模式来自其结构（存量、流量、反馈回路、延迟、非线性），而不是来自单个人的品行或意图。换人不动结构，行为几乎不变。
-
-> 证据锚：Meadows Ch1——系统三要件中「目标/功能最隐蔽，却是行为最关键的决定因素」（*The least obvious part of the system, its function or purpose, is often the most crucial determinant of the system's behavior.*）
-
-**推论：诊断任何反复出现的问题，第一动作是画存量流量图与回路图，而不是找责任人。**
-
-### 铁律 2：杠杆点分层——层级越高，杠杆越大，抵制越强
-
-干预位有 12 层（低→高）：数字/参数 → 缓冲 → 物质结构 → 延迟 → 调节回路 → 增强回路 → 信息流 → 规则 → 自组织 → 目标 → 范式 → 超越范式。层级越高杠杆越大，但系统抵制越强；且人凭直觉常把杠杆点往**反方向**推。
-
-> 证据锚：Meadows 1999《Leverage Points》原文（[官网全文](https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/)）：*"The higher the leverage point, the more the system will resist changing it."*；另有 Forrester 传统：人人都在把杠杆点往反方向推（1999 文章转述口径）。
-
-**推论：开出干预处方前，必须报出它在 12 层中的位置，并预警对应层级的抵制强度。**
-
-### 铁律 3：只盯流量不盯存量、忽略延迟、头痛医头 = 三大经典误诊
-
-存量有惯性（存量改变需要时间，因为流量需要时间流动）；有延迟的调节回路必然过冲与震荡；对症状用力而不动结构，只是头痛医头。这三大误诊是「越改越糟」最常见的一批结构原因。
-
-> 证据锚：*"A stock takes time to change, because flows take time to flow."*（Ch1）；Meadows 自估「99% 的系统故障源于错误或缺失的信息」（*Dancing with Systems*，作者个人估计口径，非实证）。
-
-**推论：发现「越改越糟」，先查这三条，而不是增加第四种努力。**
+**Not for / related**: personal focus, task overload, multitasking scheduling → use `bandwidth-and-deep-work` (that skill handles attention bandwidth; this one handles structure); wanting only the definition of a concept → read the concept dictionary in `references/thinking-in-systems-book.md`; pure historical or legal fact questions do not need a system model; **IT system failure / troubleshooting** ("the system crashed", "the system is slow") is technical troubleshooting, not structural diagnosis — just troubleshoot it, don't apply this pipeline.
 
 ---
 
-## 第 0 步 · 收集信息（禁止编造）
+## Three iron rules
 
-结构诊断依赖真实数据。开工前必须拿到（缺什么就问什么，⛔ 禁止编造）：
+### Rule 1: Structure produces behavior — draw the diagram first, then talk about people
 
-1. **行为史**：关键指标的时间序列（至少几个周期）——没有就请用户提供，或显式标注「以下为假设数据，仅作演示」
-2. **存量清单**：系统里什么东西在累积？（库存、债务、用户数、技术债、信任、积压工单……）
-3. **流量与阀门**：流入是什么？流出是什么？谁控制阀门？按什么规则？
-4. **信息可达性**：每个决策者能看到什么状态？看不到什么？
-5. **规则与目标**：明文规则、激励、处罚；宣称的目标与实际行为推出的目标是否一致
+A system's behavior patterns come from its structure (stocks, flows, feedback loops, delays, non-linearity), not from any individual's character or intent. Replace the person without changing the structure, and the behavior barely changes.
 
-缺失项逐条追问；只有拿到行为史，才能跳过「事件层」进入「行为层」。
+> Evidence anchor: Meadows Ch1 — of the three components of a system, "the least obvious part of the system, its function or purpose, is often the most crucial determinant of the system's behavior."
+
+**Corollary: the first action when diagnosing any recurring problem is to draw the stock-and-flow and loop diagram, not to find someone to blame.**
+
+### Rule 2: Leverage points are layered — the higher the level, the greater the leverage and the stronger the resistance
+
+There are 12 levels of intervention (low → high): numbers/parameters → buffers → physical structure → delays → balancing loops → reinforcing loops → information flows → rules → self-organization → goals → paradigm → transcending paradigms. The higher the level, the greater the leverage, but the stronger the system's resistance; and by intuition people often push the leverage point in the **opposite** direction.
+
+> Evidence anchor: Meadows 1999, *Leverage Points* (full text at donellameadows.org): *"The higher the leverage point, the more the system will resist changing it."* There is also the Forrester tradition that everyone is pushing the leverage points in the wrong direction (as relayed in the 1999 article).
+
+**Corollary: before prescribing an intervention, you must report where it sits among the 12 levels and warn about the resistance at that level.**
+
+### Rule 3: Watching flows but not stocks, ignoring delays, treating symptoms = three classic misdiagnoses
+
+Stocks have inertia (a stock takes time to change, because flows take time to flow); a balancing loop with a delay necessarily overshoots and oscillates; applying force to a symptom without touching the structure is merely treating the symptom. These three misdiagnoses are the most common structural causes of "fixing it makes it worse".
+
+> Evidence anchor: *"A stock takes time to change, because flows take time to flow."* (Ch1); Meadows's own estimate that "99% of system failures come from wrong or missing information" (*Dancing with Systems*; the author's personal estimate, not empirical evidence).
+
+**Corollary: when you find "fixing it makes it worse", check these three first rather than adding a fourth kind of effort.**
 
 ---
 
-## 核心流程 · 系统五问诊断
+## Step 0 · Gather information (no fabrication)
 
-### 问 1 · 存量流量图（浴缸模型）
+Structural diagnosis depends on real data. Before starting you must have (ask for whatever is missing; ⛔ no fabrication):
 
-| 项 | 内容 |
+1. **Behavioral history**: a time series of the key metrics (at least several periods) — if absent, ask the user for it, or explicitly label "the following are assumed data, for illustration only"
+2. **Stock inventory**: what is accumulating in the system? (inventory, debt, user count, technical debt, trust, backlog of tickets…)
+3. **Flows and valves**: what is the inflow? what is the outflow? who controls the valves? by what rule?
+4. **Information accessibility**: what state can each decision-maker see? what can't they see?
+5. **Rules and goals**: explicit rules, incentives, penalties; whether the declared goal matches the goal implied by actual behavior
+
+Ask for each missing item one by one; only once you have the behavioral history can you skip the "event level" and enter the "behavior level".
+
+---
+
+## Core workflow · the five system questions
+
+### Q1 · Stock-and-flow diagram (the bathtub model)
+
+| Item | Content |
 |---|---|
-| 存量（水位） | 在累积的是什么？当前水平？历史曲线形状？ |
-| 流入（水龙头） | 由谁/什么规则驱动？能否突变？ |
-| 流出（排水口） | 同理。流入流出是否被同一决策点控制？ |
-| 惯性 | 存量对流量变化的响应有多慢？（响应慢=预期必然落空） |
+| Stock (water level) | What is accumulating? Current level? Shape of the historical curve? |
+| Inflow (the tap) | Driven by whom / what rule? Can it change suddenly? |
+| Outflow (the drain) | Same. Are inflow and outflow controlled by the same decision point? |
+| Inertia | How slowly does the stock respond to a change in flows? (slow response = expectations inevitably missed) |
 
-输出一句：「存量 X 由流入 Y 和流出 Z 决定；X 的改变速度受惯性限制为____。」
+Output one sentence: "Stock X is determined by inflow Y and outflow Z; the rate at which X can change is limited by inertia to ____."
 
-### 问 2 · 回路识别（R/B）
+### Q2 · Loop identification (R/B)
 
-对每个趋势问：**A 引起 B，B 是否也引起 A？**
+For each trend ask: **does A cause B, and does B also cause A?**
 
-- **增强回路 R**：存量越多→流入越多（复利、雪球、恶性/良性循环）。标注：「什么在放大它？有没有制约回路？制约回路有多强、多快？」
-- **调节回路 B**：目标导向、拉回目标值（恒温器）。标注：「目标值是多少？目标是谁定的？目标可不可见？」
-- **主导权**：多个回路并存时，当下谁主导？存量水平改变后主导权会不会转移？
+- **Reinforcing loop R**: the more stock, the more inflow (compounding, snowball, vicious/virtuous cycle). Annotate: "what is amplifying it? is there a balancing loop? how strong and how fast is it?"
+- **Balancing loop B**: goal-seeking, pulling back toward the target (a thermostat). Annotate: "what is the target value? who set it? is the target visible?"
+- **Dominance**: when several loops coexist, which dominates now? Will dominance shift as the stock level changes?
 
-### 问 3 · 延迟与非线性
+### Q3 · Delays and non-linearity
 
-- **延迟**：感知延迟（多久看到）、响应延迟（多久决策）、交付延迟（多久生效）。凡有震荡/过冲，先报延迟。
-- **非线性**：是否存在阈值、饱和、临界点——「渐变原因、突变结果」？
+- **Delays**: perception delay (how long until it is seen), response delay (how long until a decision), delivery delay (how long until it takes effect). Whenever there is oscillation or overshoot, report the delay first.
+- **Non-linearity**: are there thresholds, saturation, tipping points — "gradual cause, sudden result"?
 
-### 问 4 · 基模匹配（8 大陷阱）
+### Q4 · Archetype matching (8 traps)
 
-| 症状（用户原话） | 基模 | 回路结构 |
+| Symptom (the user's own words) | Archetype | Loop structure |
 |---|---|---|
-| 「各部门都很努力，结果纹丝不动」 | 政策阻力 | 多方 B 回路目标互斥 |
-| 「人人都在用，没人负责养」 | 公地悲剧 | 个体收益+成本分摊、反馈缺失 |
-| 「今年先降点标准，明年补回来」 | 目标侵蚀 | 标准被差绩效反向拉低（R） |
-| 「对手降价我们只能跟」 | 竞争升级 | 双方目标=超越对方（双 R） |
-| 「资源永远流向同一批人」 | 富者愈富 | 按当前成绩再分配（R） |
-| 「离不开这个外部依赖了」 | 转嫁负担 | 症状缓解侵蚀自我能力（R） |
-| 「指标都达标了，问题还在」 | 规避规则 | 表面合规、实质扭曲 |
-| 「KPI 全绿，用户全跑了」 | 目标错位 | 指标成了目标 |
+| "Every department works hard but the result doesn't move" | Policy resistance | Multiple B loops with mutually exclusive goals |
+| "Everyone uses it, nobody maintains it" | Tragedy of the commons | Private benefit + shared cost, missing feedback |
+| "Let's lower the standard a bit this year and make it up next year" | Eroding goals | Standard dragged down by poor performance (R) |
+| "If our competitor cuts prices we have to follow" | Escalation | Both sides' goal = beat the other (double R) |
+| "Resources always flow to the same people" | Success to the successful | Redistribution by current performance (R) |
+| "We can't get away from this external dependency" | Shifting the burden | Symptom relief erodes own capability (R) |
+| "All metrics are met, the problem remains" | Rule beating | Surface compliance, substantive distortion |
+| "All KPIs green, all users gone" | Goal displacement | The metric became the goal |
 
-**无命中分支**：8 个基模都匹配不上时，不硬套——基模只是**候选假设**，不是诊断结论。直接用问 1–3 的存量/回路/延迟描述写自定义结构诊断，并在诊断卡中声明「未命中已知基模，以下为自定义回路描述（待行为史核对）」。
+**No-hit branch**: when none of the 8 archetypes fits, do not force one — an archetype is a **candidate hypothesis**, not a diagnosis. Write a custom structural diagnosis directly from the stocks/loops/delays described in Q1–3, and state in the diagnosis card "no known archetype matched; the following is a custom loop description (pending verification against behavioral history)".
 
-### 问 5 · 杠杆点定位
+### Q5 · Leverage-point location
 
-把候选干预放进 12 层（12=数字/参数 … 1=超越范式，完整清单见 book.md §杠杆点），报告：「该干预属于第 N 层；预期杠杆____、预期抵制____；同层级是否有更省力的位置？」
+Place the candidate intervention among the 12 levels (12 = numbers/parameters … 1 = transcending paradigms; full list in `references/thinking-in-systems-book.md`) and report: "this intervention sits at level N; expected leverage ____; expected resistance ____; is there a lower-effort position at the same level?"
 
 ---
 
-## 「为什么越改越糟」诊断表（核心查错路径）
+## The "why does fixing it make it worse" diagnosis table (the core error-hunting path)
 
-| 现象 | 常见误诊（头痛医头） | 结构诊断 | 处方方向 |
+| Phenomenon | Common misdiagnosis (treating the symptom) | Structural diagnosis | Prescription direction |
 |---|---|---|---|
-| 目标改了、力度加了，没效果 | 再加力度、换执行人 | 只动了第 12 层参数，或回路缺失 | 上移到信息流/规则/目标层（问 5） |
-| 改完立刻反弹，甚至更糟 | 「执行不到位」 | 调节回路有延迟→过冲；或增强回路未被制约 | 先改延迟与信息时效（A2） |
-| 各部门各司其职却整体糟糕 | 追责协调人 | 子目标互斥（政策阻力）；子系统优化≠整体优化 | 对齐更大共同目标（B1） |
-| 指标好看、结果难看 | 继续加指标 | 规避规则 + 目标错位 | 定义成果而非产出，重设计规则（B4） |
-| 标准一年比一年低 | 「务实调整」 | 目标侵蚀（R 回路） | 标准绝对化、对标最佳历史（B3） |
-| 越来越依赖某个外部方 | 续约/加预算 | 转嫁负担（R 回路） | 并行建设自身能力（B5） |
-| 资源永远给赢家、新事物长不大 | 「能者多劳」 | 富者愈富（R 回路） | 平权机制/上限/纠偏（B6） |
-| 政策一出，对策即来 | 加严处罚 | 规避规则 | 从被管者视角重设计规则（B4） |
+| The goal changed, the force increased, still no effect | Add more force, replace the executor | Only the level-12 parameters were moved, or a loop is missing | Move up to information flows / rules / goals (Q5) |
+| It bounces right back after the change, or gets worse | "poor execution" | The balancing loop has a delay → overshoot; or the reinforcing loop is unconstrained | Fix the delay and the timeliness of information first (A2) |
+| Each department does its job yet the whole is bad | Blame the coordinator | Sub-goals are mutually exclusive (policy resistance); subsystem optimization ≠ overall optimization | Align on a larger shared goal (B1) |
+| Metrics look good, outcomes look bad | Add more metrics | Rule beating + goal displacement | Define outcomes rather than outputs; redesign the rules (B4) |
+| The standard gets lower every year | "pragmatic adjustment" | Eroding goals (R loop) | Make the standard absolute; benchmark against the best historical performance (B3) |
+| Growing dependence on one outside party | Renew the contract / raise the budget | Shifting the burden (R loop) | Build own capability in parallel (B5) |
+| Resources always go to the winners, new things never grow | "let the capable do more" | Success to the successful (R loop) | Leveling mechanisms / caps / correction (B6) |
+| A policy appears, a workaround appears the same day | Tighten the penalties | Rule beating | Redesign the rule from the regulated party's point of view (B4) |
 
 ---
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 没有任何行为史数据 | 先收集时间序列，禁止在事件层下结论（回第 0 步） |
-| 发现增强回路且无制约 | A1 找/建制约回路，先谈「减速」再谈「增长」 |
-| 发现延迟（震荡/过冲） | A2 缩短延迟或换更及时的信息，再谈加力度 |
-| 目标被侵蚀（标准下滑） | B3 标准绝对化 |
-| 政策阻力（多方对拉） | B1 停止加力，对齐共同目标 |
-| 公地悲剧（共享资源） | B2 补「资源状态→使用者」反馈（私有化/管制/教育三选） |
-| 转嫁负担（依赖加深） | B5 自身能力建设与救火并行 |
-| 富者愈富（资源固化） | B6 平权机制 |
-| 竞争升级（对抗螺旋） | B7 单方退出或协商装刹车 |
-| 指标异化（刷指标） | B4 成果化目标 + 重设计规则 |
-| 干预停留在参数层且无效 | A3 上移到更高杠杆层：先查第 6 层信息流缺失，再查第 5 层规则 |
+| Symptom-level effort, repeated failure | A1 move up a level: find the loop, not the parameter |
+| Oscillation / overshoot | A2 quantify the delays; shorten the information delay first |
+| Policy resistance across parties | B1 align on a shared higher goal; co-design |
+| Eroding goals | B3 set an absolute standard; benchmark the best historical |
+| Shifting the burden | B5 build capability in parallel while relieving the symptom |
+| Success to the successful | B6 install leveling / caps / correction |
+| Rule beating / goal displacement | B4 redefine the outcome metric and redesign the rule |
+| A single point intervention proposed | C1 check the leverage level and resistance before acting |
+
+## Prescription library
+
+### A. Structural level (change the structure first, then the force)
+
+1. **A1 Diagnose the loop before the parameter**: any intervention must first name the loop it acts on; a parameter change with no loop diagnosis is blind.
+2. **A2 Shorten delays**: the most common cause of oscillation is a long delay in a balancing loop; shorten the perception delay (make the metric visible sooner) or the response delay (make the decision sooner).
+3. **A3 Protect stocks**: stocks provide buffering and stability; running a stock to zero to optimize a flow is a classic mistake.
+4. **A4 Design the feedback**: whoever makes a decision must see its consequences. Missing or delayed information is the root of most system failure.
+
+### B. Archetype-level (treatment for the 8 traps)
+
+1. **B1 Policy resistance**: bring the parties into a shared goal and co-design; do not defeat them one by one.
+2. **B2 Tragedy of the commons**: regulate access, privatize, or provide feedback on the shared resource's state.
+3. **B3 Eroding goals**: make the standard absolute; benchmark against the best historical performance; never renegotiate downward.
+4. **B4 Rule beating / goal displacement**: redesign the rule from the regulated party's perspective; measure the outcome, not the output.
+5. **B5 Shifting the burden**: build own capability in parallel while relieving the symptom; never let the symptomatic solution crowd out capability building.
+6. **B6 Success to the successful**: leveling mechanisms, caps, corrections, or a separate track for new entrants.
+7. **B7 Escalation**: unilateral disarmament or a rule that bounds the escalation.
+8. **B8 Addictive dependency**: withdrawal management plus capability building; never renew the external dependency forever.
+
+### C. Stance level (dance with the system rather than control it)
+
+1. **C1 Report the leverage level and the resistance**: any prescription must state its level among the 12 and the expected resistance.
+2. **C2 Stay humble**: a system's behavior is often non-obvious; design an experiment and let the system tell you.
+3. **C3 Watch for unintended consequences**: every intervention changes incentives; predict at least one side effect.
+4. **C4 Keep learning**: monitor the system after the intervention; correct early.
 
 ---
 
-## 处方库（if-then 规则）
+## Agent execution protocol
 
-### A. 结构层（先改结构，再谈力度）
+1. **Do not rush to prescribe**: for any "why doesn't it work" question, first ask for the behavioral history; with no data, explicitly label assumptions.
+2. **Always draw the stock-and-flow**: describe the stock, the inflow, the outflow, and the inertia in one sentence before going further.
+3. **Report the loop type and dominance**: R or B, and which one dominates now.
+4. **Report the delays**: whenever there is oscillation, quantify the delays first.
+5. **Match an archetype or declare none**: never force an archetype; state "no known archetype matched" and give a custom description.
+6. **Report the leverage level**: every prescription carries its level among the 12 and the expected resistance.
+7. **Distinguish technical troubleshooting**: IT failures are troubleshooting, not structural diagnosis.
 
-1. **当发现增强回路无制约时** → 找「什么会耗尽」并接上制约回路；放缓增长通常比加强刹车更有效（第 7 层杠杆）。
-2. **当震荡/过冲出现时** → 先查三段延迟（感知/响应/交付）并缩短或换更及时的信息；延迟不改，加力度只会加大振幅（第 9 层杠杆）。
-3. **当干预一直停在参数层（第 12 层）无效时** → 上移到更高杠杆层：先查第 6 层信息流缺失——谁看不到什么关键存量？把反馈接到决策者眼前（电表前厅省电 30%、TRI 公开两年降排 40%——书中转述口径）；再查第 5 层规则。
-4. **当存在缺失信息流时** → 恢复信息是「便宜而高杠杆」的干预；但要接到**正确的位置、以强制形式**（如排放上榜单，而非私下告知）。
-5. **当规则被钻空子时** → 不从道德追责入手，从「被管者视角」重设计规则：让钻空子的方向与规则目的合一。
-6. **当系统僵化、一碰就碎时** → 检查自组织是否被牺牲（第 4 层；适应力依赖冗余与多样性）：多样性、冗余、实验空间是否还在。
+## Output templates
 
-### B. 基模层（8 陷阱对症）
-
-1. **政策阻力** → 各方停手；把对话从「各自的目标」上移到一个更大、更重要的共同目标；让各方自己找互利的实现方式。
-2. **公地悲剧** → 三选一并用：教育劝诫（弱者）、私有化（把后果接到个人）、管制（给使用装上反馈闸门）。
-3. **目标侵蚀** → 把标准写成**绝对量**（不随绩效滑动），对标最佳历史水平而非上期水平；标准本身进版本控制。
-4. **规避规则 + 目标错位** → 把目标从「产出（outputs）」改写为「成果（outcomes）」；用用户/系统真实福祉指标替换代理指标。
-5. **转嫁负担** → 干预同时必须建设系统自身的承担能力（文档、演练、内建技能）；为外部依赖设退出条件。
-6. **富者愈富** → 装平权机制：资源分配加轮换、上限、纠偏条款；奖励成功但禁止奖励扭曲下一轮竞争。
-7. **竞争升级** → 单方退出（声明不跟进）或协商建立新的调节回路（协议、第三方规则）。
-8. **组合陷阱** → 真实系统常多陷阱叠加：一次报全部命中的基模，按「回路最长的先治」排序。
-
-### C. 姿态层（与系统共舞，而非控制）
-
-1. **动系统前** → 先观察它的节拍：看历史数据，听长期在场的人讲发生了什么（Get the beat）。
-2. **下结论时** → 显式声明「这是一个模型」：列出假设、边界、反例；邀请他人攻击自己的图。
-3. **预期高杠杆干预时** → 同时预算「系统抵制」：层级越高（规则/目标/范式），阻力与所需耐心越大。
-4. **被要求预测时** → 拒绝精确预测（自组织非线性反馈系统本质不可预测）；改给「情景 + 领先指标 + 调整触发条件」。
-
----
-
-## Agent 执行协议（agent 自己照此工作）
-
-1. **画图优先**：分析「反复出现的问题」时，先产出存量流量图/回路图（文字版即可），再谈任何建议。没有图的诊断不输出。
-2. **三层递进**：永远区分「事件（发生了什么）→ 行为（长期模式）→ 结构（产生行为的回路）」，逐层下钻；禁止停在事件层归因。
-3. **回路命名**：每次说「恶性循环/良性循环/自我加强」时必须给出回路名与结构（R 还是 B、经过哪些存量、延迟在哪）；说不出结构的回路词不写。
-4. **杠杆点定位**：每个干预建议必须标注它在 12 层中的层级 + 预期抵制；只给「加强管理」这类参数层空话 = 不合格。
-5. **目标从行为推断**：描述系统目标时用「行为推出的目标」而非宣称的口号；两者不一致本身就是诊断发现。
-6. **模型声明**：输出诊断卡时附「本模型假设：____；边界：____；反例触发条件：____」，对应「把心智模型公开化」。
-7. **分工边界**：注意力/专注/任务过载问题 → 转 `bandwidth-and-deep-work`；本 skill 只做结构与回路诊断，不越界开个人效率药方。
-
----
-
-## 输出模板
-
-**输出顺序与预算**：一句话结构结论 → 存量流量图 → 回路判定（R/B+延迟）→ 基模命中 → 杠杆点层级 → 处方 ≤3 条 → 1 个验证动作。长度按问题复杂度缩放，轻量模式只出前两项+杠杆层级。
-
-### 系统诊断卡
+### Diagnosis card (standard)
 
 ```markdown
-## 系统诊断卡：<问题名>
-**一句话结构结论**：<行为> 由 <回路结构> 产生；当前主导回路是 <R/B>。
+**One-sentence diagnosis**: ...
 
-**存量流量图**（文字版）：
-- 存量：<什么在累积｜当前水平｜历史形状>
-- 流入：<来源｜驱动规则>
-- 流出：<去向｜驱动规则>
-- 惯性/延迟：<感知/响应/交付各多长>
-
-**回路判定**：
-- R：<什么在放大它｜有无制约回路>
-- B：<目标值｜谁定｜可见性>
-- 延迟：<位置与长度>
-- 非线性：<阈值/临界点>
-
-**基模命中**：<8 陷阱中的哪几个｜依据>
-
-**杠杆点定位**：<候选干预在第 N 层｜预期杠杆｜预期抵制>
-
-**处方**（≤3 条，每条带层级）：
-1. <if-then 规则>（第 N 层）
-2. …
-3. …
-
-**验证动作**：<先测什么指标、看哪个时间尺度，确认回路存在后再动手>
-
-**模型声明**：假设____；边界____；若____出现则本诊断失效。
-```
-
-### 快速判定（轻量模式）
-
-```markdown
-一句话结论：<这是 R 回路（自我加强）／B 回路（目标导向）／延迟导致的震荡>
-杠杆点层级：<第 N 层，理由一句>
-下一步：<先补什么数据／先改什么>
-```
-
-### 「越改越糟」简版（轻量模式，只出初步假设）
-
-```markdown
-**初步假设**（未核对数据，待行为史验证）：
-| 症状一行 | 结构嫌疑（3 选 1 起） | 对应处方 |
-|---|---|---|
-| <改了什么、什么更糟了> | <只看流量没看存量／延迟未计／头痛医头（参数层）> | <A2／A3 等，一句> |
-| <第二个症状> | <增强回路无制约／目标侵蚀／目标错位> | <对应 B 规则，一句> |
-| <第三个症状> | <政策阻力／转嫁负担／富者愈富> | <对应 B 规则，一句> |
-
-**验证动作**：<拿哪段行为史、哪个指标，先确认哪条回路存在再谈干预>
-```
-
----
-
-## 边界与常见误用
-
-| 误用 | 纠正 |
+| Item | Content |
 |---|---|
-| 把概念图当现实 | 「一切我们所知的都只是模型」（Meadows 原文）；诊断卡必须带假设与边界，图是工具不是真相 |
-| 把 12 杠杆点当操作手册 | Meadows 自述清单「是进行中的工作，不是配方；顺序是滑动的」。清单用于**定位层级与提示方向**，不是 1-12 的执行步骤 |
-| 以为深层杠杆可轻松撬动 | Abson et al. 2017（*Ambio* 46(1):30–39）指出多数现实干预只落在弱杠杆层，深层杠杆（目标/范式）难操作。要把「知道杠杆在哪」与「诚实评估能撬动哪层」分开说 |
-| 「结构决定行为」= 免责 | 有限理性与结构解释的是**机制**，不是给个体免责；出路是重新设计结构与信息流，不是宣布人人无辜 |
-| 反直觉 = 永远反着来 | Forrester 的「反直觉」指**结构分析后**才知道往哪推，不是「常识必错」的反智 |
-| 只画图不验证 | 定性回路图不验证强度，可能是讲故事；关键判断应提示用时间序列/数据核对回路存在性与主导权（社区批评视角，参见 notes §6-5） |
-| 系统分析一切问题 | 个人注意力与任务过载问题（稀缺/带宽机制）转 `bandwidth-and-deep-work`；概念定义类问题直接查 book.md |
-| 引数字当定论 | 书中案例数字（电表 30%、TRI 40%、99% 信息故障）多为**作者转述口径**，引用时必须标注，禁止当实证结论 |
-| 只盯流量不盯存量 | 存量有惯性：刚改流量就要求存量立即变化 = 必然失望的预期；报告里两者必须分开说 |
-| 「15 大生存法则」条目计数 | 中文出版社口径 15 条 vs 一手文章 14 条，计数差异待核实；引用时注明口径，不照搬宣传数字 |
+| Stock | ... |
+| Inflow / outflow | ... |
+| Loop type (R/B) and dominance | ... |
+| Delays | ... |
+| Matched archetype | ... (or "no known archetype matched; custom description below") |
+| Leverage level | level N (of 12) · expected leverage ... · expected resistance ... |
+
+**Prescription**: ...
+**One verification action**: ...
+```
+
+### Short form ("why does fixing it make it worse")
+
+```markdown
+1. The stock I am watching is ... ; the flow I am pushing is ... ; inertia means the effect will show in ... 
+2. The loop responsible is ... (R/B), and it is amplified/constrained by ... 
+3. The leverage level of my intended intervention is ... ; a higher-leverage option is ... 
+**One verification action**: ...
+```
+
+### Custom structural description (no archetype matched)
+
+```markdown
+**No known archetype matched. Custom loop description:**
+- Stock: ...
+- Reinforcing path: A → B → A because ...
+- Balancing path: ... with a delay of ...
+- Prediction: if we do X, we expect Y within Z periods (pending verification against behavioral history)
+```
+
+## Boundaries and common misuse
+
+| Misuse | Correction |
+|---|---|
+| Treating "system" as a metaphor for "complicated" | A system is a specific structure of stocks, flows, loops, and delays; if you cannot draw it, you have not diagnosed it |
+| Using archetypes as conclusions | Archetypes are candidate hypotheses; they must be checked against behavioral history |
+| Blaming individuals | Structure produces behavior; change the structure, not the person |
+| Applying maximum force at the lowest leverage level | Parameters (level 12) have the least leverage; pushing harder there changes little |
+| Ignoring delays | Delays produce overshoot and oscillation; quantify them |
+| Optimizing a subsystem | Subsystem optimization can worsen the whole; check the whole system's goal |
+| Using this skill for IT troubleshooting | Technical failures are troubleshooting, not structural diagnosis |
+| Using this skill for focus / task overload | That is `bandwidth-and-deep-work` |
 
 ---
 
-## 参考文件（按需加载，不默认全读）
+## Reference files (load on demand, not by default)
 
-- `references/thinking-in-systems-book.md` —— 全书笔记：25 条概念词典（原意+误解）、8 陷阱、12 杠杆点完整清单、证据锚、引文、批评红线。需要精确概念或引用时加载。
-- `references/evidence.md` —— 本书规则在本项目里的验证状态（当前：待验证 + 候选应用与测量方案清单）。
-- 原始研究笔记：工作区 `_book-research/thinking-in-systems-notes.md`（含全部 14+ 来源清单与「待核实」明细）。
+- `references/thinking-in-systems-book.md` — full book notes: concept dictionary, the 12 leverage points, the 8 archetypes, evidence anchors, quotations, criticism boundaries
+- `references/evidence.md` — validation status of this skill's rules inside this project
+- `METHOD.md` — conversion record for this book
+- `references/SKILL.zh.md` — the Chinese edition of this skill
 
 ---
 
-*基于《系统之美：决策者的系统思考》（德内拉·梅多斯，2008；Donella H. Meadows, *Thinking in Systems: A Primer*, Chelsea Green）的理念整理；概念与引文版权归原作者，引用以短引语+出处为限。本 skill 的翻译、流程化与 agent 规则为 Trustbase Lab 自有内容，License：Apache-2.0。*
+*Based on the ideas of "Thinking in Systems: A Primer" (Donella H. Meadows, 2008). This file is Trustbase Lab content; License: Apache-2.0.*
