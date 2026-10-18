@@ -1,266 +1,267 @@
 ---
 name: book-to-skill
-description: 把一本有思想的书转化成 AI agent 可执行、可验证的行为准则（skill）。七步 SOP：选书打分 → 读透核心判断 → 分离「道理」与「准则」→ 翻译成 if-then 规则 → 在真实场景验证 → 写 SKILL.md/evidence.md/METHOD.md → 逐项检查交付。带三重质量闸门和四条诚实边界，附全部模板。当用户说「把这本书变成 skill」「帮我做一个 XX 的 skill」「这个知识怎么封装成 agent 能用的」「把这本书的智慧沉淀下来」「book to skill」「这个方法论怎么变成可执行的」时使用。不适用于：单纯想读书笔记/摘要（直接总结即可）、想写书评、或不打算做成 agent 可执行规则的知识整理。
+description: Turn a book with real intellectual substance into executable, verifiable behavioral rules for an AI agent (a skill). Seven-step SOP - score the book, read for the core claim, separate wisdom from rules, translate into if-then rules, validate in a real scenario, write SKILL.md / evidence.md / METHOD.md, then check against the delivery checklist. Ships three quality gates and four honesty boundaries, plus all templates. Use when the user says "turn this book into a skill", "make a skill about X", "how do I package this knowledge for an agent", "capture this book's wisdom", "book to skill", "how do I make this methodology executable". Not for: wanting plain reading notes or a summary, writing a book review, or knowledge organization not intended to become executable agent rules.
 ---
 
-# Book → Skill：把一本书变成 agent 可执行的行为准则
+# Book to Skill: Turning a Book into Executable Behavioral Rules for an Agent
 
-> **这不是读书笔记。**
-> **这是：**把书里的判断力，转译成 agent 能执行的规则，并在真实场景验证它**。**
-
----
-
-## 何时使用
-
-- 「把这本书变成 skill」「帮我做一个 XX 主题的 skill」
-- 「这个知识怎么封装成 agent 能用的」
-- 「把这本书的智慧沉淀下来，让 AI 也能用」
-- 「book to skill」「这个方法怎么变成可执行的」
-
-**不适用**：
-- 只想读书笔记/摘要 → 直接总结即可，不必走全流程
-- 想写书评 → 用普通写作
-- 不打算做成 agent 可执行规则的整理 → 用普通知识管理
+> **This is not reading notes.**
+> **It is: turning a book's judgment into rules an agent can execute, and validating them in a real scenario.**
 
 ---
 
-## 核心判断（先想清楚再动手）
+## When to use
 
-**AI 的训练目标是「平均」——它是对所有数据的压缩。**
-**而一本有灵魂的书，是**一个具体的人，用具体的生命经验，做出的具体判断**。**
+- "Turn this book into a skill", "make a skill about X"
+- "How do I package this knowledge so an agent can use it"
+- "Capture this book's wisdom so AI can use it too"
+- "book to skill", "how do I make this methodology executable"
 
-**→ 所以书给 AI 的不是「知识」（AI 知识已够），是**立场和判断标准**。**
-**而这恰恰是 AI 最缺的。**
-
-**⛔ 因此：不是所有好书都适合转成 skill。**
-**有些书很好，但**翻译不成 agent 规则**。**
+**Not for**:
+- Wanting reading notes / a summary - just summarize; no need for the full pipeline
+- Writing a book review - use ordinary writing
+- Knowledge organization not intended to become executable agent rules - use ordinary knowledge management
 
 ---
 
-## 三条铁律
+## Core claim (get this straight before starting)
 
-### 铁律 1：先打分，再动手
+**An AI's training objective is average - it is a compression of everything.**
+**A book with a soul is one specific person, in one specific situation, making one specific judgment.**
 
-**⭐ 开工前必须用 `references/BOOK-SELECTION-SCORE.md` 打分，加权总分 ≥4.0 才做。**
+**> So what a book gives an AI is not "knowledge" (the AI already has knowledge) - it is stance and criteria for judgment.**
+**And that is exactly what AI lacks most.**
 
-| 维度 | 权重 | 关键问题 |
+**X Therefore: not every good book is suitable for conversion.**
+**Some books are excellent but cannot be translated into agent rules.**
+
+---
+
+## Three iron rules
+
+### Rule 1: Score the book before starting
+
+**Before starting you must score the book with `references/BOOK-SELECTION-SCORE.md`; only proceed if the weighted total is >= 4.0.**
+
+| Dimension | Weight | Key question |
 |---|---|---|
-| **① 有立场** | 20% | **作者在跟谁争论？** 说不出来 → 0 分 |
-| **② 可翻译成 if-then** | 30% | **能变成"当 X 时做 Y"吗？** 全是价值观 → 0 分 |
-| **③ 和业务同源** | 25% | **和项目要解决的问题相关吗？** |
-| **④ 能验证** | 25% | **能用真实数据证明它有效吗？** |
+| **1 Has a stance** | 20% | **Who is the author arguing against?** Cannot answer -> 0 |
+| **2 Translatable into if-then** | 30% | **Can it become "when X, do Y"?** All values, no rules -> 0 |
+| **3 Aligned with the project's domain** | 25% | **Does it relate to the problem the project is solving?** |
+| **4 Validatable** | 25% | **Can we prove it works with real data?** |
 
-**⛔ 红旗直接放弃**：「XX 简史」类 · 纯学术专著 · 成功学鸡汤 · 强烈政治倾向 · **AI 写的书**。
+**X Red flags mean abandon**: "A brief history of X" type, pure academic monograph, self-help/motivational, strongly political, **a book written by AI**.
 
-**Do**：填打分表，留下记录（避免以后重复讨论）
-**Don't**：跳过打分直接开始写 —— 后面 90% 的时间会被浪费
+**Do**: fill in the scoring sheet and keep the record (avoids re-litigating later)
+**Don't**: skip scoring and start writing - 90% of the subsequent time will be wasted
 
-### 铁律 2：分清「道理」和「准则」
+### Rule 2: Separate "wisdom" from "rules"
 
-| 类别 | 特征 | 处理 |
+| Category | Characteristic | Handling |
 |---|---|---|
-| **道理** | 读时点头，读完就忘 | ⛔ **不写进 SKILL.md**（或只放 references） |
-| ⭐ **准则** | **能变成"当 X 时做 Y"** | ⭐ **必须写进 SKILL.md** |
+| **Wisdom** | Nod while reading, forgotten after | **X Do not put it in SKILL.md** (or only in references) |
+| **Rule** | **Can become "when X, do Y"** | **Must go into SKILL.md** |
 
-**⭐ 检验方法：这句话能不能翻译成 if-then？**
-**不能 → 它是道理，不是准则。**
+**Test: can this sentence be translated into if-then?**
+**No -> it is wisdom, not a rule.**
 
-**⛔ 最常见的错误：把"要客观""要专注""要有系统思维"当准则** —— **这些是口号，agent 无法执行。**
+**X The most common mistake: treating "be objective", "be focused", "think systemically" as rules - these are slogans an agent cannot execute.**
 
-### 铁律 2b：⭐ 每一处引用必须标「出处状态」
+**Do**: "When the user gives a single data point, find a comparison baseline first, then conclude"
+**Don't**: "Look at the data objectively"
 
-**⭐ 这是 `knowledge-illusion` 的规则：区分「记得 / 核验过 / 检索到」。**
+### Rule 2b: Every citation must carry a provenance status
 
-| 状态 | 写法 | 能怎么用 |
+**This is the `knowledge-illusion` rule: distinguish "remembered / verified / retrieved".**
+
+| Status | How to write | How it may be used |
 |---|---|---|
-| ⭐ **已核验** | **"《书名》p.XX：……"** | ✅ **可作为"书中提出"引用** |
-| **二手转述** | **"据《来源》对《书名》的转述：……"** | ⚠️ 标注为转述 |
-| ⭐ **仅凭记忆** | ⭐ **"我们的理解是：……（出处待核实）"** | ⛔ **不得表述为"书中提出"** |
-| **未找到** | **"本 skill 未采用该书此论点"** | ⛔ 丢弃 |
+| **Verified** | "Book p.XX: ..." | **May be cited as "proposed in the book"** |
+| **Secondhand** | "According to source reporting book: ..." | Label as secondhand |
+| **From memory** | "Our understanding is: ... (provenance pending verification)" | **May not be presented as "the book says"** |
+| **Not found** | "This skill does not adopt this argument from the book" | Discard |
 
-**⭐⭐ 规则：**
-> **⛔ 禁止写"某人在《某书》里提出 X"，除非有页次或原文。**
-> **⭐ 没有 → 就写"我们的理解是（出处待核实）"。**
+**Rule:**
+**X Writing "someone proposed X in book" is forbidden unless you have a page number or the original text.**
+**Without it -> write "our understanding is (provenance pending verification)".**
 
-**⭐⭐⭐ 为什么这条最重要：**
-> **我们做的项目叫"可信数据"。**
-> **如果自己的 skill 在"出处"上不诚实，就不配做可信数据。**
-> **⭐ 而且：`evidence.md` 里如果有未标注的"记忆当事实"，整份证据都不可信。**
+**Why this matters most:**
+**Our project is called "verifiable data".**
+**If our own skills are dishonest about provenance, we do not deserve to do verifiable data.**
+**And: if `evidence.md` contains unlabeled "memory passed off as fact", the entire body of evidence becomes untrustworthy.**
 
-**⭐ 交付时必须检查：**
-- [ ] **每个"书中提出"都有页次或原文**
-- [ ] **没有页次的，都标了"待核实"**
-- [ ] **任务文档（如项目素材）与 skill 的标注状态一致**
+**Checklist at delivery:**
+- [ ] Every "proposed in the book" has a page number or original text
+- [ ] Everything without a page number is labeled "pending verification"
+- [ ] Task documents (e.g. project material) and the skill carry consistent labels
 
-**Do**：「我们的理解是：信任含四要素（出处待核实，待拿原书回填）」
-**Don't**：「博茨曼在《Who Can You Trust?》里提出信任有四要素」（**没页次却写"提出"**）
+**Do**: "Our understanding is that trust has four elements (provenance pending verification; to be filled in from the book)"
+**Don't**: "Botsman proposes in Who Can You Trust? that trust has four elements" (no page number, yet written as "proposes")
 
-**Do**：「当用户给出单个数据点时，先找对比基线，再下结论」
-**Don't**：「要客观地看待数据」
+### Rule 3: No validation means not done
 
-### 铁律 3：不验证不算完成
+**Every rule must have a real scenario + before/after data.**
 
-**⭐ 每条规则必须有**真实场景 + 前后数据**。**
-
-| ⛔ 不接受 | ✅ 接受 |
+| Not accepted | Accepted |
 |---|---|
-| "理论上应该有用" | "我们在 X 项目用了，A → B" |
-| "大幅改善了" | "565.6KB → 26.8KB（-95%）" |
-| "失败率降到 5%"（没做） | "失败率 20% → 目标 5%（进行中）" |
+| "It should work in theory" | "We used it in project X, A -> B" |
+| "It improved substantially" | "565.6KB -> 26.8KB (-95%)" |
+| "Failure rate dropped to 5%" (not done) | "Failure rate 20% -> target 5% (in progress)" |
 
-**⭐⭐ 四条诚实边界（写进 `evidence.md`，不可省）：**
-1. **数据口径**（哪些实测、哪些估算）
-2. **归因限制** —— **"先有改造，后有概念归因，不是对照实验"**
-3. **引用表述** —— **"本项目的验证案例"，而非"因果证明"**
-4. **未完成项** —— **"进行中"就写"进行中"**
+**Four honesty boundaries (write them into `evidence.md`; non-negotiable):**
+1. **Data provenance** (what was measured, what was estimated)
+2. **Attribution limits** - **"the change came first, the concept attribution came after; this is not a controlled experiment"**
+3. **Citation phrasing** - **"a validation case in this project", not "causal proof"**
+4. **Open items** - **if it is in progress, say "in progress"**
 
-**⭐⭐ 原则：宁可少写一条证据，不可夸大一毫。**
-
----
-
-## 七步 SOP
-
-```
-① 选书      → references/BOOK-SELECTION-SCORE.md（≥4.0 才继续）
-② 读透      → 找出核心判断（作者在跟谁争论、争什么）
-③ 分离      → 道理 vs 准则（能翻译成 if-then 的是准则）
-④ 翻译      → 写成 if-then 规则 + 反例（"不这么做会怎样"）
-⑤ 验证      → 在真实场景用一次 + 记录前后数据
-⑥ 写文件    → SKILL.md + references/<book>-book.md + references/evidence.md + METHOD.md
-⑦ 检查      → references/BOOK-TO-SKILL-CHECKLIST.md 逐项打勾 + 评分（≥4.5 才交付）
-```
-
-**⭐ 每一步都有对应文件 —— 不靠记，靠清单。**
+**Rule: rather omit one piece of evidence than overstate it by a millimeter.**
 
 ---
 
-## 输出格式（交付物）
+## The seven-step SOP
 
-**⭐ 每个 skill 必须产出四样：**
+```
+1 Score      -> references/BOOK-SELECTION-SCORE.md (>=4.0 to continue)
+2 Read       -> find the core claim (who is the author arguing against, and about what)
+3 Separate   -> wisdom vs rules (only what can become if-then counts as a rule)
+4 Translate  -> write if-then rules + counter-examples ("what happens if you don't")
+5 Validate   -> use it once in a real scenario + record before/after data
+6 Write      -> SKILL.md + references/<book>-book.md + references/evidence.md + METHOD.md
+7 Check      -> references/BOOK-TO-SKILL-CHECKLIST.md item by item + score (>=4.5 to deliver)
+```
+
+**Every step has a corresponding file - do not rely on memory, rely on the checklist.**
+
+---
+
+## Output format (deliverables)
+
+**Every skill must produce four things:**
 
 ```
 <skill-name>/
-├── SKILL.md                     ← agent 读的行为准则
-├── references/
-│   ├── <book>-book.md           ← 书的核心理念（我们自己写，不抄原文）
-│   └── evidence.md              ← ⭐ 项目验证数据（四段式 + 四条诚实边界）
-└── METHOD.md                    ← ⭐ 这本书的**具体**转化记录
+|-- SKILL.md                     <- the rules the agent reads
+|-- references/
+|   |-- <book>-book.md           <- the book's ideas (written by us, no verbatim excerpts)
+|   `-- evidence.md              <- validation data (four-part structure + four honesty boundaries)
+`-- METHOD.md                    <- the specific conversion record for this book
 ```
 
-### ⭐ Frontmatter 硬要求
+### Frontmatter hard requirements
 
 ```yaml
 ---
-name: <kebab-case，= 目录名，≤64 字符，^[a-z0-9-]+$>
-description: <一句话做什么> + <全部触发条件> + <不适用边界>（≤1024 字符）
+name: <kebab-case, = directory name, <=64 chars, lowercase letters/digits/hyphens only>
+description: <one sentence on what it does> + <all trigger conditions> + <out-of-scope boundary> (<=1024 chars)
 ---
 ```
 
-### ⭐ SKILL.md 结构
+### SKILL.md structure
 
 ```markdown
-# <标题>
+# <Title>
 
-## 何时使用
-- 具体触发 1
-- 具体触发 2
-**不适用**: ...
+## When to use
+- concrete trigger 1
+- concrete trigger 2
+**Not for**: ...
 
-## 核心判断
-<作者在跟谁争论、争什么>
+## Core claim
+<who the author is arguing against, and about what>
 
-## 三条铁律
-### 铁律 1：<规则名>
-<规则是什么、为什么成立>
+## Three iron rules
+### Rule 1: <rule name>
+<what the rule is and why it holds>
 **Do**: ...
 **Don't**: ...
 
-## 输出格式
-<产出格式，短且可检查>
+## Output format
+<short and checkable>
 
 ## References
 - `references/<book>-book.md`
 - `references/evidence.md`
 ```
 
-### ⭐ evidence.md 四段式（每条证据）
+### evidence.md four-part structure (every piece of evidence)
 
-| 段 | 内容 |
+| Part | Content |
 |---|---|
-| **问题** | 改造前是什么状况（**必须带数字**） |
-| **书里哪个概念** | 用了这本书的哪个概念（要具体） |
-| **具体做法** | 做了什么（**可复述**） |
-| **量化结果（前 → 后）** | **必须有前后对比数字** |
+| **Problem** | What the situation was before the change (**must include numbers**) |
+| **Which concept from the book** | Which concept was used (be specific) |
+| **Concrete action** | What was done (**reproducible**) |
+| **Quantified result (before -> after)** | **Must have before/after numbers** |
 
 ---
 
-## 三重质量闸门
+## Three quality gates
 
-| 闸门 | 时机 | 判据 |
+| Gate | Timing | Criterion |
 |---|---|---|
-| **闸门 1 · 选书** | 开工前 | **打分 ≥4.0** |
-| **闸门 2 · 内容** | 写完 SKILL.md | **规则是 if-then + 有反例** |
-| **闸门 3 · 交付** | 提交前 | **检查清单全过 + 评分 ≥4.5** |
+| **Gate 1 - Book selection** | Before starting | **Score >= 4.0** |
+| **Gate 2 - Content** | After writing SKILL.md | **Rules are if-then + have counter-examples** |
+| **Gate 3 - Delivery** | Before submitting | **Checklist fully passed + score >= 4.5** |
 
-**⚙️ 任一闸门不过 → 不进入下一步。**
+**Failing any gate -> do not proceed to the next step.**
 
 ---
 
-## 版权边界（法律风险，必须遵守）
+## Copyright boundary (legal risk; must comply)
 
-| ✅ 可以做 | ⛔ 不可以做 |
+| Allowed | Not allowed |
 |---|---|
-| 总结理念、写我们自己的理解 | 大段引用原文 |
-| 注明「基于《书名》的理念」 | 声称是我们的原创理论 |
-| 用自己的许可发布我们写的部分 | 把书的原文/PDF 放进来 |
-| ⭐ **翻译成 agent 规则**（这是贡献） | 翻译书中段落（演绎权问题） |
+| Summarize ideas and write our own understanding | Quote long passages |
+| Attribute: "based on the ideas of book" | Claim the ideas are our original theory |
+| Publish our own written part under our license | Include the book's text / PDF |
+| **Translate into agent rules** (this is the contribution) | Translate passages of the book (translation rights) |
 
-**每个 SKILL.md 结尾必须有：**
+**Every SKILL.md must end with:**
 ```
 *Based on: <book>. We license our translation, not the original.*
 ```
 
 ---
 
-## 常见错误（踩过就记下来）
+## Common mistakes (record them once hit)
 
-| # | 错误 | 后果 | 修法 |
+| # | Mistake | Consequence | Fix |
 |---|---|---|---|
-| **1** | `name` ≠ 目录名 | CLI 装不上 | 改目录名 |
-| **2** | `description` 没写不适用 | 误触发 | 加"不适用"段 |
-| **3** | 规则是口号不是 if-then | agent 不知道怎么执行 | 改成"当 X 时做 Y" |
-| **4** | ⭐ 证据只有"大幅改善" | 不可验证 = 没价值 | 换成具体数字 |
-| **5** | ⭐ 缺"归因限制" | 变成虚假宣称 | 加"不是对照实验" |
-| **6** | 没写完写成"已达成" | ⭐ 诚实性崩塌 | 改"进行中" |
-| **7** | 大段抄原文 | 法律风险 | 改写成自己的理解 |
-| **8** | 缺 `METHOD.md` | 下一本无法复用 | 补上 |
+| **1** | `name` != directory name | CLI can't install it | Rename the directory |
+| **2** | `description` has no out-of-scope boundary | False triggering | Add a "not for" section |
+| **3** | Rules are slogans, not if-then | The agent does not know what to execute | Change to "when X, do Y" |
+| **4** | Evidence says only "improved substantially" | Unverifiable = no value | Replace with concrete numbers |
+| **5** | No "attribution limits" | Becomes a false claim | Add "this is not a controlled experiment" |
+| **6** | Unfinished work written as "achieved" | Credibility collapses | Change to "in progress" |
+| **7** | Long verbatim quotations | Legal risk | Rewrite in our own words |
+| **8** | Missing `METHOD.md` | The next book cannot reuse it | Add it |
 
 ---
 
-## 本项目已产出的 skill（**这是本 skill 的验证**）
+## Skills this project has already produced (this is the validation of this skill)
 
-| # | 书 | skill | 状态 |
+| # | Book | Skill | Status |
 |---|---|---|---|
-| **1** | 《事实》 | `factfulness` | ✅ |
-| **2** | 《思考，快与慢》 | `thinking-fast-and-slow` | ✅ |
-| **3** | 《噪声》 | `noise-in-judgment` | ✅ |
-| **4** | 《系统之美》 | `thinking-in-systems` | ✅ |
-| **5** | 《稀缺》+《深度工作》 | `bandwidth-and-deep-work` | ✅ |
-| **6** | 《知识错觉》 | `knowledge-illusion` | 🟡 进行中 |
-| **7** | 《信任》 | `trust-formation` | 🟡 进行中 |
+| **1** | *Factfulness* | `factfulness` | OK |
+| **2** | *Thinking, Fast and Slow* | `thinking-fast-and-slow` | OK |
+| **3** | *Noise* | `noise-in-judgment` | OK |
+| **4** | *Thinking in Systems* | `thinking-in-systems` | OK |
+| **5** | *Scarcity* + *Deep Work* | `bandwidth-and-deep-work` | OK |
+| **6** | *The Knowledge Illusion* | `knowledge-illusion` | OK |
+| **7** | *Who Can You Trust?* | `trust-formation` | OK |
 
-**→ 这是本 skill 最好的验证：它已经产出 5 个上线 skill。**
+**-> This is the best validation of this skill: it has already produced seven shipped skills.**
 
 ---
 
 ## References
 
-- `references/BOOK-SELECTION-SCORE.md` — 选书打分表
-- `references/SKILL-TEMPLATE.md` — SKILL.md 模板
-- `references/EVIDENCE-TEMPLATE.md` — evidence.md 模板
-- `references/BOOK-TO-SKILL-CHECKLIST.md` — 交付检查清单 + 评分卡
+- `references/BOOK-SELECTION-SCORE.md` - book scoring rubric
+- `references/SKILL-TEMPLATE.md` - SKILL.md template
+- `references/EVIDENCE-TEMPLATE.md` - evidence.md template
+- `references/BOOK-TO-SKILL-CHECKLIST.md` - delivery checklist + scorecard
+- `references/SKILL.zh.md` - the Chinese edition of this skill
 
 ---
 
 *This skill practices what it preaches: it was built by its own method.*
-*Trustbase Lab · Apache-2.0*
+*Trustbase Lab - Apache-2.0*
