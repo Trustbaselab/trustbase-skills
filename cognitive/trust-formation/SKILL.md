@@ -1,178 +1,187 @@
 ---
 name: trust-formation
-description: 基于博茨曼《信任革命》（Who Can You Trust?）的信任构建技能：把「信任」从声称翻译成可验证（信任≠信心、机构信任→分布式信任、能力/可靠/正直/透明四要素），输出可直接用于网站「为什么可信」的声明框架。当用户说「为什么可信」「凭什么信你」「怎么让人相信我们」「怎么证明我们可信」「这个平台可信吗」时使用；纯组织管理或品牌营销不适用；数据口径转 factfulness。
+description: A trust-building skill based on "Who Can You Trust?" (Rachel Botsman). Translate trust from a claim into something verifiable (trust ≠ confidence, institutional trust → distributed trust, the trust leap, the four elements competence / reliability / integrity / transparency), and output a statement framework directly usable for a website's "why you can trust us" section. Use when the user says "why should anyone trust this", "how do we prove we're credible", "how do we make people believe us", "is this platform trustworthy", "institutions aren't trusted anymore, what now", "how do we write a trust endorsement"; not for pure organizational management or pure brand marketing; for data provenance use factfulness.
 ---
 
-# 信任不能靠声称，只能靠可验证
+# Trust Cannot Be Claimed — Only Verified
 
-基于《信任革命：信任的转移与科技所扮演的角色》（Rachel Botsman, *Who Can You Trust?*, 2017）的理念。
+Based on the ideas of *Who Can You Trust?* (Rachel Botsman, 2017).
 
-## 何时使用
+## When to use
 
-- 「为什么可信」「凭什么信你」「怎么让人相信我们」「信任背书怎么写」「怎么证明我们可信」
-- 「这个来源/平台/工具可信吗」「机构都不被信任了怎么办」「谁也不能信」
-- 设计信任信号（评分/认证/徽章/背书文案）前，先做四要素审计
-- **轻量模式**：只被问「XX 可信吗」→ 直接走第 0 步 + 输出「信任核查卡」（见输出模板 2），不展开全流程
+- "Why should anyone trust this" · "how do we prove we're credible" · "how do we make people believe us" · "how do we write a trust endorsement" · "how do we prove we're trustworthy"
+- "Is this source/platform/tool trustworthy" · "institutions aren't trusted anymore, what now" · "you can't trust anybody"
+- Before designing trust signals (ratings / certifications / badges / endorsement copy), run a four-element audit first
+- **Lightweight mode**: if simply asked "is X trustworthy" → go straight to Step 0 and output the "trust check card" (template 2), without the full pipeline
 
-**不适用**：
-- 数据口径/年份/定义核查 → 用 `factfulness`
-- AI 结论过度自信、判断偏差复核 → 用 `thinking-fast-and-slow`
-- 「你怎么确定你懂了」这类理解校准 → 用 `knowledge-illusion`
-- 注意力/多任务/日程问题 → 用 `bandwidth-and-deep-work`
-- 组织内部管理与文化建设（本书不适用的那部分）→ 不套用本 skill
+**Not for**:
+- Data provenance / year / definition checks → use `factfulness`
+- AI conclusions that are overconfident, or bias review → use `thinking-fast-and-slow`
+- "How do you know you actually understand this" calibration → use `knowledge-illusion`
+- Attention / multitasking / scheduling problems → use `bandwidth-and-deep-work`
+- Internal organizational management and culture building (the part this book does not address) → do not apply this skill
 
-## 三条铁律
+## Three iron rules
 
-### 铁律 1：信任 ≠ 信心——信任面向未知，不能靠声称获得
-trust（信任）是与未知之间的自信关系，需要脆弱性与选择；confidence（信心）来自过去的可预测性。因此「我们可信」这句话本身不可信——只有可检验的陈述能建立信任。
-**Do**: 每个信任断言都写成「事实 + 验证入口」（例：「59 个工具，见 tools 列表」）。
-**Don't**: 写「值得信赖」「权威」「行业领先」等自我评价词——命中即改写。
+### Rule 1: Trust ≠ confidence — trust faces the unknown and cannot be obtained by claiming it
 
-### 铁律 2：信任正从机构转向可验证——「你是大机构」不再产生信任
-Edelman 2017 报告以「全球信任崩塌」为题描述机构信任下滑；博茨曼的结论是：人们不再因为你是大机构而信你，而是因为你能被验证才信你。分布式信任时代，信任的货币是**可回查的记录**。
-**Do**: 把「我们是谁」翻译成「你能查什么、怎么查」。
-**Don't**: 用头衔、规模、年数、客户名单替代可核验事实（这些是信号，不是证据）。
+**Trust** is a confident relationship with the unknown, requiring vulnerability and choice; **confidence** comes from past predictability. So the sentence "we are trustworthy" is itself untrustworthy — only testable statements can build trust.
 
-### 铁律 3：「为什么可信」只写可检验声明——四问 + 四要素
-每条对外陈述都要能回答项目 S-1 四问：**谁担保 · 哪一手的 · 置信度几级 · 能否回查**；并落在四要素框架上：**能力（做得到吗）/ 可靠（每次都做到吗）/ 正直（利益冲突时站你吗）/ 透明（能验证吗）**。四要素的书中精确出处**待核实**，使用时不声称「书中原文」，只声称「基于本书理念的翻译」。
-**Do**: 声明格式「X 个 Y，见 Z」（X 是数字，Y 是口径，Z 是验证入口）。
-**Don't**: 「我们很透明」「我们值得信任」——透明与否、可信与否是对方的验证结论，不是我们的自我描述。
+**Do**: write every trust assertion as "fact + verification entry point" (e.g. "59 tools, see the tools list").
+**Don't**: write "trustworthy", "authoritative", "industry-leading" or similar self-evaluations — a hit means rewrite.
 
-## 第 0 步 · 收集信息（缺什么问什么，禁止编造）
+### Rule 2: Trust is shifting from institutions to verifiability — "you are a big institution" no longer produces trust
 
-写任何信任声明前，先确认这 5 项，缺一项就问：
+The Edelman 2017 report described a "global trust collapse" in institutional trust; Botsman's conclusion is that people no longer trust you because you are a big institution, but because you can be verified. In the era of distributed trust, the currency of trust is a **re-checkable record**.
 
-1. **断言的数字**：精确值 + 口径（例：59 个 = MCP 上游工具数，2026-10-18 实测）
-2. **时点**：as_of / 统计日期（没有时点的数字 = 不可靠）
-3. **来源**：担保方 + 可打开的 URL（不能只写「据权威机构」）；内部实测文档只能作口径注脚，对外「验证入口」必须换成用户可点开的公开路径
-4. **置信度**：A=官方备案/公告 · B=公司声明/权威媒体 · C=未验证（没有分级就不要写进声明）
-5. **验证入口**：读者/客户能自己点开复核的路径（record/<id>/、/usage/、/corrections/ 等）
+**Do**: translate "who we are" into "what you can check, and how".
+**Don't**: substitute job titles, scale, years, or a client list for verifiable facts (those are signals, not evidence).
 
-## 核心流程：信任声明审计
+### Rule 3: A "why you can trust us" section must contain only testable statements — four questions + four elements
+
+Every external statement must be able to answer the project S-1 four questions: **who guarantees it · is it first-hand · what confidence level · can it be re-checked**; and must map onto the four-element framework: **competence (can you do it) / reliability (do you do it every time) / integrity (do you stand with me when interests conflict) / transparency (can I verify it)**. The book's precise source for the four elements is **pending verification**; when using it, do not claim "the book's exact wording" — only claim "a translation based on the book's ideas".
+
+**Do**: statement format "X units of Y, see Z" (X is a number, Y is the definition, Z is the verification entry point).
+**Don't**: "we are very transparent", "we are trustworthy" — whether something is transparent or trustworthy is the other party's verification conclusion, not our self-description.
+
+## Step 0 · Gather information (ask for what is missing; fabrication forbidden)
+
+Before writing any trust statement, confirm these 5 items; if one is missing, ask:
+
+1. **The number being asserted**: exact value + definition (e.g. 59 = the number of upstream MCP tools, measured 2026-10-18)
+2. **As-of date**: a number without an as-of date is unreliable
+3. **Source**: the guarantor + an openable URL (not just "according to authoritative sources"); an internal measurement document may only serve as a definition footnote — the external "verification entry point" must be a public path the user can click
+4. **Confidence level**: A = official filing / announcement · B = company statement / authoritative media · C = unverified (do not put it in a statement without a level)
+5. **Verification entry point**: a path the reader/customer can click to check (record/<id>/, /usage/, /corrections/, etc.)
+
+## Core workflow: trust-statement audit
 
 ```
-① 收集第 0 步的 5 项信息（缺→问）
-② 四要素自检：每句声明落位到 能力/可靠/正直/透明 之一
-③ 四问过滤：谁担保？哪一手的？置信度几级？能否回查？
-   —— 任一问答不出 → 降级为「未验证」或删除
-④ 自夸词扫描：值得信赖/权威/领先/顶尖/独家/第一…… 命中 → 改写为「事实+入口」
-⑤ 输出「为什么可信」声明框架（模板 1）或「信任核查卡」（模板 2）
+① Gather the 5 items from Step 0 (missing → ask)
+② Four-element self-check: place each statement under competence / reliability / integrity / transparency
+③ Four-question filter: who guarantees it? is it first-hand? what confidence level? can it be re-checked?
+   — any question unanswerable → downgrade to "unverified" or delete
+④ Self-praise word scan: trustworthy / authoritative / leading / top / exclusive / first / most professional / most reliable …
+   a hit → rewrite as "fact + entry point"
+⑤ Output the "why you can trust us" statement framework (template 1) or the "trust check card" (template 2)
 ```
 
-## 诊断 → 处方 决策映射
+## Diagnosis → prescription decision map
 
-| 诊断发现 | 先做什么 |
+| Diagnostic finding | Do this first |
 |---|---|
-| 文案里全是形容词、无数值 | 删形容词 → 每个断言补数字+口径+时点（处方 A1） |
-| 有数字但无来源 | 补担保方 + 可打开 URL（处方 A2） |
-| 有来源但无分级 | 按 A/B/C 定级并标注（处方 B1） |
-| 数据有缺口却在打圆场 | 改成「我们没有这项数据」+ 缺口说明（处方 C1） |
-| 之前说过的话已过时/有误 | 主动纠正 + 留痕，不静默改（处方 C2） |
-| 「透明」承诺但无问责条款 | 补「谁能查、查什么、错了怎么办」（处方 D1） |
-| 用户在「谁也不能信」情绪里 | 先辨析信任/信心/风险，再讲分布式信任（处方 E1） |
-| 要评估外部平台/来源 | 用信任堆栈分层核查（处方 E2） |
+| The copy is all adjectives, no numbers | Delete the adjectives → each assertion gets a number + definition + as-of date (prescription A1) |
+| There are numbers but no sources | Add the guarantor + an openable URL (prescription A2) |
+| There is a source but no level | Assign an A/B/C level and label it (prescription B1) |
+| There is a data gap but it is being smoothed over | Change it to "we do not have this data" + a gap description (prescription C1) |
+| Something said earlier is now outdated or wrong | Correct it proactively and leave a trace; never silently revise (prescription C2) |
+| A "transparency" promise with no accountability clause | Add "who can check, check what, what happens if it's wrong" (prescription D1) |
+| The user is in a "you can't trust anybody" mood | First distinguish trust / confidence / risk, then explain the shift in trust (prescription E1) |
+| Need to evaluate an external platform or source | Use the trust-stack layered check (prescription E2) |
 
-## 处方库（if-then 规则）
+## Prescription library (if-then rules)
 
-**A 能力（competence）——「你做得到吗？」**
-- A1 当你要写「我们有能力」时 → 写「N 个工具/记录/覆盖域，见 <入口>」，并注明统计时点与口径。
-- A2 当数字来自内部统计时 → 附测量方法（谁在何时怎么数的），否则降级为「待核实」。
-- A3 当能力声明超出当前事实（如「覆盖全行业」但只有 6 个域）时 → 收窄声明到实际覆盖，写边界不写愿景。
-- 反例：写「能力全面」而不写验证入口 → 读者只能选择信或不信，声明失败。
+**A. Competence — "can you do it?"**
+- A1 When you want to write "we are capable" → write "N tools/records/domains, see <entry point>", and state the measurement date and definition.
+- A2 When the number comes from internal statistics → attach the measurement method (who counted it, when, how), otherwise downgrade to "pending verification".
+- A3 When a capability claim exceeds the current facts (e.g. "covering the whole industry" but only 6 domains) → narrow the claim to the actual coverage; write the boundary, not the vision.
+- Counter-example: writing "comprehensive capability" with no verification entry point → the reader can only choose to believe or not believe; the statement fails.
 
-**B 可靠（reliability）——「你每次都做得到吗？」**
-- B1 当给任何数字时 → 必带置信度（A/B/C）与 as_of 时点；缺一个就不发表。
-- B2 当对方无法验证你的说法时 → 降低确定性表述（用「据……」而非「是……」）。
-- B3 当用抽样比例（如「89% 为 A 级」）时 → 必须写样本量与抽样范围（「抽样 100 条基准中 89 条」），不写「全部都是 A 级」。
-- 反例：把一次表现当常态证据 → 可靠性的证据是时间序列，不是单点。
+**B. Reliability — "do you do it every time?"**
+- B1 When giving any number → it must carry a confidence level (A/B/C) and an as-of date; if either is missing, do not publish it.
+- B2 When the other party cannot verify your claim → lower the certainty of the wording (use "according to…" rather than "it is…").
+- B3 When using a sampled percentage (e.g. "89% are grade A") → you must state the sample size and sampling scope ("89 of 100 sampled benchmarks"), never "all of them are grade A".
+- Counter-example: treating one performance as standing evidence → reliability evidence is a time series, not a single point.
 
-**C 正直（integrity）——「利益冲突时你会站我这边吗？」**
-- C1 当数据不够时 → 写「我们没有这项数据」并说明缺口，不用相近数据替代。
-- C2 当你发现之前给错时 → 主动纠正并说明原因，留痕（对应 /corrections/ 纠错档案），不静默修改。
-- C3 当声明有利益冲突或立场背景时 → 主动披露（如数据发布方的商业背景），不假装中立。
-- 反例：藏缺口、把「取不到」填成「—」而不解释 → 短期保住说服力，长期摧毁信任。
+**C. Integrity — "do you stand with me when interests conflict?"**
+- C1 When the data is insufficient → write "we do not have this data" and explain the gap; do not substitute similar data.
+- C2 When you find you previously gave something wrong → correct it proactively, explain why, and leave a trace (corresponding to the /corrections/ correction archive); never silently modify.
+- C3 When there is a conflict of interest or a positional background → disclose it proactively (e.g. the commercial background of the data publisher); do not pretend to be neutral.
+- Counter-example: hiding gaps, filling "unavailable" with "—" without explanation → short-term persuasive gain, long-term destruction of trust.
 
-**D 透明（transparency）——「我能验证吗？」**
-- D1 当写「透明」承诺时 → 必须附问责条款：谁能查、查什么、错了怎么办；只有「公开」没有「可查+问责」= 表演性透明，删掉。
-- D2 当给验证入口时 → 用稳定 ID + 回查 URL + 快照（防链接失效/页面被改），不贴裸链接。
-- D3 当发布「全部通过」类结果时 → 写测试方法与数量（「193 个回查 URL 实测 193 个 200，11 秒内验完」），不写「全部通过」四个字。
-- 反例：只放数据不放验证入口 → 展示 ≠ 透明（据 CIPD 2018 报道，博茨曼称透明不是建立信任的答案；原句待核实）。
+**D. Transparency — "can I verify it?"**
+- D1 When writing a "transparency" promise → it must carry an accountability clause: who can check, check what, what happens if it is wrong; "public" without "checkable + accountable" = performative transparency — delete it.
+- D2 When giving a verification entry point → use a stable ID + a re-check URL + a snapshot (to guard against link rot / page edits); do not paste a bare link.
+- D3 When publishing an "all passed" type result → write the test method and the count ("193 re-check URLs, 193 returned 200, verified in 11 seconds"); do not write the four characters "all passed".
+- Counter-example: showing data with no verification entry point → showing ≠ transparency (per a CIPD 2018 report, Botsman argued transparency is not the answer to building trust; original wording pending verification).
 
-**E 信任机制（trust shift / trust leap）**
-- E1 当用户断言「谁也不能信」时 → 先辨析：信任（面向未知、需脆弱性）/ 信心（基于可预测）/ 风险（可概率化），再解释信任流向的改变（机构→分布式），不做「机构还是好的」式争辩。
-- E2 当评估一个外部平台/来源时 → 用信任堆栈分层：①信这个主意吗（模式有价值吗）②信这个平台吗（系统管得住两边吗）③信对面的人/算法吗（信号可核验吗），逐层找信号，缺层即风险点。
-- E3 当设计信任信号（评分/徽章/认证文案）时 → 只保留能被第三方复核的信号；不能复核的删除。
-- 反例：把「信任跃迁」当作用户该承担的风险 → 设计者的责任是降低跃迁风险，不是歌颂用户勇敢。
+**E. Trust mechanics (trust shift / trust leap)**
+- E1 When the user asserts "nobody can be trusted" → first distinguish trust (faces the unknown, requires vulnerability) / confidence (based on predictability) / risk (probabilizable), then explain the shift in where trust flows (institutions → distributed); do not argue "institutions are still fine".
+- E2 When evaluating an external platform or source → use the trust-stack layers: ① do I trust the idea (is the model valuable) ② do I trust the platform (can the system govern both sides) ③ do I trust the person/algorithm on the other side (are the signals verifiable); look for signals layer by layer; a missing layer is a risk point.
+- E3 When designing trust signals (ratings / badges / certification copy) → keep only signals a third party can re-check; delete the rest.
+- Counter-example: treating a "trust leap" as a risk the user should bear → the designer's job is to reduce the leap's risk, not to celebrate the user's bravery.
 
-## Agent 执行协议（agent 自己照此工作）
+## Agent execution protocol (the agent works by this itself)
 
-1. 输出任何事实断言 → 附可回查路径（record ID + source URL + as_of），否则标「未验证」。
-2. 写文案/答复前 → 过一遍自夸词黑名单（值得信赖/权威/领先/顶尖/独家/第一/最专业/最可靠），命中即改写为「事实+入口」。
-3. 数字被要求「差不多就行」时 → 不给估算值冒充实测；写「约」或「待核实」。
-4. 发现自己此前输出有误 → 发纠正并说明原因，不静默重写。
-5. 被要求「证明我们可信」 → 输出模板 1（四要素声明框架），每格附验证入口；不用形容词。
-6. 引用信任调查（Edelman 等）→ 标注口径与方法学争议，表述为「该调查显示」，不表述为「事实是」。
-7. 涉及数据口径 → 先按 `factfulness` 四件套查；涉及结论过度自信 → 先按 `thinking-fast-and-slow` 复核；不要在本 skill 内重复展开。
+1. Any factual assertion in the output → attach a re-checkable path (record ID + source URL + as_of), otherwise label it "unverified".
+2. Before writing copy or a reply → run the self-praise word blacklist (trustworthy / authoritative / leading / top / exclusive / first / most professional / most reliable); a hit is rewritten as "fact + entry point".
+3. When asked for numbers where "roughly is fine" → do not pass an estimate off as a measurement; write "approximately" or "pending verification".
+4. When you find a previous output of yours was wrong → issue a correction and explain why; do not silently rewrite.
+5. When asked to "prove we are credible" → output template 1 (the four-element statement framework), with a verification entry point in each cell; no adjectives.
+6. When citing trust surveys (Edelman etc.) → label the definitional and methodological controversies, and phrase it as "that survey shows", never as "the fact is".
+7. For data provenance → check the `factfulness` four items first; for overconfident conclusions → review with `thinking-fast-and-slow` first; do not re-expand those inside this skill.
 
-## 输出模板
+## Output templates
 
-### 模板 1 · 「为什么可信」声明框架（网站文案结构）
+### Template 1 · the "why you can trust us" statement framework (website copy structure)
 
 ```markdown
-# 为什么可信
+# Why you can trust us
 
-> 我们不要求你相信我们。每一个数字，你都能点开验证。
+> We don't ask you to believe us. Every number you can click and verify.
 
-⚠️ 填写前必须重新实测或取最新导出；下表数字截至 2026-10-18，不得照抄过期值。
+⚠️ Before filling this in, re-measure or take a fresh export; the numbers below are as of 2026-10-18 and must not be copied from stale values.
 
-| 维度 | 事实（可核验，带置信度·时点） | 你怎么验证 |
+| Dimension | Fact (verifiable, with confidence · as-of) | How you verify it |
 |---|---|---|
-| 能力 | 59 个 MCP 工具 · 2,738 条记录 · 6 个域（MCP 概览导出 2026-10-18T13:40:13；A 级来源） | 打开 /database 自己数 |
-| 可靠 | 抽样 100 条基准中 89 条为 A 级（B 级来源：平台自测，2026-10-18）；每条记录带稳定 ID/as_of/source_url | 抽样点开 record/<id>/ 核对 |
-| 正直 | 事实包如实披露 8 条数据缺口（B 级来源：项目文档，2026-10-18）；纠错页留痕 | 看 facts.json 的 data_gaps · /corrections/ |
-| 透明 | 193 个回查 URL 验收实测 193/193 返回 200（11 秒；上线后逐条复测待补录）· /usage/ 公开计量 | 点任何一个事实的「回查」 |
+| Competence | 59 MCP tools · 2,738 records · 6 domains (MCP overview export 2026-10-18T13:40:13; grade-A source) | Open /database and count yourself |
+| Reliability | Of 100 sampled benchmarks, 89 are grade A (grade-B source: platform self-measurement, 2026-10-18); every record carries a stable ID / as_of / source_url | Sample a record and open record/<id>/ to check |
+| Integrity | The fact pack honestly discloses 8 data gaps (grade-B source: project document, 2026-10-18); the corrections page keeps a trace | Look at data_gaps in facts.json · /corrections/ |
+| Transparency | 193 re-check URLs were tested: 193/193 returned 200 (11 seconds; a post-launch per-URL re-test is still pending) · /usage/ publishes usage metrics | Click "re-check" on any fact |
 
-## 验证入口
-- 记录回查：https://trustbaselab.com/record/<id>/
-- 使用计量：/usage/ · 纠错档案：/corrections/ · 数据总览：/database
+## Verification entry points
+- Record re-check: https://trustbaselab.com/record/<id>/
+- Usage metrics: /usage/ · Correction archive: /corrections/ · Data overview: /database
 ```
 
-约束：数字必须来自实测/可查来源并带时点；外部站点写文案时把产品事实换成对应的可核验陈述；任何一格答不出 → 该格留空写「待验证」，不填形容词。
+Constraint: numbers must come from a measured or checkable source and carry an as-of date; when writing copy for an external site, replace product facts with the corresponding verifiable statements; if any cell cannot be answered → leave it blank with "pending verification", never fill it with an adjective.
 
-### 模板 2 · 信任核查卡（轻量模式）
+### Template 2 · trust check card (lightweight mode)
 
 ```markdown
-| 对象 | 信任堆栈层 | 信号 | 可核验吗 | 判定 |
+| Subject | Trust-stack layer | Signal | Verifiable | Verdict |
 |---|---|---|---|---|
-| <平台/来源> | 主意 | … | 是/否 | 通过/风险点 |
-|  | 平台 | … | 是/否 |  |
-|  | 对面的人/算法 | … | 是/否 |  |
+| <platform/source> | Idea | … | yes/no | pass / risk point |
+|  | Platform | … | yes/no |  |
+|  | Person/algorithm on the other side | … | yes/no |  |
 
-一句话结论：<按层给：可验证信号充足的层可信度更高；缺信号层 = 跃迁风险点>
-声明纪律：<已删自夸词 N 处；已补验证入口 M 处；待核实项清单>
+One-sentence conclusion: <by layer: layers with sufficient verifiable signals are more trustworthy; a layer missing signals = a trust-leap risk point>
+Statement discipline: <N self-praise words removed; M verification entry points added; list of pending-verification items>
 ```
 
-### 输出顺序与长度预算
-先给结论（1-2 句）→ 再给框架/核查卡 → 最后给「待核实项 + 下一步」。全流程 ≤ 800 字；轻量模式 ≤ 300 字。
+### Output order and length budget
+Give the conclusion first (1–2 sentences) → then the framework/check card → finally "pending items + next step". Full pipeline ≤ 800 words; lightweight mode ≤ 300 words.
 
-## 边界与常见误用
+## Boundaries and common misuse
 
-| 误用 | 纠正 |
+| Misuse | Correction |
 |---|---|
-| 把「信任」当「高置信度」使用 | 信任面向未知、需脆弱性；置信度是来源分级，两者不同机制。混淆是本书点名的头号错误 |
-| 写「我们值得信赖/权威」 | 违反红线且违背本书论点：信任不能靠声称。只写「可验证的事实 + 怎么做」 |
-| 把四要素当成书中原文引用 | 四要素框架的书中精确出处**待核实**；表述为「基于本书理念的翻译」 |
-| 透明 = 信任 | 据 CIPD 2018 报道，作者称透明须配问责才是可验证透明，否则是表演（原句待核实） |
-| 「分布式信任天然更可靠」 | 评分可刷、身份可假、算法有偏见；分布式信任同样有黑暗面 |
-| 引用 Edelman 数据不注口径 | 样本含「知情公众」子集、单题测量、发布方为公关公司；表述为「该调查显示」并标方法学争议 |
-| 把「信任跃迁」当作用户应担的风险 | 设计者的责任是降低跃迁风险（信号/担保/托管），不是歌颂用户勇敢 |
-| 对外文案使用「信任层」一词 | 项目 S-1 决策：对外不用「信任层/trust layer」，用「谁担保·哪一手的·置信度几级·能否回查」 |
-| 证据状态写成「已验证」 | 本 skill 的验证状态为**待验证**（见 evidence.md）；产品事实是事实映射，不是因果验证 |
+| Using "trust" as a synonym for "high confidence" | Trust faces the unknown and requires vulnerability; confidence is a source grading — two different mechanisms. Confusing them is the number-one error this book names |
+| Writing "we are trustworthy / authoritative" | Violates the red line and the book's argument: trust cannot be claimed. Write only "verifiable facts + how to verify" |
+| Quoting the four elements as if they were the book's exact wording | The precise source of the four-element framework is **pending verification**; phrase it as "a translation based on the book's ideas" |
+| Transparency = trust | Per a CIPD 2018 report, the author argues transparency must be paired with accountability to be verifiable transparency, otherwise it is performance (original wording pending verification) |
+| "Distributed trust is inherently more reliable" | Ratings can be gamed, identities faked, algorithms biased; distributed trust has a dark side too |
+| Citing Edelman figures without stating the definition | The sample includes an "informed public" subset, single-question measurement, and the publisher is a PR firm; phrase it as "that survey shows" and flag the methodological controversy |
+| Treating a "trust leap" as a risk the user should bear | The designer's job is to reduce the leap's risk (signals / guarantees / escrow), not to celebrate the user's bravery |
+| Using the phrase "trust layer" in external copy | Project S-1 decision: externally do not use "trust layer"; use "who guarantees it · is it first-hand · what confidence level · can it be re-checked" |
+| Writing the evidence status as "verified" | This skill's validation status is **pending verification** (see evidence.md); the product facts are a factual mapping, not causal validation |
 
-## 参考文件（按需加载，不默认全读）
+## Reference files (load on demand, not by default)
 
-- `references/trust-formation-book.md` —— 全书笔记：概念词典、证据锚、引文、批评（含福山《信任》底层引用）
-- `references/evidence.md` —— 验证状态（待验证）+ 候选应用清单 + 数据口径
+- `references/trust-formation-book.md` — full book notes: concept dictionary, evidence anchors, quotations, criticism (including the underlying reference to Fukuyama's *Trust*)
+- `references/evidence.md` — validation status (pending verification) + candidate applications + data provenance
+- `METHOD.md` — conversion record for this book
+- `references/SKILL.zh.md` — the Chinese edition of this skill
 
 ---
 
