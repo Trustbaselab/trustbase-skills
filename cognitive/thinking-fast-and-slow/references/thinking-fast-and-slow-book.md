@@ -34,22 +34,17 @@
 |---|---|---|
 | 系统 1 System 1 | 快速、自动、无意识、低努力的认知进程集合（直觉/印象/情感/联想） | 当脑区/小人；作者明言是虚构双角色比喻 |
 | 系统 2 System 2 | 慢速、费力、需注意力的推理与自控；懒惰，默认采纳系统 1 | =「理性正确」；它常只是事后补理由 |
-| 认知流畅度 cognitive ease | 加工顺畅的主观轻松感，被当作熟悉/真实/好的信号 | = 心情；其陷阱是「流畅即正确」 |
-| 认知紧张 cognitive strain | 加工费力状态，激活系统 2 复核 | 要回避的坏事；处方恰恰是主动制造 |
+| 认知流畅度/认知紧张 cognitive ease / strain | 加工顺畅的轻松感被当作熟悉/真实/好的信号；相反，费力（紧张）状态激活系统 2 复核 | 流畅=心情好、紧张=坏事；处方恰恰是**主动制造紧张**触发复核 |
 | WYSIATI | 系统 1 只用被激活信息造连贯故事，无视信息缺失（Ch.7） | =「眼见为实」；说的是处理方式而非输入真假 |
 | 替代 substitution | 无意识把难题换成简单问题回答（Ch.9） | 有意偷懒；实为自动且当事人无感 |
 | 锚定 anchoring | 先见数值/信息把后续估计拽向它（Ch.11；K&T 1974 轮盘实验） | 只限于谈判；对一切数量估计成立 |
-| 可得性 availability | 用「例子浮现的容易度」替代频率/概率（Ch.12–13） | = 记忆错误；机制是提取流畅度被当频度 |
-| 可得性级联 availability cascade | 媒体曝光 ↔ 公众焦虑互相放大的循环（Ch.13；中译「效用层叠」） | 阴谋论；书中是无主体的自组织循环 |
-| 代表性 representativeness | 用「像不像原型」替代概率，无视基准率与样本量（Ch.10/14/15） | = 刻板印象歧视；统计场景的无视基准率同样重要 |
-| 合取谬误 conjunction fallacy | 认为「A 且 B」比「A」更可能（琳达问题，Ch.15） | 只有外行会犯；专家同样中招 |
+| 可得性（含级联）availability（availability cascade） | 用「例子浮现的容易度」替代频率/概率（Ch.12–13）；级联=媒体曝光 ↔ 公众焦虑互相放大（中译「效用层叠」） | 级联≠阴谋论；书中是无主体的自组织循环（可被操纵加速） |
+| 代表性/合取谬误 representativeness / conjunction fallacy | 用「像不像原型」替代概率，无视基准率与样本量（Ch.10/14/15）；谬误=认为「A 且 B」比「A」更可能（琳达问题） | 只有外行会犯；专家同样中招——细节越多越「可信」 |
 | 小数定律 law of small numbers | 对小样本过度信任（T&K 1971；Ch.10） | 只关于数字；解释个案过度归因 |
 | 回归均值 regression to the mean | 极端表现后续趋向平均；被误读为奖惩因果（Ch.17） | = 可预测一切；只描述统计必然 |
 | 框架效应 framing | 损失/收益表述翻转同构选择的偏好（Ch.34；T&K 1981 亚洲疾病） | 只影响外行；医生与专家同样受影响 |
-| 损失厌恶 loss aversion | 损失权重约为等量收益的 1.5–2.5 倍（Ch.26–28） | 铁律；**Gal & Rucker 2018 质疑、未定论** |
-| 前景理论 prospect theory | 价值以参照点定义、递减敏感性、损失更陡；概率主观加权（Ch.25–30） | =「人都非理性」；是精确模型且经 19 国复测 |
-| 禀赋效应 endowment effect | 拥有后 WTA>WTP；参照点=现状（Ch.27） | 与损失厌恶同义；是其表现之一 |
-| 四重模式 fourfold pattern | 高概收益厌恶/高概损失寻求/低概收益寻求/低概损失厌恶（Ch.29） | 记一个象限当全部 |
+| 损失厌恶（含禀赋效应）loss aversion（endowment effect） | 损失权重约为等量收益的 1.5–2.5 倍（Ch.26–28）；禀赋=拥有后 WTA>WTP，参照点=现状（Ch.27） | 铁律；**Gal & Rucker 2018 质疑、未定论** |
+| 前景理论（含四重模式）prospect theory（fourfold pattern） | 价值以参照点定义、递减敏感性、损失更陡；概率主观加权（Ch.25–30）；四重=高概收益厌恶/高概损失寻求/低概收益寻求/低概损失厌恶 | =「人都非理性」；是精确模型且经 19 国复测；记一个象限当全部 |
 | 心理账户/沉没成本 mental accounting | 按心理账户记账；已投入成本催生追加投入（Ch.32） | 纯坏习惯；书中亦有保护性用法（宽框架） |
 | 过度自信 overconfidence | 信心来自故事连贯性而非证据（Ch.19–20，含后见之明/叙事谬误/结果偏差） | 性格缺陷；是认知机制普遍产物 |
 | 计划谬误 planning fallacy | 内部视角 + 无视基准率 → 低估时间成本（Ch.23–24；Buehler et al. 1994） | 单纯乐观；处方是外部视角 |
@@ -57,6 +52,8 @@
 | 体验/记忆自我 experiencing/remembering self | 体验活在当下；记忆按峰终+忽略时长记账并主导决策（Part V） | 纯比喻；有冰水/结肠镜实验支撑 |
 | 峰终定律/时长忽视 peak-end / duration neglect | 事后评价≈峰值与结尾平均，几乎忽略时长（Ch.35） | 「结尾决定一切」；是评价规律非体验 |
 | 聚焦错觉 focusing illusion | 想到什么什么就重要；聚焦项被放大（Ch.38） | 只关于幸福；适用于任何被盯住的指标 |
+
+> 注：相近条目已合并呈现（认知紧张并入认知流畅度、级联并入可得性、合取谬误并入代表性、禀赋并入损失厌恶、四重模式并入前景理论），完整 25 条粒度见研究笔记 §3。
 
 ## 证据锚（实验浓缩版：每条含出处 + 局限，措辞保留对冲）
 
@@ -102,11 +99,11 @@
 ## 可引用引文（中英对照，页码未核标「待核实」）
 
 - "Nothing in life is as important as you think it is while you are thinking about it."（聚焦错觉；Part V 语境，页码待核实）——当你在想一件事的时候，没有什么像它此刻显得那么重要。
-- "A reliable way to make people believe in falsehoods is frequent repetition, because familiarity is not easily distinguished from truth."（Ch.5 语境）——让人相信谬误的可靠方法是不断重复，因为熟悉感与真实感难以区分。
-- "The confidence that individuals have in their beliefs depends mostly on the quality of the story they can tell about what they see, even if they see little."（Part III 语境）——人们对自己信念的信心，主要取决于他们能就所见讲出的故事有多好——哪怕所见甚少。
-- "It is the consistency of the information that matters for a good story, not its completeness."——好故事要的是信息一致性，不是完整性。
-- "We are prone to overestimate how much we understand about the world and to underestimate the role of chance in events."（Introduction 语境）——我们倾向于高估对世界的理解，低估偶然的作用。
-- "Disbelief is not an option."（Ch.4，谈启动研究）——你没法不信。（⚠ 必须附 2017 作者收回语境）
+- "A reliable way to make people believe in falsehoods is frequent repetition, because familiarity is not easily distinguished from truth."（Ch.5 语境，页码待核实）——让人相信谬误的可靠方法是不断重复，因为熟悉感与真实感难以区分。
+- "The confidence that individuals have in their beliefs depends mostly on the quality of the story they can tell about what they see, even if they see little."（Part III 语境，页码待核实）——人们对自己信念的信心，主要取决于他们能就所见讲出的故事有多好——哪怕所见甚少。
+- "It is the consistency of the information that matters for a good story, not its completeness."（页码待核实）——好故事要的是信息一致性，不是完整性。
+- "We are prone to overestimate how much we understand about the world and to underestimate the role of chance in events."（Introduction 语境，页码待核实）——我们倾向于高估对世界的理解，低估偶然的作用。
+- "Disbelief is not an option."（Ch.4，谈启动研究；页码待核实）——你没法不信。（⚠ 必须附 2017 作者收回语境）
 - 卡尼曼 2017：「What the blog gets absolutely right is that I placed too much faith in underpowered studies.」——我过于信任低功效研究，这一点博客说得完全正确。
 - 卡尼曼 2012 公开信：「I see a train wreck looming.」——我看到一场火车失事正在逼近。
 - 2015《卫报》访谈：最想用魔杖消除的偏差是**过度自信**；「it is built so deeply into the structure of the mind that you couldn't change it without changing many other things」。
@@ -124,6 +121,17 @@
 8. 归因输出降级为「可能叙事 + 替代解释 + 可验证项」。
 9. 单一极端指标先对照历史波动，防回归均值误读。
 10. 关键建议默认校准输出（置信度/不确定项/验证步骤/替代解释）；收尾遵循峰终定律（重要判断放结尾）。
+
+## 与兄弟 skill 的关系（避免重复建设）
+
+| 场景 | 用哪个 skill |
+|---|---|
+| 任务过载、多任务、专注排程、估时缓冲 | `bandwidth-and-deep-work`（本 skill 的计划谬误处方与其 ×1.5–2 估时系数同源） |
+| 每次答案都不一样、判断随机不一致（噪声） | `noise-in-judgment`（本书只管系统性偏差；先分清「偏了」还是「散了」） |
+| 数据口径核查、趋势判断、紧迫感决策 | `factfulness` |
+| 数据口径 vs 判断偏差的分工 | 同一「风险估计」：数字口径对不对 → `factfulness`；判断/估计偏不偏 → 本 skill（先口径后偏差） |
+| 流程/组织动态、反馈回路、「为什么越改越糟」 | `thinking-in-systems` |
+| 复核强度规则 | 影响越大流程越全：轻量（≤4 条嫌疑）→ 标准（清单+处方）→ 关键决策（红队+预验尸+校准输出） |
 
 ## 关键来源（完整清单见研究笔记 §9）
 
