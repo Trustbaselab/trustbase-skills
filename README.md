@@ -3,10 +3,15 @@
 > **Agent Skills that connect AI to verifiable industry facts.**
 > 让 agent 不只知道"怎么做"，还知道"数据从哪来、对不对、谁负责"。
 
+[![skills.sh](https://skills.sh/b/Trustbaselab/trustbase-skills)](https://skills.sh/Trustbaselab/trustbase-skills)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-7-green.svg)](#skill-catalog)
 [![Data](https://img.shields.io/badge/verifiable_facts-520+-orange.svg)](https://trustbaselab.com/database)
 [![MCP](https://img.shields.io/badge/MCP_tools-59-purple.svg)](https://trustbaselab.com/mcp)
+
+```bash
+npx skills add Trustbaselab/trustbase-skills
+```
 
 ---
 
