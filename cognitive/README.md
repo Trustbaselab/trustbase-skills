@@ -1,181 +1,226 @@
-# ⭐ Cognitive Skills —— 把经典书籍变成 agent 可执行的行为准则
+# ⭐ Cognitive Skills — Classic Books, Turned Into Executable Rules for Agents
 
-> **这一层不是"读书笔记"。**
-> **是：验证过的行为准则 + 真实数据。**
-
----
-
-## 为什么做这个
-
-**AI 的训练目标是「平均」——它是对所有数据的压缩。**
-**而一本有灵魂的书，是**一个具体的人，用具体的生命经验，做出的具体判断**。**
-
-**⭐ 所以书给 AI 的不是「知识」（AI 知识已够），是**立场和判断标准**。**
-**而这恰恰是 AI 最缺的。**
-
-### 我们的判断
-
-> **AI 写不出有灵魂的书 —— 因为它在追求「普遍」，而书是「具体」。**
-> **但 AI 需要这些书，才能变得更强、更好。**
-
-**→ 所以：**把书转化成 agent 能执行的规则，是这个时代一件值得做的事。**
+> **This layer is not "reading notes".**
+> **It is: validated behavioral rules + real data.**
 
 ---
 
-# ⭐⭐ 六层认知操作系统
+## Why we do this
 
-**这不是 6 个孤立 skill，是一条完整的链路：**
+**An AI's training objective is *average* — it is a compression of everything.**
+**A book with a soul is one specific person, in one specific situation, making one specific judgment.**
+
+**⭐ So what a book gives an AI is not "knowledge" (the AI already has knowledge) — it is **stance and criteria for judgment**.**
+**And that is exactly what AI lacks most.**
+
+### Our thesis
+
+> **AI cannot write a book with a soul — because it pursues the *general*, while a book is *specific*.**
+> **But AI needs these books in order to become stronger and better.**
+
+**→ So turning books into rules an agent can execute is a worthwhile thing to do in this era.**
+
+---
+
+# ⭐⭐ The eight-layer cognition operating system
+
+**These are not 8 isolated skills. They form one continuous chain:**
 
 ```
-① 输入层   factfulness             《事实》        如何正确看数据
-              ↓
-② 处理层   thinking-fast-and-slow  《思考，快与慢》 如何不被直觉骗
-              ↓
-③ 质量层   noise-in-judgment       《噪声》        如何让判断一致
-              ↓
-④ 全局层   thinking-in-systems     《系统之美》     如何看到系统和反馈
-              ↓
-⑤ 带宽层   bandwidth-and-deep-work 《稀缺》+《深度工作》 如何在有限资源下工作
-              ↓
-⑥ 执行层   （同上）                                 如何产出深度
+① Input layer       factfulness              How to read data correctly
+        ↓
+② Processing        thinking-fast-and-slow   How not to be fooled by intuition
+        ↓
+③ Quality           noise-in-judgment        How to keep judgments consistent
+        ↓
+④ Global            thinking-in-systems      How to see systems and feedback
+        ↓
+⑤ Bandwidth         bandwidth-and-deep-work  How to work under limited resources
+        ↓
+⑥ Execution         (same skill)             How to produce depth
+        ↓
+⑦ Epistemics        knowledge-illusion       How to know what you actually know
+        ↓
+⑧ Trust             trust-formation          How trust is built and verified
+        ↑
+⭐ Meta layer       book-to-skill            The method itself, packaged as a skill
 ```
 
-**⭐ 六层合起来 = 一套完整的「AI 认知操作系统」。**
+**⭐ Together, the eight layers form a complete "AI cognition operating system".**
 
 ---
 
-# 一、⭐ 每个 skill 的三样产出
+# 1. ⭐ What every skill ships
 
 ```
 <skill-name>/
-├── SKILL.md                 ← agent 读的行为准则
+├── SKILL.md                 ← the rules the agent reads
 ├── references/
-│   ├── <book>-book.md       ← 书的核心理念（我们自己写，不抄原文）
-│   └── evidence.md          ← ⭐ 本项目验证数据
-└── METHOD.md                ← ⭐ 这本书是怎么被转化的（可复用到下一本）
+│   ├── <book>-book.md       ← the book's ideas (written by us, no verbatim excerpts)
+│   └── evidence.md          ← ⭐ validation data from this project
+└── METHOD.md                ← ⭐ how this specific book was converted
 ```
 
-| 文件 | 作用 | 关键 |
+| File | Purpose | Key |
 |---|---|---|
-| **`SKILL.md`** | **触发条件 · 行为规则 · 反例** | **if-then 形式，不是「要专注」这种空话** |
-| **`references/*.md`** | **书的理念** | **我们自己的理解，**不抄原文** |
-| ⭐ **`references/evidence.md`** | **本项目验证数据** | **⭐ 分水岭：别人总结书，我们在自己项目里验证** |
-| ⭐ **`METHOD.md`** | **转化方法** | **⭐ 让下一本书可以更快做出来** |
+| **`SKILL.md`** | **Trigger conditions · rules · counter-examples** | **if-then form, not slogans like "be focused"** |
+| **`references/*.md`** | **the book's ideas** | **our own understanding; ⛔ no verbatim excerpts** |
+| ⭐ **`references/evidence.md`** | **validation data from this project** | **⭐ the dividing line: others summarize books, we validate in our own project** |
+| ⭐ **`METHOD.md`** | **the conversion method** | **⭐ makes the next book faster** |
 
 ---
 
-# 二、⭐⭐ 六层详解
+# 2. ⭐⭐ The eight skills
 
-## ① `factfulness` —— 输入层
+## ① `factfulness` — Input layer
 
-| 项 | 内容 |
+| Item | Content |
 |---|---|
-| **基于** | **《事实：用数据思考，避免情绪化决策》**（汉斯·罗斯林等） |
-| **核心判断** | **人对世界的判断系统性偏差；必须用数据校正直觉** |
-| **做什么** | **数据口径四件套核查（来源/年份/定义/基准）→ 十大情绪化本能诊断 → 「水平+趋势」双栏输出** |
-| ⭐ **触发** | 「世界是不是越来越糟」「这个数据可信吗」「帮我引个数据」「别贩卖焦虑」 |
-| ⭐ **为什么重要** | **它和我们的业务**直接同源** —— 我们做可信数据，它教怎么用数据** |
+| **Based on** | ***Factfulness*** (Hans Rosling et al.) |
+| **Core claim** | **Human judgments about the world are systematically biased; data must correct intuition** |
+| **What it does** | **Four-part data provenance audit (source / year / definition / baseline) → ten instinct diagnostics → "level + trend" dual-column output** |
+| ⭐ **Triggers** | "Is the world getting worse" · "Is this number trustworthy" · "Cite a source for me" · "Stop fear-mongering" |
+| ⭐ **Why it matters to us** | **Directly aligned with our business — we do verifiable data; this teaches how to use it** |
 
-## ② `thinking-fast-and-slow` —— 处理层
+## ② `thinking-fast-and-slow` — Processing layer
 
-| 项 | 内容 |
+| Item | Content |
 |---|---|
-| **基于** | **《思考，快与慢》**（丹尼尔·卡尼曼） |
-| **核心判断** | **人有两个系统：快（直觉）与慢（理性）；快系统会系统性犯错** |
-| **做什么** | **识别 agent/LLM 输出中的快思考模式 → 强制慢思考复核与校准** |
-| ⭐ **触发** | 「这个 AI 结论靠谱吗」「感觉回答太顺了/太自信了」「帮我审核这份 AI 产出」 |
-| ⭐ **可用概念** | **锚定 · 可得性 · 代表性 · 框架效应 · 损失厌恶 · 过度自信 · 计划谬误** |
+| **Based on** | ***Thinking, Fast and Slow*** (Daniel Kahneman) |
+| **Core claim** | **Two systems: fast (intuition) and slow (reasoning); the fast system errs systematically** |
+| **What it does** | **Detect System-1 patterns in agent/LLM output → force a System-2 review and calibration** |
+| ⭐ **Triggers** | "Is this AI conclusion reliable" · "That answer felt too smooth / too confident" · "Review this AI output" |
+| ⭐ **Concepts** | **anchoring · availability · representativeness · framing · loss aversion · overconfidence · planning fallacy** |
 
-## ③ `noise-in-judgment` —— 质量层
+## ③ `noise-in-judgment` — Quality layer
 
-| 项 | 内容 |
+| Item | Content |
 |---|---|
-| **基于** | **《噪声：人类判断的缺陷》**（卡尼曼、西博尼、桑斯坦） |
-| **核心判断** | **判断的不一致（噪声）比偏差更隐蔽，且更常见** |
-| **做什么** | **区分偏差与噪声 → 噪声审计量化分歧 → 决策卫生（独立判断·聚合·排序·结构化指南）** |
-| ⭐ **触发** | 「为什么每次答案都不一样」「结论不一致该信谁」「怎么让评估打分更一致」 |
-| ⭐ **可用概念** | **水平噪声 · 模式噪声 · 场合噪声 · 决策卫生** |
+| **Based on** | ***Noise*** (Kahneman, Sibony, Sunstein) |
+| **Core claim** | **Inconsistency (noise) is more hidden — and more common — than bias** |
+| **What it does** | **Separate bias from noise → noise audit to quantify disagreement → decision hygiene (independent judgment, aggregation, ranking, structured guides)** |
+| ⭐ **Triggers** | "Why does the answer change every time" · "Which conclusion should I trust" · "How do I make scoring consistent" |
+| ⭐ **Concepts** | **level noise · pattern noise · occasion noise · decision hygiene** |
 
-## ④ `thinking-in-systems` —— 全局层
+## ④ `thinking-in-systems` — Global layer
 
-| 项 | 内容 |
+| Item | Content |
 |---|---|
-| **基于** | **《系统之美：决策者的系统思考》**（德内拉·梅多斯） |
-| **核心判断** | **系统的行为由结构决定，不是由个体意图决定** |
-| **做什么** | **存量流量图 + 反馈回路 → 结构诊断（只盯流量/忽略延迟/头痛医头/目标侵蚀）→ 12 个杠杆点** |
-| ⭐ **触发** | 「为什么越改越糟」「改了没效果」「这个指标为什么上不去」「怎么找杠杆点」 |
-| ⭐ **可用概念** | **增强回路 · 调节回路 · 存量流量 · 延迟 · 杠杆点 · 系统陷阱** |
+| **Based on** | ***Thinking in Systems*** (Donella Meadows) |
+| **Core claim** | **System behavior is produced by structure, not by individual intent** |
+| **What it does** | **Stock-and-flow diagrams + feedback loops → structural diagnosis (watching only flows / ignoring delays / treating symptoms / eroding goals) → 12 leverage points** |
+| ⭐ **Triggers** | "Why does fixing it make it worse" · "The change had no effect" · "Where's the leverage point" |
+| ⭐ **Concepts** | **reinforcing loops · balancing loops · stocks and flows · delays · leverage points · system traps** |
 
-## ⑤⑥ `bandwidth-and-deep-work` —— 带宽层 + 执行层
+## ⑤⑥ `bandwidth-and-deep-work` — Bandwidth + Execution layer
 
-| 项 | 内容 |
+| Item | Content |
 |---|---|
-| **基于** | **《稀缺》**（穆来纳森、沙菲尔）+ **《深度工作》**（卡尔·纽波特） |
-| **核心判断** | **带宽有限，被占用后认知下降；只有屏蔽干扰才能深度产出** |
-| **做什么** | **带宽审计 + 隧道检查 → 深浅分层 + 深块排程 → 附 agent 上下文管理与批处理协议** |
-| ⭐ **触发** | 「任务太多做不完」「总是被打断」「无法专注」「怎么排优先级」「多任务效率低」 |
-| ⭐ **本项目验证** | **每轮 token 141K → 5.6K（-96%）· PENDING 67 → 2 · 状态查询 2-3 分钟 → 5 秒** |
-| ⭐ **可用概念** | **带宽税 · 隧道视野 · 余闲 · 稀缺陷阱 · 专注红利 · 注意力残留 · 关机仪式** |
+| **Based on** | ***Scarcity*** (Mullainathan & Shafir) + ***Deep Work*** (Cal Newport) |
+| **Core claim** | **Bandwidth is limited; when occupied, cognition degrades; only by blocking distraction can depth be produced** |
+| **What it does** | **Bandwidth audit + tunneling check → deep/shallow layering + deep-block scheduling → plus agent-side context-management and batching protocols** |
+| ⭐ **Triggers** | "Too much to do" · "Always interrupted" · "Can't focus" · "How should I prioritize" |
+| ⭐ **Validated in this project** | **Per-round tokens 141K → 5.6K (−96%) · pending items 67 → 2 · status lookup 2–3 min → 5 s** |
+| ⭐ **Concepts** | **bandwidth tax · tunneling · slack · scarcity trap · focus dividend · attention residue · shutdown ritual** |
+
+## ⑦ `knowledge-illusion` — Epistemics layer
+
+| Item | Content |
+|---|---|
+| **Based on** | ***The Knowledge Illusion*** (Sloman & Fernbach) |
+| **Core claim** | **People believe they understand the world far more deeply than they do; what they actually know is *who knows*** |
+| **What it does** | **Distinguish "remembered / verified / retrieved"; label source and uncertainty; calibrate self-assessed understanding with a mechanism-explanation test** |
+| ⭐ **Triggers** | "How do you know" · "Why are you so sure" · "Don't pretend to know" · "Explain the mechanism" |
+| ⭐ **Why it matters to AI** | **AI is the extreme case: it "knows" a lot and is also the most unaware of its own boundaries** |
+
+## ⑧ `trust-formation` — Trust layer
+
+| Item | Content |
+|---|---|
+| **Based on** | ***Who Can You Trust?*** (Rachel Botsman) |
+| **Core claim** | **Trust cannot be obtained by claiming it — only by being verifiable** |
+| **What it does** | **Turn every trust claim into "fact + verification entry point"; audit against four elements (competence / reliability / integrity / transparency)** |
+| ⭐ **Triggers** | "Why should anyone trust this" · "How do we prove we're credible" · "Is this source trustworthy" |
+| ⭐ **Why it matters to us** | ⭐ **This is our business. This skill is our brand's explanation document.** |
+
+## ⭐ Meta: `book-to-skill` — The method as a skill
+
+| Item | Content |
+|---|---|
+| **Based on** | **—** (it is a synthesis of the seven conversions above) |
+| **Core claim** | **Its capability is general; its standard is specialized** |
+| **What it does** | **Seven-step SOP: score the book → read for the core claim → separate "wisdom" from "rules" → translate into if-then rules → validate in a real scenario → write SKILL.md / evidence.md / METHOD.md → check against the delivery checklist** |
+| ⭐ **Why it's the meta layer** | ⭐ **It packages "the method of packaging knowledge" as a skill** |
 
 ---
 
-# 三、⭐⭐ 转化方法（`METHOD.md` · 六步）
+# 3. ⭐⭐ The conversion method (`METHOD.md` · six steps)
 
-| # | 步骤 | 关键要求 |
+| # | Step | Hard requirement |
 |---|---|---|
-| **1** | **读透** | **不是摘要，是找出「这本书的核心判断」——作者在主张什么、在跟谁争论** |
-| **2** | ⭐ **分离「道理」与「准则」** | **哪些只是「读时点头」，哪些能变成**可检验的行为规则**** |
-| **3** | ⭐ **翻译成 agent 规则** | **if-then 形式**（"当 X 时，做 Y"）；⛔ **不接受"要专注"这种空话** |
-| **4** | ⭐⭐ **在真实场景验证** | **必须有一处真实应用 + 前后数据** |
-| **5** | ⭐ **记录验证数据** | **前后对比·可复算·口径写清** |
-| **6** | **写成 `SKILL.md`** | **触发条件 / 行为规则 / 反例 / 来源标注 / 版权边界** |
+| **1** | **Read for the core claim** | **Not a summary — what is the author arguing, and against whom?** |
+| **2** | ⭐ **Separate "wisdom" from "rules"** | **Only what can become an if-then rule counts; "be objective" is not a rule** |
+| **3** | ⭐ **Translate into agent rules** | **if-then form** ("when X, do Y"); ⛔ **no slogans** |
+| **4** | ⭐⭐ **Validate in a real scenario** | **Must have a real application with before/after data** |
+| **5** | ⭐ **Record the validation data** | **Before/after · reproducible · provenance stated** |
+| **6** | **Write `SKILL.md`** | **Triggers / rules / counter-examples / source status / copyright boundary** |
 
-### ⭐ 版权边界（必须遵守）
+### ⭐ Copyright boundary
 
-| ✅ 可以做 | ⛔ 不可以做 |
+| ✅ Allowed | ⛔ Not allowed |
 |---|---|
-| **总结理念，写我们自己的理解** | **大段引用原文** |
-| **注明「基于《书名》的理念」** | **声称是我们的原创理论** |
-| **Apache-2.0 发布我们写的部分** | **把书的原文/PDF 放进来** |
+| **Summarize ideas and write our own understanding** | **Quote long passages** |
+| **Attribute: "based on the ideas of <book>"** | **Claim the ideas are our original theory** |
+| **License our own written part** | **Include the book's text / PDF** |
 
----
+### ⭐⭐ Provenance boundary (rule 2b of `book-to-skill`)
 
-# 四、⭐ 诚实边界（我们的约定）
+**Every citation must carry a provenance status:**
 
-**每个 `evidence.md` 必须写清：**
-
-1. **数据口径**（哪些是实测、哪些是估算）
-2. **归因限制** —— ⭐ **"先有改造，后有概念归因，不是对照实验"**
-3. **引用表述** —— **"本项目的验证案例"，而非"因果证明"**
-4. **未完成项** —— **"进行中"就写"进行中"**
-
-**⭐⭐ 这一条很重要：**
-> **我们不做因果宣称。**
-> **我们说"我们用了这个方法，数据是这样变的"——不说"是这个方法导致了变化"。**
-> **→ 这就是「可核验」在方法论层面的体现。**
-
-**⭐⭐ 原则：**
-> **宁可少写一条证据，不可夸大一毫。**
-
----
-
-# 五、⭐ 下一代候选（**不急着做**）
-
-| 书 | 补什么层 | 状态 |
+| Status | How to write | How it may be used |
 |---|---|---|
-| ⭐⭐⭐ **《知识错觉》** | **知识论层**（AI 不知道自己不知道什么） | ⏳ 候选 |
-| ⭐⭐⭐ **《信任》**（Fukuyama） | **信任层**（信任从哪来） | ⏳ 候选 |
-| ⭐⭐ **《The Box》**（集装箱） | **标准层**（标准如何赢） | ⏳ 候选 |
-| ⭐ **《超级预测》** | 预测层 | ⏳ 候选 |
-
-**⭐⭐ 我们的判断：**
-> **6 本已经构成完整链路（输入→处理→质量→全局→带宽→执行）。**
-> **再多书，如果没有验证数据，只是"读书笔记的堆叠"。**
-> **⭐ 而我们的差异化恰恰在"验证"——不是"数量"。**
-
-**→ 所以：先把这 6 本做透、用起来、拿到外部反馈，再考虑下一批。**
+| **Verified** | "《Book》p.XX: …" | ✅ May be cited as "proposed in the book" |
+| **Secondhand** | "According to <source> reporting <book>: …" | ⚠️ Label as secondhand |
+| **From memory** | "Our understanding is: … (provenance pending verification)" | ⛔ **May not be presented as "the book says"** |
 
 ---
 
-*基于公开出版书籍的**理念**；引用来源已在各 skill 内注明。本层贡献的是「**把理念转译成 agent 可执行规则**」。*
+# 4. ⭐ Honesty boundary (our convention)
+
+**Every `evidence.md` must state:**
+
+1. **Data provenance** (what was measured, what was estimated)
+2. **Attribution limits** — ⭐ **"the change came first, the concept attribution came after; this is not a controlled experiment"**
+3. **Citation phrasing** — **"a validation case in this project", not "causal proof"**
+4. **Open items** — **if it is in progress, say "in progress"**
+
+**⭐⭐ The principle:**
+> **We do not claim causality.**
+> **We say "we applied this method, and the data moved like this" — not "this method caused the change".**
+> **→ That is what "verifiable" means at the methodology level.**
+
+**⭐⭐ Rule:**
+> **Rather omit one piece of evidence than overstate it by a millimeter.**
+
+---
+
+# 5. ⭐ Next-generation candidates (not urgent)
+
+| Book | Layer it fills | Status |
+|---|---|---|
+| **_The Signal and the Noise_** | Forecasting | ⏳ Candidate |
+| **_Superforecasting_** | Forecasting | ⏳ Candidate |
+| **_The Box_** (containerization) | Standards | ⏳ Candidate |
+| **_Antifragile_** | Robustness | ⏳ Candidate |
+
+**⭐⭐ Our judgment:**
+> **Eight skills already form a complete chain (input → processing → quality → global → bandwidth → execution → epistemics → trust).**
+> **More books without validation data would just be "stacked reading notes".**
+> **⭐ And our differentiation is precisely **validation** — not **quantity**.**
+
+**→ So: first make these eight thorough, put them to use, and gather external feedback. Then consider the next batch.**
+
+---
+
+*Based on the **ideas** of published books; sources are noted inside each skill. This layer's contribution is «**translating ideas into executable rules for agents**».*
 *License: Apache-2.0*
