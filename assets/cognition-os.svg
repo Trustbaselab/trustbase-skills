@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1a2e"/>
+    </linearGradient>
+    <linearGradient id="chain" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="620" fill="url(#bg)" rx="14"/>
+
+  <text x="450" y="46" fill="#e2e8f0" font-size="22" font-weight="700" text-anchor="middle">The eight-layer cognition operating system</text>
+  <text x="450" y="72" fill="#94a3b8" font-size="13" text-anchor="middle">Classic books turned into executable rules — each validated in a real project</text>
+
+  <!-- chain line -->
+  <line x1="118" y1="118" x2="118" y2="500" stroke="url(#chain)" stroke-width="3" opacity="0.55" stroke-dasharray="6 6"/>
+
+  <!-- rows -->
+  <g>
+    <!-- 1 -->
+    <circle cx="118" cy="118" r="17" fill="#0e7490" stroke="#22d3ee" stroke-width="2"/>
+    <text x="118" y="123" fill="#e0f2fe" font-size="13" font-weight="700" text-anchor="middle">1</text>
+    <text x="150" y="115" fill="#67e8f9" font-size="12" font-weight="600">INPUT</text>
+    <text x="150" y="135" fill="#e2e8f0" font-size="15" font-weight="600">factfulness</text>
+    <text x="355" y="135" fill="#94a3b8" font-size="13">How to read data correctly</text>
+
+    <!-- 2 -->
+    <circle cx="118" cy="172" r="17" fill="#4338ca" stroke="#818cf8" stroke-width="2"/>
+    <text x="118" y="177" fill="#e0e7ff" font-size="13" font-weight="700" text-anchor="middle">2</text>
+    <text x="150" y="169" fill="#a5b4fc" font-size="12" font-weight="600">PROCESSING</text>
+    <text x="150" y="189" fill="#e2e8f0" font-size="15" font-weight="600">thinking-fast-and-slow</text>
+    <text x="355" y="189" fill="#94a3b8" font-size="13">How not to be fooled by intuition</text>
+
+    <!-- 3 -->
+    <circle cx="118" cy="226" r="17" fill="#6d28d9" stroke="#a78bfa" stroke-width="2"/>
+    <text x="118" y="231" fill="#ede9fe" font-size="13" font-weight="700" text-anchor="middle">3</text>
+    <text x="150" y="223" fill="#c4b5fd" font-size="12" font-weight="600">QUALITY</text>
+    <text x="150" y="243" fill="#e2e8f0" font-size="15" font-weight="600">noise-in-judgment</text>
+    <text x="355" y="243" fill="#94a3b8" font-size="13">How to keep judgments consistent</text>
+
+    <!-- 4 -->
+    <circle cx="118" cy="280" r="17" fill="#9d174d" stroke="#f472b6" stroke-width="2"/>
+    <text x="118" y="285" fill="#fce7f3" font-size="13" font-weight="700" text-anchor="middle">4</text>
+    <text x="150" y="277" fill="#f9a8d4" font-size="12" font-weight="600">GLOBAL</text>
+    <text x="150" y="297" fill="#e2e8f0" font-size="15" font-weight="600">thinking-in-systems</text>
+    <text x="355" y="297" fill="#94a3b8" font-size="13">How to see structure and feedback</text>
+
+    <!-- 5 -->
+    <circle cx="118" cy="334" r="17" fill="#a16207" stroke="#facc15" stroke-width="2"/>
+    <text x="118" y="339" fill="#fef9c3" font-size="13" font-weight="700" text-anchor="middle">5</text>
+    <text x="150" y="331" fill="#fde047" font-size="12" font-weight="600">BANDWIDTH</text>
+    <text x="150" y="351" fill="#e2e8f0" font-size="15" font-weight="600">bandwidth-and-deep-work</text>
+    <text x="355" y="351" fill="#94a3b8" font-size="13">How to work under limited resources</text>
+
+    <!-- 6 -->
+    <circle cx="118" cy="388" r="17" fill="#155e75" stroke="#22d3ee" stroke-width="2"/>
+    <text x="118" y="393" fill="#cffafe" font-size="13" font-weight="700" text-anchor="middle">6</text>
+    <text x="150" y="385" fill="#67e8f9" font-size="12" font-weight="600">EPISTEMICS</text>
+    <text x="150" y="405" fill="#e2e8f0" font-size="15" font-weight="600">knowledge-illusion</text>
+    <text x="355" y="405" fill="#94a3b8" font-size="13">How to know what you actually know</text>
+
+    <!-- 7 -->
+    <circle cx="118" cy="442" r="17" fill="#166534" stroke="#4ade80" stroke-width="2"/>
+    <text x="118" y="447" fill="#dcfce7" font-size="13" font-weight="700" text-anchor="middle">7</text>
+    <text x="150" y="439" fill="#86efac" font-size="12" font-weight="600">TRUST</text>
+    <text x="150" y="459" fill="#e2e8f0" font-size="15" font-weight="600">trust-formation</text>
+    <text x="355" y="459" fill="#94a3b8" font-size="13">How trust is built and verified</text>
+
+    <!-- meta -->
+    <rect x="70" y="492" width="760" height="52" rx="10" fill="#111c33" stroke="#334155" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="92" y="516" fill="#fbbf24" font-size="12" font-weight="700">META</text>
+    <text x="150" y="516" fill="#e2e8f0" font-size="15" font-weight="600">book-to-skill</text>
+    <text x="355" y="516" fill="#94a3b8" font-size="13">The method itself, packaged as a skill</text>
+    <text x="92" y="534" fill="#64748b" font-size="11">scoring rubric · seven-step SOP · three quality gates · four honesty boundaries</text>
+  </g>
+
+  <!-- right side: evidence -->
+  <g>
+    <rect x="640" y="110" width="220" height="150" rx="10" fill="#0b1a2b" stroke="#1e3a5f" stroke-width="1.5"/>
+    <text x="660" y="136" fill="#7dd3fc" font-size="12" font-weight="700">VALIDATED, NOT CLAIMED</text>
+    <text x="660" y="160" fill="#94a3b8" font-size="11">Scarcity + Deep Work applied</text>
+    <text x="660" y="176" fill="#94a3b8" font-size="11">to our own task queue:</text>
+    <text x="660" y="204" fill="#64748b" font-size="11">per-round context</text>
+    <text x="660" y="222" fill="#e2e8f0" font-size="14" font-weight="700">141K → 5.6K tokens</text>
+    <text x="660" y="240" fill="#4ade80" font-size="13" font-weight="700">−96%</text>
+
+    <rect x="640" y="276" width="220" height="124" rx="10" fill="#0b1a2b" stroke="#1e3a5f" stroke-width="1.5"/>
+    <text x="660" y="302" fill="#fca5a5" font-size="12" font-weight="700">HONESTY BOUNDARIES</text>
+    <text x="660" y="324" fill="#94a3b8" font-size="11">· retrospective mapping,</text>
+    <text x="668" y="340" fill="#94a3b8" font-size="11">not a controlled experiment</text>
+    <text x="660" y="358" fill="#94a3b8" font-size="11">· "in progress" stays in progress</text>
+    <text x="660" y="376" fill="#94a3b8" font-size="11">· every citation tagged:</text>
+    <text x="668" y="392" fill="#fbbf24" font-size="10">verified / secondhand / memory</text>
+
+    <rect x="640" y="416" width="220" height="72" rx="10" fill="#0b1a2b" stroke="#1e3a5f" stroke-width="1.5"/>
+    <text x="660" y="442" fill="#c084fc" font-size="12" font-weight="700">8 SKILLS · ONE CHAIN</text>
+    <text x="660" y="464" fill="#94a3b8" font-size="11">input → process → quality →</text>
+    <text x="660" y="480" fill="#94a3b8" font-size="11">global → bandwidth → know → trust</text>
+  </g>
+
+  <text x="450" y="588" fill="#475569" font-size="11" text-anchor="middle">github.com/Trustbaselab/trustbase-skills · Apache-2.0 · English + 中文</text>
+</svg>
