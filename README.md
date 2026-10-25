@@ -53,7 +53,18 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
   METHOD.md                 # how this specific book was converted
 ```
 
-**Also included:** 6 industry skills for the recycled-carbon-black sector (`rcb-*`), which query a live MCP server with 59 tools and 520+ verifiable facts.
+**Also included:** 6 industry skills covering the recycled-carbon-black chain, carbon compliance and compute energy efficiency. All of them query a live MCP server with 59 tools and 5,470 verifiable facts:
+
+| Skill | Question it answers |
+|---|---|
+| `rcb-grade-identification` | What grade is this batch of rCB? Which R-code? |
+| `rcb-substitution-assessment` | Can rCB replace N550 / N330 / N660? What ratio ceiling? |
+| `rcb-price-reference` | What is a reasonable price band? (anchor-derived, not a quote) |
+| `rcb-export-compliance` | What does exporting to the EU require? |
+| `carbon-cbam-cost-calc` | **Is this product even in CBAM scope?** Then: what does it cost? |
+| `compute-pue-benchmark` | **What caliber is this PUE?** Then: is it good? |
+
+**Design principle:** each skill is *process + constraints*, never data. Every number is fetched at runtime from MCP, and every citation must carry a record ID, a confidence level (A/B/C) and an `as_of` date. Where this site has no coverage, the skill is required to say so rather than fill the gap from general knowledge.
 
 ---
 
