@@ -53,7 +53,7 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
   METHOD.md                 # how this specific book was converted
 ```
 
-**Also included:** 6 industry skills covering the recycled-carbon-black chain, carbon compliance and compute energy efficiency. All of them query a live MCP server with 59 tools and 5,470 verifiable facts:
+**Also included:** 8 industry skills under `industry/` — 6 task skills (rCB grade / substitution / price / export, CBAM cost & scope, compute PUE) plus 2 content skills (`ai-industry-daily`, `carbon-black-weekly`). All of them query a live MCP server with 59 tools and 5,470 verifiable facts.:
 
 | Skill | Question it answers |
 |---|---|
