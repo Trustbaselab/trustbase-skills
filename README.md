@@ -1,18 +1,18 @@
 # Trustbase Skills
 
-**8 skills that turn classic books into executable rules for AI agents.**
+**8 cognitive skills that turn classic books into executable rules for AI agents.**
 **Not summaries — if a sentence can't become "when X, do Y", it doesn't go in.**
 
 [![skills.sh](https://skills.sh/b/Trustbaselab/trustbase-skills)](https://skills.sh/Trustbaselab/trustbase-skills)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-14-green.svg)](#skills)
-[![Verifiable facts](https://img.shields.io/badge/verifiable_facts-520+-orange.svg)](https://trustbaselab.com/database)
+[![Skills](https://img.shields.io/badge/skills-16-green.svg)](#skills)
+[![Verifiable facts](https://img.shields.io/badge/verifiable_facts-22966-orange.svg)](https://trustbaselab.com/database)
 
 ```bash
 npx skills add Trustbaselab/trustbase-skills
 ```
 
-**Quick nav**: [What is this](#what-is-this) · [The 8 skills](#the-8-skills) · [Why different](#why-this-is-different) · [Install](#install) · [Feedback](#feedback)
+**Quick nav**: [What is this](#what-is-this) · [The 8 cognitive skills](#the-8-cognitive-skills) · [Why different](#why-this-is-different) · [Install](#install) · [Feedback](#feedback)
 
 ---
 
@@ -30,7 +30,7 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
 
 ---
 
-## The 8 skills
+## The 8 cognitive skills
 
 | Skill | Answers the question |
 |---|---|
@@ -53,7 +53,7 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
   METHOD.md                 # how this specific book was converted
 ```
 
-**Also included:** 8 industry skills under `industry/` — 6 task skills (rCB grade / substitution / price / export, CBAM cost & scope, compute PUE) plus 2 content skills (`ai-industry-daily`, `carbon-black-weekly`). All of them query a live MCP server with 59 tools and 5,470 verifiable facts.:
+**Also included:** 8 industry skills under `industry/` — 6 task skills (rCB grade / substitution / price / export, CBAM cost & scope, compute PUE) plus 2 content skills (`ai-industry-daily`, `carbon-black-weekly`). All of them query a live MCP server with 66 tools and 30,206 records (22,966 traceable to a source URL).:
 
 | Skill | Question it answers |
 |---|---|
@@ -126,7 +126,7 @@ The industry skills query the Trustbase Lab MCP server:
 https://trustbaselab.com/mcp
 ```
 
-- **59 tools** · **520+ cross-domain benchmarks** · **2,738 records**
+- **66 MCP tools** · **30,206 records** (22,966 traceable) · **45 data modules**
 - **Every fact carries**: stable ID · confidence A/B/C · `source_url` · `as_of` · a verification URL
 - **Registry**: `com.trustbaselab/rcb-data`
 

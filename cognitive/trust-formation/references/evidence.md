@@ -26,7 +26,7 @@
 
 | 要素 | 可核验陈述（带口径） | 口径来源 |
 |---|---|---|
-| 能力 | 上游 MCP 工具 59 个；数据记录 2,738 条；覆盖 6 个域（carbon · energy · telecom · health · compute · rCB） | MCP 概览 exported 2026-10-18T13:40:13；TRUST-FOUR-ELEMENTS.md |
+| 能力 | 上游 MCP 工具数与数据记录数实时查询；覆盖 6 个域（carbon · energy · telecom · health · compute · rCB） | MCP tools/list + /database（回答时现查，不在技能里写死） |
 | 可靠 | 置信度 A/B/C 三级（A=官方备案/公告 · B=公司声明/权威媒体 · C=未验证；verified==A）；抽样 100 条基准记录中 89 条为 A 级；每条记录带稳定 ID、as_of、source_url | MCP 概览（分级定义）；TRUST-FOUR-ELEMENTS.md（抽样结果） |
 | 正直 | T-62 事实包如实披露 8 条数据缺口；存在 /corrections/ 纠错页与纠错告知机制 | TRUST-FOUR-ELEMENTS.md；MASTER-TASK-REGISTER.md |
 | 透明 | T-62 事实包 193 个回查 URL，实测 193/193 全部 200（11 秒内验完）；/usage/ 公开计量；开源仓库附 SHA256SUMS | _append-t62-auth.md；TRUST-FOUR-ELEMENTS.md |

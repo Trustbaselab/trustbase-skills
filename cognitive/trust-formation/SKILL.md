@@ -27,7 +27,7 @@ Based on the ideas of *Who Can You Trust?* (Rachel Botsman, 2017).
 
 **Trust** is a confident relationship with the unknown, requiring vulnerability and choice; **confidence** comes from past predictability. So the sentence "we are trustworthy" is itself untrustworthy — only testable statements can build trust.
 
-**Do**: write every trust assertion as "fact + verification entry point" (e.g. "59 tools, see the tools list").
+**Do**: write every trust assertion as "fact + verification entry point" (e.g. "every record carries a source URL, see /database").
 **Don't**: write "trustworthy", "authoritative", "industry-leading" or similar self-evaluations — a hit means rewrite.
 
 ### Rule 2: Trust is shifting from institutions to verifiability — "you are a big institution" no longer produces trust
@@ -134,7 +134,7 @@ Before writing any trust statement, confirm these 5 items; if one is missing, as
 
 | Dimension | Fact (verifiable, with confidence · as-of) | How you verify it |
 |---|---|---|
-| Competence | 59 MCP tools · 2,738 records · 6 domains (MCP overview export 2026-10-18T13:40:13; grade-A source) | Open /database and count yourself |
+| Competence | Live tool count and record count, each record carrying a source URL (query the MCP tools list / open /database at answer time) | Open /database and count yourself |
 | Reliability | Of 100 sampled benchmarks, 89 are grade A (grade-B source: platform self-measurement, 2026-10-18); every record carries a stable ID / as_of / source_url | Sample a record and open record/<id>/ to check |
 | Integrity | The fact pack honestly discloses 8 data gaps (grade-B source: project document, 2026-10-18); the corrections page keeps a trace | Look at data_gaps in facts.json · /corrections/ |
 | Transparency | 193 re-check URLs were tested: 193/193 returned 200 (11 seconds; a post-launch per-URL re-test is still pending) · /usage/ publishes usage metrics | Click "re-check" on any fact |
