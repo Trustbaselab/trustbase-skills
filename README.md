@@ -1,18 +1,18 @@
 # Trustbase Skills
 
-**8 cognitive skills that turn classic books into executable rules for AI agents.**
+**11 cognitive skills that turn classic books into executable rules for AI agents.**
 **Not summaries — if a sentence can't become "when X, do Y", it doesn't go in.**
 
 [![skills.sh](https://skills.sh/b/Trustbaselab/trustbase-skills)](https://skills.sh/Trustbaselab/trustbase-skills)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-16-green.svg)](#skills)
+[![Skills](https://img.shields.io/badge/skills-19-green.svg)](#skills)
 [![Verifiable facts](https://img.shields.io/badge/verifiable_facts-22966-orange.svg)](https://trustbaselab.com/database)
 
 ```bash
 npx skills add Trustbaselab/trustbase-skills
 ```
 
-**Quick nav**: [What is this](#what-is-this) · [The 8 cognitive skills](#the-8-cognitive-skills) · [Why different](#why-this-is-different) · [Install](#install) · [Feedback](#feedback)
+**Quick nav**: [What is this](#what-is-this) · [The 11 cognitive skills](#the-11-cognitive-skills) · [Why different](#why-this-is-different) · [Install](#install) · [Feedback](#feedback)
 
 ---
 
@@ -30,7 +30,7 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
 
 ---
 
-## The 8 cognitive skills
+## The 11 cognitive skills
 
 | Skill | Answers the question |
 |---|---|
@@ -41,6 +41,9 @@ There is also a meta-skill, `book-to-skill`, which packages **the method of turn
 | `bandwidth-and-deep-work` | **Why can't I focus, and what do I do first?** |
 | `knowledge-illusion` | **Do you actually know this, or just remember it?** |
 | `trust-formation` | **Why should anyone trust this?** |
+| ⭐ `verifiable-data` | **Is this dataset actually verifiable — or just plausible?** |
+| ⭐ `domain-master` | **How do I turn an industry into an agent that actually knows it?** |
+| ⭐ `decision-loop` | **The data answered the question — so what do I DO?** |
 | ⭐ `book-to-skill` | **How do I turn a book into a skill myself?** |
 
 **Each skill ships four things:**
