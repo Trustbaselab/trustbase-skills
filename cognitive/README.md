@@ -154,6 +154,24 @@
 
 ---
 
+# 2b. ⭐⭐ The four methodology skills (not derived from a single book)
+
+**Alongside the eight book-derived skills, this directory carries four skills that were distilled from our own operating experience — not from one book.**
+
+| Skill | Answers | Where it came from |
+|---|---|---|
+| `verifiable-data` | **Is this dataset actually verifiable — or just plausible?** | Building a 31,779-record dataset that outsiders can challenge |
+| `domain-master` | **How do I turn an industry into an agent that actually knows it?** | Six domain agents (rCB / carbon / energy / telecom / health / compute) |
+| `decision-loop` | **The data answered the question — so what do I DO?** | Shifting from data vendor to decision service |
+| ⭐ `agent-organization` | **We have 20 agents — but is it an organization or just a pile?** | Auditing our own 21-agent system and finding it was not one |
+
+**⭐ Why these four are different from the eight:**
+
+The eight are «how to think». These four are «how to build» — each one is a checklist you can run against a real system and get pass/fail.
+
+**`agent-organization` in one line:** it starts from a diagnosis (definition count ≠ registry count, missing `reports_to`, missing `boundaries`, missing `kpi`) and ends with eight ordered steps, each with an executable check. **Cost: under 2 hours for a 21-agent system that had been running 30 days. What we found: 1 agent failing 100% of the time, 6 zombie nodes, 9 members with no owner.**
+
+---
 # 3. ⭐⭐ The conversion method (`METHOD.md` · six steps)
 
 | # | Step | Hard requirement |
